@@ -1,0 +1,264 @@
+{
+	"name": "Tab_GLEntry",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "DwWalProd",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "EntryNo",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "CompanyCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "GLAccountNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PostingDate",
+				"type": "date"
+			},
+			{
+				"name": "DocumentType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DocumentNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Description",
+				"type": "text"
+			},
+			{
+				"name": "BalAccountNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Amount",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "GlobalDimension1Code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "GlobalDimension2Code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "UserID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SourceCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SystemCreatedEntry",
+				"type": "bit"
+			},
+			{
+				"name": "PriorYearEntry",
+				"type": "bit"
+			},
+			{
+				"name": "JobNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Quantity",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "VATAmount",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "BusinessUnitCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "JournalBatchName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ReasonCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "GenPostingType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "GenBusPostingGroup",
+				"type": "nvarchar"
+			},
+			{
+				"name": "GenProdPostingGroup",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BalAccountType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TransactionNo",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "AddCurrencyCreditAmount",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "AddCurrencyDebitAmount",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "AdditionalCurrencyAmount",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "CloseIncomeStatementDimID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CreditAmount",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "DebitAmount",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "DocumentDate",
+				"type": "date"
+			},
+			{
+				"name": "DimensionSetID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ExternalDocumentNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FAEntryNo",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "FAEntryType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ICPartnerCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LastModifiedDateTime",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "NoSeries",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ProdOrderNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Reversed",
+				"type": "bit"
+			},
+			{
+				"name": "ReversedEntryNo",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ReversedbyEntryNo",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SourceNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SourceType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TaxAreaCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TaxGroupCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TaxLiable",
+				"type": "bit"
+			},
+			{
+				"name": "UseTax",
+				"type": "bit"
+			},
+			{
+				"name": "VATBusPostingGroup",
+				"type": "nvarchar"
+			},
+			{
+				"name": "VATProdPostingGroup",
+				"type": "nvarchar"
+			},
+			{
+				"name": "GLAccountName",
+				"type": "text"
+			},
+			{
+				"name": "SystemCreatedDate",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "SystemModifiedDate",
+				"type": "datetime2",
+				"scale": 7
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "GLEntry"
+		}
+	}
+}

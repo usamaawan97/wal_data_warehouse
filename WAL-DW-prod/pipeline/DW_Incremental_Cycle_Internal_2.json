@@ -1,0 +1,4679 @@
+{
+	"name": "DW_Incremental_Cycle_Internal_2",
+	"properties": {
+		"activities": [
+			{
+				"name": "VendorLedgerEntry",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Get_Rel_URL_VendorLedgerEntry",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 5,
+					"retryIntervalInSeconds": 60,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"additionalColumns": [
+							{
+								"name": "CompanyCode",
+								"value": {
+									"value": "@activity('Get_Rel_URL_VendorLedgerEntry').output.firstRow.CompanyCode",
+									"type": "Expression"
+								}
+							}
+						],
+						"storeSettings": {
+							"type": "HttpReadSettings",
+							"requestMethod": "GET",
+							"additionalHeaders": {
+								"value": "Authorization:Bearer @{pipeline().parameters.AccessToken}",
+								"type": "Expression"
+							},
+							"requestTimeout": ""
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink"
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "['SystemCreatedDate']"
+								},
+								"sink": {
+									"name": "SystemCreatedDate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "['SystemModifiedDate']"
+								},
+								"sink": {
+									"name": "SystemModifiedDate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "['EntryNo']"
+								},
+								"sink": {
+									"name": "EntryNo",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"path": "['VendorNo']"
+								},
+								"sink": {
+									"name": "VendorNo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['PostingDate']"
+								},
+								"sink": {
+									"name": "PostingDate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "['DocumentType']"
+								},
+								"sink": {
+									"name": "DocumentType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['DocumentNo']"
+								},
+								"sink": {
+									"name": "DocumentNo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Description']"
+								},
+								"sink": {
+									"name": "Description",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['VendorName']"
+								},
+								"sink": {
+									"name": "VendorName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['CurrencyCode']"
+								},
+								"sink": {
+									"name": "CurrencyCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['PurchaseLCY']"
+								},
+								"sink": {
+									"name": "PurchaseLCY",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['InvDiscountLCY']"
+								},
+								"sink": {
+									"name": "InvDiscountLCY",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['BuyfromVendorNo']"
+								},
+								"sink": {
+									"name": "BuyfromVendorNo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['VendorPostingGroup']"
+								},
+								"sink": {
+									"name": "VendorPostingGroup",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['GlobalDimension1Code']"
+								},
+								"sink": {
+									"name": "GlobalDimension1Code",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['GlobalDimension2Code']"
+								},
+								"sink": {
+									"name": "GlobalDimension2Code",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['PurchaserCode']"
+								},
+								"sink": {
+									"name": "PurchaserCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['UserID']"
+								},
+								"sink": {
+									"name": "UserID",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['SourceCode']"
+								},
+								"sink": {
+									"name": "SourceCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['OnHold']"
+								},
+								"sink": {
+									"name": "OnHold",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['AppliestoDocType']"
+								},
+								"sink": {
+									"name": "AppliestoDocType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['AppliestoDocNo']"
+								},
+								"sink": {
+									"name": "AppliestoDocNo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Open']"
+								},
+								"sink": {
+									"name": "Open",
+									"type": "Boolean"
+								}
+							},
+							{
+								"source": {
+									"path": "['DueDate']"
+								},
+								"sink": {
+									"name": "DueDate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "['PmtDiscountDate']"
+								},
+								"sink": {
+									"name": "PmtDiscountDate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "['OriginalPmtDiscPossible']"
+								},
+								"sink": {
+									"name": "OriginalPmtDiscPossible",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['PmtDiscRcdLCY']"
+								},
+								"sink": {
+									"name": "PmtDiscRcdLCY",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['Positive']"
+								},
+								"sink": {
+									"name": "Positive",
+									"type": "Boolean"
+								}
+							},
+							{
+								"source": {
+									"path": "['ClosedbyEntryNo']"
+								},
+								"sink": {
+									"name": "ClosedbyEntryNo",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "['ClosedatDate']"
+								},
+								"sink": {
+									"name": "ClosedatDate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "['ClosedbyAmount']"
+								},
+								"sink": {
+									"name": "ClosedbyAmount",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['AppliestoID']"
+								},
+								"sink": {
+									"name": "AppliestoID",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['JournalBatchName']"
+								},
+								"sink": {
+									"name": "JournalBatchName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['ReasonCode']"
+								},
+								"sink": {
+									"name": "ReasonCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['BalAccountType']"
+								},
+								"sink": {
+									"name": "BalAccountType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['BalAccountNo']"
+								},
+								"sink": {
+									"name": "BalAccountNo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['TransactionNo']"
+								},
+								"sink": {
+									"name": "TransactionNo",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "['ClosedbyAmountLCY']"
+								},
+								"sink": {
+									"name": "ClosedbyAmountLCY",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['DocumentDate']"
+								},
+								"sink": {
+									"name": "DocumentDate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "['ExternalDocumentNo']"
+								},
+								"sink": {
+									"name": "ExternalDocumentNo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['ClosedbyCurrencyCode']"
+								},
+								"sink": {
+									"name": "ClosedbyCurrencyCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['ClosedbyCurrencyAmount']"
+								},
+								"sink": {
+									"name": "ClosedbyCurrencyAmount",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['AdjustedCurrencyFactor']"
+								},
+								"sink": {
+									"name": "AdjustedCurrencyFactor",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['OriginalCurrencyFactor']"
+								},
+								"sink": {
+									"name": "OriginalCurrencyFactor",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['RemainingPmtDiscPossible']"
+								},
+								"sink": {
+									"name": "RemainingPmtDiscPossible",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['PmtDiscToleranceDate']"
+								},
+								"sink": {
+									"name": "PmtDiscToleranceDate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "['MaxPaymentTolerance']"
+								},
+								"sink": {
+									"name": "MaxPaymentTolerance",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['AcceptedPaymentTolerance']"
+								},
+								"sink": {
+									"name": "AcceptedPaymentTolerance",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['AcceptedPmtDiscTolerance']"
+								},
+								"sink": {
+									"name": "AcceptedPmtDiscTolerance",
+									"type": "Boolean"
+								}
+							},
+							{
+								"source": {
+									"path": "['PmtToleranceLCY']"
+								},
+								"sink": {
+									"name": "PmtToleranceLCY",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['AmounttoApply']"
+								},
+								"sink": {
+									"name": "AmounttoApply",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['ICPartnerCode']"
+								},
+								"sink": {
+									"name": "ICPartnerCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['ApplyingEntry']"
+								},
+								"sink": {
+									"name": "ApplyingEntry",
+									"type": "Boolean"
+								}
+							},
+							{
+								"source": {
+									"path": "['Reversed']"
+								},
+								"sink": {
+									"name": "Reversed",
+									"type": "Boolean"
+								}
+							},
+							{
+								"source": {
+									"path": "['ReversedbyEntryNo']"
+								},
+								"sink": {
+									"name": "ReversedbyEntryNo",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "['ReversedEntryNo']"
+								},
+								"sink": {
+									"name": "ReversedEntryNo",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "['Prepayment']"
+								},
+								"sink": {
+									"name": "Prepayment",
+									"type": "Boolean"
+								}
+							},
+							{
+								"source": {
+									"path": "['CreditorNo']"
+								},
+								"sink": {
+									"name": "CreditorNo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['PaymentReference']"
+								},
+								"sink": {
+									"name": "PaymentReference",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['PaymentMethodCode']"
+								},
+								"sink": {
+									"name": "PaymentMethodCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['AppliestoExtDocNo']"
+								},
+								"sink": {
+									"name": "AppliestoExtDocNo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['DimensionSetID']"
+								},
+								"sink": {
+									"name": "DimensionSetID",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "['Amount']"
+								},
+								"sink": {
+									"name": "Amount",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['RemainingAmount']"
+								},
+								"sink": {
+									"name": "RemainingAmount",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['OriginalAmtLCY']"
+								},
+								"sink": {
+									"name": "OriginalAmtLCY",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['RemainingAmtLCY']"
+								},
+								"sink": {
+									"name": "RemainingAmtLCY",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['AmountLCY']"
+								},
+								"sink": {
+									"name": "AmountLCY",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['DebitAmount']"
+								},
+								"sink": {
+									"name": "DebitAmount",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['CreditAmount']"
+								},
+								"sink": {
+									"name": "CreditAmount",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['DebitAmountLCY']"
+								},
+								"sink": {
+									"name": "DebitAmountLCY",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['CreditAmountLCY']"
+								},
+								"sink": {
+									"name": "CreditAmountLCY",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['OriginalAmount']"
+								},
+								"sink": {
+									"name": "OriginalAmount",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "$['CompanyCode']"
+								},
+								"sink": {
+									"name": "CompanyCode",
+									"type": "String"
+								}
+							}
+						],
+						"collectionReference": "$['value']"
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "HttpBC",
+						"type": "DatasetReference",
+						"parameters": {
+							"relUrl": {
+								"value": "@activity('Get_Rel_URL_VendorLedgerEntry').output.firstRow.RelativeURL",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Tab_VendorLedgerEntry",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Get_Rel_URL_VendorLedgerEntry",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 5,
+					"retryIntervalInSeconds": 60,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderStoredProcedureName": "[dbo].[Get_Service_Configuration_For_Incremental]",
+						"storedProcedureParameters": {
+							"CompanyCode": {
+								"type": "String",
+								"value": {
+									"value": "@pipeline().parameters.CompanyCode",
+									"type": "Expression"
+								}
+							},
+							"ServiceCode": {
+								"type": "String",
+								"value": "GetVendorLedgerEntry"
+							},
+							"TableName": {
+								"type": "String",
+								"value": "VendorLedgerEntry"
+							}
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "Tab_DW_Site_Config",
+						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "DetailedCustomerLedgerEntry",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Get_Rel_URL_DetailedCustomerLedgerEntry",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 5,
+					"retryIntervalInSeconds": 60,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"additionalColumns": [
+							{
+								"name": "CompanyCode",
+								"value": {
+									"value": "@activity('Get_Rel_URL_DetailedCustomerLedgerEntry').output.firstRow.CompanyCode",
+									"type": "Expression"
+								}
+							}
+						],
+						"storeSettings": {
+							"type": "HttpReadSettings",
+							"requestMethod": "GET",
+							"additionalHeaders": {
+								"value": "Authorization:Bearer @{pipeline().parameters.AccessToken}",
+								"type": "Expression"
+							},
+							"requestTimeout": ""
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink"
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "['SystemCreatedDate']"
+								},
+								"sink": {
+									"name": "SystemCreatedDate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "['SystemModifiedDate']"
+								},
+								"sink": {
+									"name": "SystemModifiedDate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "['Amount']"
+								},
+								"sink": {
+									"name": "Amount",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['AmountLCY']"
+								},
+								"sink": {
+									"name": "AmountLCY",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['ApplicationNo']"
+								},
+								"sink": {
+									"name": "ApplicationNo",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"path": "['AppliedCustLedgerEntryNo']"
+								},
+								"sink": {
+									"name": "AppliedCustLedgerEntryNo",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"path": "['CreditAmount']"
+								},
+								"sink": {
+									"name": "CreditAmount",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['CreditAmountLCY']"
+								},
+								"sink": {
+									"name": "CreditAmountLCY",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['CurrencyCode']"
+								},
+								"sink": {
+									"name": "CurrencyCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['CustLedgerEntryNo']"
+								},
+								"sink": {
+									"name": "CustLedgerEntryNo",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"path": "['CustomerNo']"
+								},
+								"sink": {
+									"name": "CustomerNo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['DebitAmount']"
+								},
+								"sink": {
+									"name": "DebitAmount",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['DebitAmountLCY']"
+								},
+								"sink": {
+									"name": "DebitAmountLCY",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['DocumentNo']"
+								},
+								"sink": {
+									"name": "DocumentNo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['DocumentType']"
+								},
+								"sink": {
+									"name": "DocumentType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['EntryNo']"
+								},
+								"sink": {
+									"name": "EntryNo",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"path": "['EntryType']"
+								},
+								"sink": {
+									"name": "EntryType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['GenBusPostingGroup']"
+								},
+								"sink": {
+									"name": "GenBusPostingGroup",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['GenProdPostingGroup']"
+								},
+								"sink": {
+									"name": "GenProdPostingGroup",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['InitialDocumentType']"
+								},
+								"sink": {
+									"name": "InitialDocumentType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['InitialEntryDueDate']"
+								},
+								"sink": {
+									"name": "InitialEntryDueDate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "['InitialEntryGlobalDim1']"
+								},
+								"sink": {
+									"name": "InitialEntryGlobalDim1",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['InitialEntryGlobalDim2']"
+								},
+								"sink": {
+									"name": "InitialEntryGlobalDim2",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['JournalBatchName']"
+								},
+								"sink": {
+									"name": "JournalBatchName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['LedgerEntryAmount']"
+								},
+								"sink": {
+									"name": "LedgerEntryAmount",
+									"type": "Boolean"
+								}
+							},
+							{
+								"source": {
+									"path": "['MaxPaymentTolerance']"
+								},
+								"sink": {
+									"name": "MaxPaymentTolerance",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['PostingDate']"
+								},
+								"sink": {
+									"name": "PostingDate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "['ReasonCode']"
+								},
+								"sink": {
+									"name": "ReasonCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['RemainingPmtDiscPossible']"
+								},
+								"sink": {
+									"name": "RemainingPmtDiscPossible",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['SourceCode']"
+								},
+								"sink": {
+									"name": "SourceCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['SystemCreatedAt']"
+								},
+								"sink": {
+									"name": "SystemCreatedAt",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['SystemCreatedBy']"
+								},
+								"sink": {
+									"name": "SystemCreatedBy",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['SystemId']"
+								},
+								"sink": {
+									"name": "SystemId",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['SystemModifiedAt']"
+								},
+								"sink": {
+									"name": "SystemModifiedAt",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['SystemModifiedBy']"
+								},
+								"sink": {
+									"name": "SystemModifiedBy",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['TaxJurisdictionCode']"
+								},
+								"sink": {
+									"name": "TaxJurisdictionCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['TransactionNo']"
+								},
+								"sink": {
+									"name": "TransactionNo",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"path": "['Unapplied']"
+								},
+								"sink": {
+									"name": "Unapplied",
+									"type": "Boolean"
+								}
+							},
+							{
+								"source": {
+									"path": "['UnappliedbyEntryNo']"
+								},
+								"sink": {
+									"name": "UnappliedbyEntryNo",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"path": "['UseTax']"
+								},
+								"sink": {
+									"name": "UseTax",
+									"type": "Boolean"
+								}
+							},
+							{
+								"source": {
+									"path": "['UserID']"
+								},
+								"sink": {
+									"name": "UserID",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['VATBusPostingGroup']"
+								},
+								"sink": {
+									"name": "VATBusPostingGroup",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['VATProdPostingGroup']"
+								},
+								"sink": {
+									"name": "VATProdPostingGroup",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['CompanyCode']"
+								},
+								"sink": {
+									"name": "CompanyCode",
+									"type": "String"
+								}
+							}
+						],
+						"collectionReference": "$['value']"
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "HttpBC",
+						"type": "DatasetReference",
+						"parameters": {
+							"relUrl": {
+								"value": "@activity('Get_Rel_URL_DetailedCustomerLedgerEntry').output.firstRow.RelativeURL",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Tab_DetailedCustomerLedgerEntry",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Get_Rel_URL_DetailedCustomerLedgerEntry",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 5,
+					"retryIntervalInSeconds": 60,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderStoredProcedureName": "[dbo].[Get_Service_Configuration_For_Incremental]",
+						"storedProcedureParameters": {
+							"CompanyCode": {
+								"type": "String",
+								"value": {
+									"value": "@pipeline().parameters.CompanyCode",
+									"type": "Expression"
+								}
+							},
+							"ServiceCode": {
+								"type": "String",
+								"value": "GetDetailedCustomerLedgerEntry"
+							},
+							"TableName": {
+								"type": "String",
+								"value": "DetailedCustomerLedgerEntry"
+							}
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "Tab_DW_Site_Config",
+						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "DetailedVendorLedgerEntry",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Get_Rel_URL_DetailedVendorLedgerEntry",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 5,
+					"retryIntervalInSeconds": 60,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"additionalColumns": [
+							{
+								"name": "CompanyCode",
+								"value": {
+									"value": "@activity('Get_Rel_URL_DetailedVendorLedgerEntry').output.firstRow.CompanyCode",
+									"type": "Expression"
+								}
+							}
+						],
+						"storeSettings": {
+							"type": "HttpReadSettings",
+							"requestMethod": "GET",
+							"additionalHeaders": {
+								"value": "Authorization:Bearer @{pipeline().parameters.AccessToken}",
+								"type": "Expression"
+							},
+							"requestTimeout": ""
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink"
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "['SystemCreatedDate']"
+								},
+								"sink": {
+									"name": "SystemCreatedDate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "['SystemModifiedDate']"
+								},
+								"sink": {
+									"name": "SystemModifiedDate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "['Amount']"
+								},
+								"sink": {
+									"name": "Amount",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['AmountLCY']"
+								},
+								"sink": {
+									"name": "AmountLCY",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['ApplicationNo']"
+								},
+								"sink": {
+									"name": "ApplicationNo",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"path": "['AppliedVendLedgerEntryNo']"
+								},
+								"sink": {
+									"name": "AppliedVendLedgerEntryNo",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"path": "['CreditAmount']"
+								},
+								"sink": {
+									"name": "CreditAmount",
+									"type": "Double"
+								}
+							},
+							{
+								"source": {
+									"path": "['CreditAmountLCY']"
+								},
+								"sink": {
+									"name": "CreditAmountLCY",
+									"type": "Double"
+								}
+							},
+							{
+								"source": {
+									"path": "['CurrencyCode']"
+								},
+								"sink": {
+									"name": "CurrencyCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['DebitAmount']"
+								},
+								"sink": {
+									"name": "DebitAmount",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['DebitAmountLCY']"
+								},
+								"sink": {
+									"name": "DebitAmountLCY",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['DocumentNo']"
+								},
+								"sink": {
+									"name": "DocumentNo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['DocumentType']"
+								},
+								"sink": {
+									"name": "DocumentType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['EntryNo']"
+								},
+								"sink": {
+									"name": "EntryNo",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"path": "['EntryType']"
+								},
+								"sink": {
+									"name": "EntryType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['GenBusPostingGroup']"
+								},
+								"sink": {
+									"name": "GenBusPostingGroup",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['GenProdPostingGroup']"
+								},
+								"sink": {
+									"name": "GenProdPostingGroup",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['InitialDocumentType']"
+								},
+								"sink": {
+									"name": "InitialDocumentType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['InitialEntryDueDate']"
+								},
+								"sink": {
+									"name": "InitialEntryDueDate",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['InitialEntryGlobalDim1']"
+								},
+								"sink": {
+									"name": "InitialEntryGlobalDim1",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['InitialEntryGlobalDim2']"
+								},
+								"sink": {
+									"name": "InitialEntryGlobalDim2",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['JournalBatchName']"
+								},
+								"sink": {
+									"name": "JournalBatchName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['LedgerEntryAmount']"
+								},
+								"sink": {
+									"name": "LedgerEntryAmount",
+									"type": "Boolean"
+								}
+							},
+							{
+								"source": {
+									"path": "['MaxPaymentTolerance']"
+								},
+								"sink": {
+									"name": "MaxPaymentTolerance",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['PostingDate']"
+								},
+								"sink": {
+									"name": "PostingDate",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['ReasonCode']"
+								},
+								"sink": {
+									"name": "ReasonCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['RemainingPmtDiscPossible']"
+								},
+								"sink": {
+									"name": "RemainingPmtDiscPossible",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['SourceCode']"
+								},
+								"sink": {
+									"name": "SourceCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['SystemCreatedAt']"
+								},
+								"sink": {
+									"name": "SystemCreatedAt",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['SystemCreatedBy']"
+								},
+								"sink": {
+									"name": "SystemCreatedBy",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['SystemId']"
+								},
+								"sink": {
+									"name": "SystemId",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['SystemModifiedAt']"
+								},
+								"sink": {
+									"name": "SystemModifiedAt",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['SystemModifiedBy']"
+								},
+								"sink": {
+									"name": "SystemModifiedBy",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['TaxJurisdictionCode']"
+								},
+								"sink": {
+									"name": "TaxJurisdictionCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['TransactionNo']"
+								},
+								"sink": {
+									"name": "TransactionNo",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"path": "['Unapplied']"
+								},
+								"sink": {
+									"name": "Unapplied",
+									"type": "Boolean"
+								}
+							},
+							{
+								"source": {
+									"path": "['UnappliedbyEntryNo']"
+								},
+								"sink": {
+									"name": "UnappliedbyEntryNo",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"path": "['UseTax']"
+								},
+								"sink": {
+									"name": "UseTax",
+									"type": "Boolean"
+								}
+							},
+							{
+								"source": {
+									"path": "['UserID']"
+								},
+								"sink": {
+									"name": "UserID",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['VATBusPostingGroup']"
+								},
+								"sink": {
+									"name": "VATBusPostingGroup",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['VATProdPostingGroup']"
+								},
+								"sink": {
+									"name": "VATProdPostingGroup",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['VendorLedgerEntryNo']"
+								},
+								"sink": {
+									"name": "VendorLedgerEntryNo",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"path": "['VendorNo']"
+								},
+								"sink": {
+									"name": "VendorNo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['CompanyCode']"
+								},
+								"sink": {
+									"name": "CompanyCode",
+									"type": "String"
+								}
+							}
+						],
+						"collectionReference": "$['value']"
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "HttpBC",
+						"type": "DatasetReference",
+						"parameters": {
+							"relUrl": {
+								"value": "@activity('Get_Rel_URL_DetailedVendorLedgerEntry').output.firstRow.RelativeURL",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Tab_DetailedVendorLedgerEntry",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Get_Rel_URL_DetailedVendorLedgerEntry",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 5,
+					"retryIntervalInSeconds": 60,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderStoredProcedureName": "[dbo].[Get_Service_Configuration_For_Incremental]",
+						"storedProcedureParameters": {
+							"CompanyCode": {
+								"type": "String",
+								"value": {
+									"value": "@pipeline().parameters.CompanyCode",
+									"type": "Expression"
+								}
+							},
+							"ServiceCode": {
+								"type": "String",
+								"value": "GetDetailedVendorLedgerEntry"
+							},
+							"TableName": {
+								"type": "String",
+								"value": "DetailedVendorLedgerEntry"
+							}
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "Tab_DW_Site_Config",
+						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "DimensionSetEntry",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Get_Rel_URL_DimensionSetEntry",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 5,
+					"retryIntervalInSeconds": 60,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"additionalColumns": [
+							{
+								"name": "CompanyCode",
+								"value": {
+									"value": "@activity('Get_Rel_URL_DimensionSetEntry').output.firstRow.CompanyCode",
+									"type": "Expression"
+								}
+							}
+						],
+						"storeSettings": {
+							"type": "HttpReadSettings",
+							"requestMethod": "GET",
+							"additionalHeaders": {
+								"value": "Authorization:Bearer @{pipeline().parameters.AccessToken}",
+								"type": "Expression"
+							},
+							"requestTimeout": ""
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink"
+					},
+					"enableStaging": false,
+					"enableSkipIncompatibleRow": true,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "['SystemCreatedDate']"
+								},
+								"sink": {
+									"name": "SystemCreatedDate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "['SystemModifiedDate']"
+								},
+								"sink": {
+									"name": "SystemModifiedDate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "['DimensionCode']"
+								},
+								"sink": {
+									"name": "DimensionCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['DimensionSetID']"
+								},
+								"sink": {
+									"name": "DimensionSetID",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "['DimensionValueCode']"
+								},
+								"sink": {
+									"name": "DimensionValueCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['DimensionValueID']"
+								},
+								"sink": {
+									"name": "DimensionValueID",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "['DimensionName']"
+								},
+								"sink": {
+									"name": "DimensionName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['DimensionValueName']"
+								},
+								"sink": {
+									"name": "DimensionValueName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['CompanyCode']"
+								},
+								"sink": {
+									"name": "CompanyCode",
+									"type": "String"
+								}
+							}
+						],
+						"collectionReference": "$['value']"
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "HttpBC",
+						"type": "DatasetReference",
+						"parameters": {
+							"relUrl": {
+								"value": "@activity('Get_Rel_URL_DimensionSetEntry').output.firstRow.RelativeURL",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Tab_DimensionSetEntry",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Get_Rel_URL_DimensionSetEntry",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 5,
+					"retryIntervalInSeconds": 60,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderStoredProcedureName": "[dbo].[Get_Service_Configuration_For_Incremental]",
+						"storedProcedureParameters": {
+							"CompanyCode": {
+								"type": "String",
+								"value": {
+									"value": "@pipeline().parameters.CompanyCode",
+									"type": "Expression"
+								}
+							},
+							"ServiceCode": {
+								"type": "String",
+								"value": "GetDimensionSetEntry"
+							},
+							"TableName": {
+								"type": "String",
+								"value": "DimensionSetEntry"
+							}
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "Tab_DW_Site_Config",
+						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "GLItemLedgerRelation",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Get_Rel_URL_GLItemLedgerRelation",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 5,
+					"retryIntervalInSeconds": 60,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"additionalColumns": [
+							{
+								"name": "CompanyCode",
+								"value": {
+									"value": "@activity('Get_Rel_URL_GLItemLedgerRelation').output.firstRow.CompanyCode",
+									"type": "Expression"
+								}
+							}
+						],
+						"storeSettings": {
+							"type": "HttpReadSettings",
+							"requestMethod": "GET",
+							"additionalHeaders": {
+								"value": "Authorization:Bearer @{pipeline().parameters.AccessToken}",
+								"type": "Expression"
+							},
+							"requestTimeout": ""
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink"
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "['SystemCreatedDate']"
+								},
+								"sink": {
+									"name": "SystemCreatedDate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "['SystemModifiedDate']"
+								},
+								"sink": {
+									"name": "SystemModifiedDate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "['GLEntryNo']"
+								},
+								"sink": {
+									"name": "GLEntryNo",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "['GLRegisterNo']"
+								},
+								"sink": {
+									"name": "GLRegisterNo",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "['ValueEntryNo']"
+								},
+								"sink": {
+									"name": "ValueEntryNo",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "$['CompanyCode']"
+								},
+								"sink": {
+									"name": "CompanyCode",
+									"type": "String"
+								}
+							}
+						],
+						"collectionReference": "$['value']"
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "HttpBC",
+						"type": "DatasetReference",
+						"parameters": {
+							"relUrl": {
+								"value": "@activity('Get_Rel_URL_GLItemLedgerRelation').output.firstRow.RelativeURL",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Tab_GLItemLedgerRelation",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Get_Rel_URL_GLItemLedgerRelation",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 5,
+					"retryIntervalInSeconds": 60,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderStoredProcedureName": "[dbo].[Get_Service_Configuration_For_Incremental]",
+						"storedProcedureParameters": {
+							"CompanyCode": {
+								"type": "String",
+								"value": {
+									"value": "@pipeline().parameters.CompanyCode",
+									"type": "Expression"
+								}
+							},
+							"ServiceCode": {
+								"type": "String",
+								"value": "GetGLItemLedgerRelation"
+							},
+							"TableName": {
+								"type": "String",
+								"value": "GLItemLedgerRelation"
+							}
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "Tab_DW_Site_Config",
+						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "Set VendorLedgerEntry Variable",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "VendorLedgerEntry",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "VendorLedgerEntry",
+					"value": {
+						"value": "@{string(activity('VendorLedgerEntry').output.rowsCopied)}",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Until VendorLedgerEntry",
+				"type": "Until",
+				"dependsOn": [
+					{
+						"activity": "Set VendorLedgerEntry Variable",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@equals(variables('VendorLedgerEntry'),'0' )",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Set VendorLedgerEntry Internal variable",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "VendorLedgerEntry_Internal",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "VendorLedgerEntry",
+								"value": {
+									"value": "@{string(activity('VendorLedgerEntry_Internal').output.rowsCopied)}",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "VendorLedgerEntry_Internal",
+							"type": "Copy",
+							"dependsOn": [
+								{
+									"activity": "Get_Rel_URL_VendorLedgerEntry_Internal",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 5,
+								"retryIntervalInSeconds": 60,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "JsonSource",
+									"additionalColumns": [
+										{
+											"name": "CompanyCode",
+											"value": {
+												"value": "@activity('Get_Rel_URL_VendorLedgerEntry_Internal').output.firstRow.CompanyCode",
+												"type": "Expression"
+											}
+										}
+									],
+									"storeSettings": {
+										"type": "HttpReadSettings",
+										"requestMethod": "GET",
+										"additionalHeaders": {
+											"value": "Authorization:Bearer @{pipeline().parameters.AccessToken}",
+											"type": "Expression"
+										},
+										"requestTimeout": ""
+									},
+									"formatSettings": {
+										"type": "JsonReadSettings"
+									}
+								},
+								"sink": {
+									"type": "AzureSqlSink"
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"mappings": [
+										{
+											"source": {
+												"path": "['SystemCreatedDate']"
+											},
+											"sink": {
+												"name": "SystemCreatedDate",
+												"type": "DateTime"
+											}
+										},
+										{
+											"source": {
+												"path": "['SystemModifiedDate']"
+											},
+											"sink": {
+												"name": "SystemModifiedDate",
+												"type": "DateTime"
+											}
+										},
+										{
+											"source": {
+												"path": "['EntryNo']"
+											},
+											"sink": {
+												"name": "EntryNo",
+												"type": "Int64"
+											}
+										},
+										{
+											"source": {
+												"path": "['VendorNo']"
+											},
+											"sink": {
+												"name": "VendorNo",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['PostingDate']"
+											},
+											"sink": {
+												"name": "PostingDate",
+												"type": "DateTime"
+											}
+										},
+										{
+											"source": {
+												"path": "['DocumentType']"
+											},
+											"sink": {
+												"name": "DocumentType",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['DocumentNo']"
+											},
+											"sink": {
+												"name": "DocumentNo",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['Description']"
+											},
+											"sink": {
+												"name": "Description",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['VendorName']"
+											},
+											"sink": {
+												"name": "VendorName",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['CurrencyCode']"
+											},
+											"sink": {
+												"name": "CurrencyCode",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['PurchaseLCY']"
+											},
+											"sink": {
+												"name": "PurchaseLCY",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['InvDiscountLCY']"
+											},
+											"sink": {
+												"name": "InvDiscountLCY",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['BuyfromVendorNo']"
+											},
+											"sink": {
+												"name": "BuyfromVendorNo",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['VendorPostingGroup']"
+											},
+											"sink": {
+												"name": "VendorPostingGroup",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['GlobalDimension1Code']"
+											},
+											"sink": {
+												"name": "GlobalDimension1Code",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['GlobalDimension2Code']"
+											},
+											"sink": {
+												"name": "GlobalDimension2Code",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['PurchaserCode']"
+											},
+											"sink": {
+												"name": "PurchaserCode",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['UserID']"
+											},
+											"sink": {
+												"name": "UserID",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['SourceCode']"
+											},
+											"sink": {
+												"name": "SourceCode",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['OnHold']"
+											},
+											"sink": {
+												"name": "OnHold",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['AppliestoDocType']"
+											},
+											"sink": {
+												"name": "AppliestoDocType",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['AppliestoDocNo']"
+											},
+											"sink": {
+												"name": "AppliestoDocNo",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['Open']"
+											},
+											"sink": {
+												"name": "Open",
+												"type": "Boolean"
+											}
+										},
+										{
+											"source": {
+												"path": "['DueDate']"
+											},
+											"sink": {
+												"name": "DueDate",
+												"type": "DateTime"
+											}
+										},
+										{
+											"source": {
+												"path": "['PmtDiscountDate']"
+											},
+											"sink": {
+												"name": "PmtDiscountDate",
+												"type": "DateTime"
+											}
+										},
+										{
+											"source": {
+												"path": "['OriginalPmtDiscPossible']"
+											},
+											"sink": {
+												"name": "OriginalPmtDiscPossible",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['PmtDiscRcdLCY']"
+											},
+											"sink": {
+												"name": "PmtDiscRcdLCY",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['Positive']"
+											},
+											"sink": {
+												"name": "Positive",
+												"type": "Boolean"
+											}
+										},
+										{
+											"source": {
+												"path": "['ClosedbyEntryNo']"
+											},
+											"sink": {
+												"name": "ClosedbyEntryNo",
+												"type": "Int32"
+											}
+										},
+										{
+											"source": {
+												"path": "['ClosedatDate']"
+											},
+											"sink": {
+												"name": "ClosedatDate",
+												"type": "DateTime"
+											}
+										},
+										{
+											"source": {
+												"path": "['ClosedbyAmount']"
+											},
+											"sink": {
+												"name": "ClosedbyAmount",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['AppliestoID']"
+											},
+											"sink": {
+												"name": "AppliestoID",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['JournalBatchName']"
+											},
+											"sink": {
+												"name": "JournalBatchName",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['ReasonCode']"
+											},
+											"sink": {
+												"name": "ReasonCode",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['BalAccountType']"
+											},
+											"sink": {
+												"name": "BalAccountType",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['BalAccountNo']"
+											},
+											"sink": {
+												"name": "BalAccountNo",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['TransactionNo']"
+											},
+											"sink": {
+												"name": "TransactionNo",
+												"type": "Int32"
+											}
+										},
+										{
+											"source": {
+												"path": "['ClosedbyAmountLCY']"
+											},
+											"sink": {
+												"name": "ClosedbyAmountLCY",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['DocumentDate']"
+											},
+											"sink": {
+												"name": "DocumentDate",
+												"type": "DateTime"
+											}
+										},
+										{
+											"source": {
+												"path": "['ExternalDocumentNo']"
+											},
+											"sink": {
+												"name": "ExternalDocumentNo",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['ClosedbyCurrencyCode']"
+											},
+											"sink": {
+												"name": "ClosedbyCurrencyCode",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['ClosedbyCurrencyAmount']"
+											},
+											"sink": {
+												"name": "ClosedbyCurrencyAmount",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['AdjustedCurrencyFactor']"
+											},
+											"sink": {
+												"name": "AdjustedCurrencyFactor",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['OriginalCurrencyFactor']"
+											},
+											"sink": {
+												"name": "OriginalCurrencyFactor",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['RemainingPmtDiscPossible']"
+											},
+											"sink": {
+												"name": "RemainingPmtDiscPossible",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['PmtDiscToleranceDate']"
+											},
+											"sink": {
+												"name": "PmtDiscToleranceDate",
+												"type": "DateTime"
+											}
+										},
+										{
+											"source": {
+												"path": "['MaxPaymentTolerance']"
+											},
+											"sink": {
+												"name": "MaxPaymentTolerance",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['AcceptedPaymentTolerance']"
+											},
+											"sink": {
+												"name": "AcceptedPaymentTolerance",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['AcceptedPmtDiscTolerance']"
+											},
+											"sink": {
+												"name": "AcceptedPmtDiscTolerance",
+												"type": "Boolean"
+											}
+										},
+										{
+											"source": {
+												"path": "['PmtToleranceLCY']"
+											},
+											"sink": {
+												"name": "PmtToleranceLCY",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['AmounttoApply']"
+											},
+											"sink": {
+												"name": "AmounttoApply",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['ICPartnerCode']"
+											},
+											"sink": {
+												"name": "ICPartnerCode",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['ApplyingEntry']"
+											},
+											"sink": {
+												"name": "ApplyingEntry",
+												"type": "Boolean"
+											}
+										},
+										{
+											"source": {
+												"path": "['Reversed']"
+											},
+											"sink": {
+												"name": "Reversed",
+												"type": "Boolean"
+											}
+										},
+										{
+											"source": {
+												"path": "['ReversedbyEntryNo']"
+											},
+											"sink": {
+												"name": "ReversedbyEntryNo",
+												"type": "Int32"
+											}
+										},
+										{
+											"source": {
+												"path": "['ReversedEntryNo']"
+											},
+											"sink": {
+												"name": "ReversedEntryNo",
+												"type": "Int32"
+											}
+										},
+										{
+											"source": {
+												"path": "['Prepayment']"
+											},
+											"sink": {
+												"name": "Prepayment",
+												"type": "Boolean"
+											}
+										},
+										{
+											"source": {
+												"path": "['CreditorNo']"
+											},
+											"sink": {
+												"name": "CreditorNo",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['PaymentReference']"
+											},
+											"sink": {
+												"name": "PaymentReference",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['PaymentMethodCode']"
+											},
+											"sink": {
+												"name": "PaymentMethodCode",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['AppliestoExtDocNo']"
+											},
+											"sink": {
+												"name": "AppliestoExtDocNo",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['DimensionSetID']"
+											},
+											"sink": {
+												"name": "DimensionSetID",
+												"type": "Int32"
+											}
+										},
+										{
+											"source": {
+												"path": "['Amount']"
+											},
+											"sink": {
+												"name": "Amount",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['RemainingAmount']"
+											},
+											"sink": {
+												"name": "RemainingAmount",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['OriginalAmtLCY']"
+											},
+											"sink": {
+												"name": "OriginalAmtLCY",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['RemainingAmtLCY']"
+											},
+											"sink": {
+												"name": "RemainingAmtLCY",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['AmountLCY']"
+											},
+											"sink": {
+												"name": "AmountLCY",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['DebitAmount']"
+											},
+											"sink": {
+												"name": "DebitAmount",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['CreditAmount']"
+											},
+											"sink": {
+												"name": "CreditAmount",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['DebitAmountLCY']"
+											},
+											"sink": {
+												"name": "DebitAmountLCY",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['CreditAmountLCY']"
+											},
+											"sink": {
+												"name": "CreditAmountLCY",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['OriginalAmount']"
+											},
+											"sink": {
+												"name": "OriginalAmount",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "$['CompanyCode']"
+											},
+											"sink": {
+												"name": "CompanyCode",
+												"type": "String"
+											}
+										}
+									],
+									"collectionReference": "$['value']"
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "HttpBC",
+									"type": "DatasetReference",
+									"parameters": {
+										"relUrl": {
+											"value": "@activity('Get_Rel_URL_VendorLedgerEntry_Internal').output.firstRow.RelativeURL",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "Tab_VendorLedgerEntry",
+									"type": "DatasetReference"
+								}
+							]
+						},
+						{
+							"name": "Get_Rel_URL_VendorLedgerEntry_Internal",
+							"type": "Lookup",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 5,
+								"retryIntervalInSeconds": 60,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "AzureSqlSource",
+									"sqlReaderStoredProcedureName": "[dbo].[Get_Service_Configuration_For_Incremental]",
+									"storedProcedureParameters": {
+										"CompanyCode": {
+											"type": "String",
+											"value": {
+												"value": "@pipeline().parameters.CompanyCode",
+												"type": "Expression"
+											}
+										},
+										"ServiceCode": {
+											"type": "String",
+											"value": "GetVendorLedgerEntry"
+										},
+										"TableName": {
+											"type": "String",
+											"value": "VendorLedgerEntry"
+										}
+									},
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"dataset": {
+									"referenceName": "Tab_DW_Site_Config",
+									"type": "DatasetReference"
+								}
+							}
+						}
+					],
+					"timeout": "7.00:00:00"
+				}
+			},
+			{
+				"name": "Set DetailedCustomerLedgerEntry variable",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "DetailedCustomerLedgerEntry",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "DetailedCustomerLedgerEntry",
+					"value": {
+						"value": "@{string(activity('DetailedCustomerLedgerEntry').output.rowsCopied)}",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Until DetailedCustomerLedgerEntry",
+				"type": "Until",
+				"dependsOn": [
+					{
+						"activity": "Set DetailedCustomerLedgerEntry variable",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@equals(variables('DetailedCustomerLedgerEntry'),'0' )",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "DetailedCustomerLedgerEntry_Internal",
+							"type": "Copy",
+							"dependsOn": [
+								{
+									"activity": "Get_Rel_URL_DetailedCustomerLedgerEntry_Internal",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 5,
+								"retryIntervalInSeconds": 60,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "JsonSource",
+									"additionalColumns": [
+										{
+											"name": "CompanyCode",
+											"value": {
+												"value": "@activity('Get_Rel_URL_DetailedCustomerLedgerEntry_Internal').output.firstRow.CompanyCode",
+												"type": "Expression"
+											}
+										}
+									],
+									"storeSettings": {
+										"type": "HttpReadSettings",
+										"requestMethod": "GET",
+										"additionalHeaders": {
+											"value": "Authorization:Bearer @{pipeline().parameters.AccessToken}",
+											"type": "Expression"
+										},
+										"requestTimeout": ""
+									},
+									"formatSettings": {
+										"type": "JsonReadSettings"
+									}
+								},
+								"sink": {
+									"type": "AzureSqlSink"
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"mappings": [
+										{
+											"source": {
+												"path": "['SystemCreatedDate']"
+											},
+											"sink": {
+												"name": "SystemCreatedDate",
+												"type": "DateTime"
+											}
+										},
+										{
+											"source": {
+												"path": "['SystemModifiedDate']"
+											},
+											"sink": {
+												"name": "SystemModifiedDate",
+												"type": "DateTime"
+											}
+										},
+										{
+											"source": {
+												"path": "['Amount']"
+											},
+											"sink": {
+												"name": "Amount",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['AmountLCY']"
+											},
+											"sink": {
+												"name": "AmountLCY",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['ApplicationNo']"
+											},
+											"sink": {
+												"name": "ApplicationNo",
+												"type": "Int64"
+											}
+										},
+										{
+											"source": {
+												"path": "['AppliedCustLedgerEntryNo']"
+											},
+											"sink": {
+												"name": "AppliedCustLedgerEntryNo",
+												"type": "Int64"
+											}
+										},
+										{
+											"source": {
+												"path": "['CreditAmount']"
+											},
+											"sink": {
+												"name": "CreditAmount",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['CreditAmountLCY']"
+											},
+											"sink": {
+												"name": "CreditAmountLCY",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['CurrencyCode']"
+											},
+											"sink": {
+												"name": "CurrencyCode",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['CustLedgerEntryNo']"
+											},
+											"sink": {
+												"name": "CustLedgerEntryNo",
+												"type": "Int64"
+											}
+										},
+										{
+											"source": {
+												"path": "['CustomerNo']"
+											},
+											"sink": {
+												"name": "CustomerNo",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['DebitAmount']"
+											},
+											"sink": {
+												"name": "DebitAmount",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['DebitAmountLCY']"
+											},
+											"sink": {
+												"name": "DebitAmountLCY",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['DocumentNo']"
+											},
+											"sink": {
+												"name": "DocumentNo",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['DocumentType']"
+											},
+											"sink": {
+												"name": "DocumentType",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['EntryNo']"
+											},
+											"sink": {
+												"name": "EntryNo",
+												"type": "Int64"
+											}
+										},
+										{
+											"source": {
+												"path": "['EntryType']"
+											},
+											"sink": {
+												"name": "EntryType",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['GenBusPostingGroup']"
+											},
+											"sink": {
+												"name": "GenBusPostingGroup",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['GenProdPostingGroup']"
+											},
+											"sink": {
+												"name": "GenProdPostingGroup",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['InitialDocumentType']"
+											},
+											"sink": {
+												"name": "InitialDocumentType",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['InitialEntryDueDate']"
+											},
+											"sink": {
+												"name": "InitialEntryDueDate",
+												"type": "DateTime"
+											}
+										},
+										{
+											"source": {
+												"path": "['InitialEntryGlobalDim1']"
+											},
+											"sink": {
+												"name": "InitialEntryGlobalDim1",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['InitialEntryGlobalDim2']"
+											},
+											"sink": {
+												"name": "InitialEntryGlobalDim2",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['JournalBatchName']"
+											},
+											"sink": {
+												"name": "JournalBatchName",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['LedgerEntryAmount']"
+											},
+											"sink": {
+												"name": "LedgerEntryAmount",
+												"type": "Boolean"
+											}
+										},
+										{
+											"source": {
+												"path": "['MaxPaymentTolerance']"
+											},
+											"sink": {
+												"name": "MaxPaymentTolerance",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['PostingDate']"
+											},
+											"sink": {
+												"name": "PostingDate",
+												"type": "DateTime"
+											}
+										},
+										{
+											"source": {
+												"path": "['ReasonCode']"
+											},
+											"sink": {
+												"name": "ReasonCode",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['RemainingPmtDiscPossible']"
+											},
+											"sink": {
+												"name": "RemainingPmtDiscPossible",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['SourceCode']"
+											},
+											"sink": {
+												"name": "SourceCode",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['SystemCreatedAt']"
+											},
+											"sink": {
+												"name": "SystemCreatedAt",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['SystemCreatedBy']"
+											},
+											"sink": {
+												"name": "SystemCreatedBy",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['SystemId']"
+											},
+											"sink": {
+												"name": "SystemId",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['SystemModifiedAt']"
+											},
+											"sink": {
+												"name": "SystemModifiedAt",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['SystemModifiedBy']"
+											},
+											"sink": {
+												"name": "SystemModifiedBy",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['TaxJurisdictionCode']"
+											},
+											"sink": {
+												"name": "TaxJurisdictionCode",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['TransactionNo']"
+											},
+											"sink": {
+												"name": "TransactionNo",
+												"type": "Int64"
+											}
+										},
+										{
+											"source": {
+												"path": "['Unapplied']"
+											},
+											"sink": {
+												"name": "Unapplied",
+												"type": "Boolean"
+											}
+										},
+										{
+											"source": {
+												"path": "['UnappliedbyEntryNo']"
+											},
+											"sink": {
+												"name": "UnappliedbyEntryNo",
+												"type": "Int64"
+											}
+										},
+										{
+											"source": {
+												"path": "['UseTax']"
+											},
+											"sink": {
+												"name": "UseTax",
+												"type": "Boolean"
+											}
+										},
+										{
+											"source": {
+												"path": "['UserID']"
+											},
+											"sink": {
+												"name": "UserID",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['VATBusPostingGroup']"
+											},
+											"sink": {
+												"name": "VATBusPostingGroup",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['VATProdPostingGroup']"
+											},
+											"sink": {
+												"name": "VATProdPostingGroup",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['CompanyCode']"
+											},
+											"sink": {
+												"name": "CompanyCode",
+												"type": "String"
+											}
+										}
+									],
+									"collectionReference": "$['value']"
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "HttpBC",
+									"type": "DatasetReference",
+									"parameters": {
+										"relUrl": {
+											"value": "@activity('Get_Rel_URL_DetailedCustomerLedgerEntry_Internal').output.firstRow.RelativeURL",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "Tab_DetailedCustomerLedgerEntry",
+									"type": "DatasetReference"
+								}
+							]
+						},
+						{
+							"name": "Get_Rel_URL_DetailedCustomerLedgerEntry_Internal",
+							"type": "Lookup",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 5,
+								"retryIntervalInSeconds": 60,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "AzureSqlSource",
+									"sqlReaderStoredProcedureName": "[dbo].[Get_Service_Configuration_For_Incremental]",
+									"storedProcedureParameters": {
+										"CompanyCode": {
+											"type": "String",
+											"value": {
+												"value": "@pipeline().parameters.CompanyCode",
+												"type": "Expression"
+											}
+										},
+										"ServiceCode": {
+											"type": "String",
+											"value": "GetDetailedCustomerLedgerEntry"
+										},
+										"TableName": {
+											"type": "String",
+											"value": "DetailedCustomerLedgerEntry"
+										}
+									},
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"dataset": {
+									"referenceName": "Tab_DW_Site_Config",
+									"type": "DatasetReference"
+								}
+							}
+						},
+						{
+							"name": "Set DetailedCustomerLedgerEntry_Internal variable",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "DetailedCustomerLedgerEntry_Internal",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "DetailedCustomerLedgerEntry",
+								"value": {
+									"value": "@{string(activity('DetailedCustomerLedgerEntry_Internal').output.rowsCopied)}",
+									"type": "Expression"
+								}
+							}
+						}
+					],
+					"timeout": "7.00:00:00"
+				}
+			},
+			{
+				"name": "Set DetailedVendorLedgerEntry variable",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "DetailedVendorLedgerEntry",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "DetailedVendorLedgerEntry",
+					"value": {
+						"value": "@{string(activity('DetailedVendorLedgerEntry').output.rowsCopied)}",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Until DetailedVendorLedgerEntry",
+				"type": "Until",
+				"dependsOn": [
+					{
+						"activity": "Set DetailedVendorLedgerEntry variable",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@equals(variables('DetailedVendorLedgerEntry'),'0' )",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "DetailedVendorLedgerEntry_Internal",
+							"type": "Copy",
+							"dependsOn": [
+								{
+									"activity": "Get_Rel_URL_DetailedVendorLedgerEntry_Internal",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 5,
+								"retryIntervalInSeconds": 60,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "JsonSource",
+									"additionalColumns": [
+										{
+											"name": "CompanyCode",
+											"value": {
+												"value": "@activity('Get_Rel_URL_DetailedVendorLedgerEntry_Internal').output.firstRow.CompanyCode",
+												"type": "Expression"
+											}
+										}
+									],
+									"storeSettings": {
+										"type": "HttpReadSettings",
+										"requestMethod": "GET",
+										"additionalHeaders": {
+											"value": "Authorization:Bearer @{pipeline().parameters.AccessToken}",
+											"type": "Expression"
+										},
+										"requestTimeout": ""
+									},
+									"formatSettings": {
+										"type": "JsonReadSettings"
+									}
+								},
+								"sink": {
+									"type": "AzureSqlSink"
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"mappings": [
+										{
+											"source": {
+												"path": "['SystemCreatedDate']"
+											},
+											"sink": {
+												"name": "SystemCreatedDate",
+												"type": "DateTime"
+											}
+										},
+										{
+											"source": {
+												"path": "['SystemModifiedDate']"
+											},
+											"sink": {
+												"name": "SystemModifiedDate",
+												"type": "DateTime"
+											}
+										},
+										{
+											"source": {
+												"path": "['Amount']"
+											},
+											"sink": {
+												"name": "Amount",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['AmountLCY']"
+											},
+											"sink": {
+												"name": "AmountLCY",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['ApplicationNo']"
+											},
+											"sink": {
+												"name": "ApplicationNo",
+												"type": "Int64"
+											}
+										},
+										{
+											"source": {
+												"path": "['AppliedVendLedgerEntryNo']"
+											},
+											"sink": {
+												"name": "AppliedVendLedgerEntryNo",
+												"type": "Int64"
+											}
+										},
+										{
+											"source": {
+												"path": "['CreditAmount']"
+											},
+											"sink": {
+												"name": "CreditAmount",
+												"type": "Double"
+											}
+										},
+										{
+											"source": {
+												"path": "['CreditAmountLCY']"
+											},
+											"sink": {
+												"name": "CreditAmountLCY",
+												"type": "Double"
+											}
+										},
+										{
+											"source": {
+												"path": "['CurrencyCode']"
+											},
+											"sink": {
+												"name": "CurrencyCode",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['DebitAmount']"
+											},
+											"sink": {
+												"name": "DebitAmount",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['DebitAmountLCY']"
+											},
+											"sink": {
+												"name": "DebitAmountLCY",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['DocumentNo']"
+											},
+											"sink": {
+												"name": "DocumentNo",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['DocumentType']"
+											},
+											"sink": {
+												"name": "DocumentType",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['EntryNo']"
+											},
+											"sink": {
+												"name": "EntryNo",
+												"type": "Int64"
+											}
+										},
+										{
+											"source": {
+												"path": "['EntryType']"
+											},
+											"sink": {
+												"name": "EntryType",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['GenBusPostingGroup']"
+											},
+											"sink": {
+												"name": "GenBusPostingGroup",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['GenProdPostingGroup']"
+											},
+											"sink": {
+												"name": "GenProdPostingGroup",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['InitialDocumentType']"
+											},
+											"sink": {
+												"name": "InitialDocumentType",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['InitialEntryDueDate']"
+											},
+											"sink": {
+												"name": "InitialEntryDueDate",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['InitialEntryGlobalDim1']"
+											},
+											"sink": {
+												"name": "InitialEntryGlobalDim1",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['InitialEntryGlobalDim2']"
+											},
+											"sink": {
+												"name": "InitialEntryGlobalDim2",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['JournalBatchName']"
+											},
+											"sink": {
+												"name": "JournalBatchName",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['LedgerEntryAmount']"
+											},
+											"sink": {
+												"name": "LedgerEntryAmount",
+												"type": "Boolean"
+											}
+										},
+										{
+											"source": {
+												"path": "['MaxPaymentTolerance']"
+											},
+											"sink": {
+												"name": "MaxPaymentTolerance",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['PostingDate']"
+											},
+											"sink": {
+												"name": "PostingDate",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['ReasonCode']"
+											},
+											"sink": {
+												"name": "ReasonCode",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['RemainingPmtDiscPossible']"
+											},
+											"sink": {
+												"name": "RemainingPmtDiscPossible",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['SourceCode']"
+											},
+											"sink": {
+												"name": "SourceCode",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['SystemCreatedAt']"
+											},
+											"sink": {
+												"name": "SystemCreatedAt",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['SystemCreatedBy']"
+											},
+											"sink": {
+												"name": "SystemCreatedBy",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['SystemId']"
+											},
+											"sink": {
+												"name": "SystemId",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['SystemModifiedAt']"
+											},
+											"sink": {
+												"name": "SystemModifiedAt",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['SystemModifiedBy']"
+											},
+											"sink": {
+												"name": "SystemModifiedBy",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['TaxJurisdictionCode']"
+											},
+											"sink": {
+												"name": "TaxJurisdictionCode",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['TransactionNo']"
+											},
+											"sink": {
+												"name": "TransactionNo",
+												"type": "Int64"
+											}
+										},
+										{
+											"source": {
+												"path": "['Unapplied']"
+											},
+											"sink": {
+												"name": "Unapplied",
+												"type": "Boolean"
+											}
+										},
+										{
+											"source": {
+												"path": "['UnappliedbyEntryNo']"
+											},
+											"sink": {
+												"name": "UnappliedbyEntryNo",
+												"type": "Int64"
+											}
+										},
+										{
+											"source": {
+												"path": "['UseTax']"
+											},
+											"sink": {
+												"name": "UseTax",
+												"type": "Boolean"
+											}
+										},
+										{
+											"source": {
+												"path": "['UserID']"
+											},
+											"sink": {
+												"name": "UserID",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['VATBusPostingGroup']"
+											},
+											"sink": {
+												"name": "VATBusPostingGroup",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['VATProdPostingGroup']"
+											},
+											"sink": {
+												"name": "VATProdPostingGroup",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['VendorLedgerEntryNo']"
+											},
+											"sink": {
+												"name": "VendorLedgerEntryNo",
+												"type": "Int64"
+											}
+										},
+										{
+											"source": {
+												"path": "['VendorNo']"
+											},
+											"sink": {
+												"name": "VendorNo",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['CompanyCode']"
+											},
+											"sink": {
+												"name": "CompanyCode",
+												"type": "String"
+											}
+										}
+									],
+									"collectionReference": "$['value']"
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "HttpBC",
+									"type": "DatasetReference",
+									"parameters": {
+										"relUrl": {
+											"value": "@activity('Get_Rel_URL_DetailedVendorLedgerEntry_Internal').output.firstRow.RelativeURL",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "Tab_DetailedVendorLedgerEntry",
+									"type": "DatasetReference"
+								}
+							]
+						},
+						{
+							"name": "Get_Rel_URL_DetailedVendorLedgerEntry_Internal",
+							"type": "Lookup",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 5,
+								"retryIntervalInSeconds": 60,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "AzureSqlSource",
+									"sqlReaderStoredProcedureName": "[dbo].[Get_Service_Configuration_For_Incremental]",
+									"storedProcedureParameters": {
+										"CompanyCode": {
+											"type": "String",
+											"value": {
+												"value": "@pipeline().parameters.CompanyCode",
+												"type": "Expression"
+											}
+										},
+										"ServiceCode": {
+											"type": "String",
+											"value": "GetDetailedVendorLedgerEntry"
+										},
+										"TableName": {
+											"type": "String",
+											"value": "DetailedVendorLedgerEntry"
+										}
+									},
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"dataset": {
+									"referenceName": "Tab_DW_Site_Config",
+									"type": "DatasetReference"
+								}
+							}
+						},
+						{
+							"name": "Set DetailedVendorLedgerEntry_Internal variable",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "DetailedVendorLedgerEntry_Internal",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "DetailedVendorLedgerEntry",
+								"value": {
+									"value": "@{string(activity('DetailedVendorLedgerEntry_Internal').output.rowsCopied)}",
+									"type": "Expression"
+								}
+							}
+						}
+					],
+					"timeout": "7.00:00:00"
+				}
+			},
+			{
+				"name": "Until DimensionSetEntry",
+				"type": "Until",
+				"dependsOn": [
+					{
+						"activity": "Set DimensionSetEntry variable",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@equals(variables('DimensionSetEntry'),'0' )",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Get_Rel_URL_DimensionSetEntry_Internal",
+							"type": "Lookup",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 5,
+								"retryIntervalInSeconds": 60,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "AzureSqlSource",
+									"sqlReaderStoredProcedureName": "[dbo].[Get_Service_Configuration_For_Incremental]",
+									"storedProcedureParameters": {
+										"CompanyCode": {
+											"type": "String",
+											"value": {
+												"value": "@pipeline().parameters.CompanyCode",
+												"type": "Expression"
+											}
+										},
+										"ServiceCode": {
+											"type": "String",
+											"value": "GetDimensionSetEntry"
+										},
+										"TableName": {
+											"type": "String",
+											"value": "DimensionSetEntry"
+										}
+									},
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"dataset": {
+									"referenceName": "Tab_DW_Site_Config",
+									"type": "DatasetReference"
+								}
+							}
+						},
+						{
+							"name": "DimensionSetEntry_Internal",
+							"type": "Copy",
+							"dependsOn": [
+								{
+									"activity": "Get_Rel_URL_DimensionSetEntry_Internal",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 5,
+								"retryIntervalInSeconds": 60,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "JsonSource",
+									"additionalColumns": [
+										{
+											"name": "CompanyCode",
+											"value": {
+												"value": "@activity('Get_Rel_URL_DimensionSetEntry_Internal').output.firstRow.CompanyCode",
+												"type": "Expression"
+											}
+										}
+									],
+									"storeSettings": {
+										"type": "HttpReadSettings",
+										"requestMethod": "GET",
+										"additionalHeaders": {
+											"value": "Authorization:Bearer @{pipeline().parameters.AccessToken}",
+											"type": "Expression"
+										},
+										"requestTimeout": ""
+									},
+									"formatSettings": {
+										"type": "JsonReadSettings"
+									}
+								},
+								"sink": {
+									"type": "AzureSqlSink",
+									"writeBehavior": "insert",
+									"sqlWriterUseTableLock": false,
+									"disableMetricsCollection": false
+								},
+								"enableStaging": false,
+								"enableSkipIncompatibleRow": true,
+								"translator": {
+									"type": "TabularTranslator",
+									"mappings": [
+										{
+											"source": {
+												"path": "['SystemCreatedDate']"
+											},
+											"sink": {
+												"name": "SystemCreatedDate",
+												"type": "DateTime"
+											}
+										},
+										{
+											"source": {
+												"path": "['SystemModifiedDate']"
+											},
+											"sink": {
+												"name": "SystemModifiedDate",
+												"type": "DateTime"
+											}
+										},
+										{
+											"source": {
+												"path": "['DimensionCode']"
+											},
+											"sink": {
+												"name": "DimensionCode",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['DimensionSetID']"
+											},
+											"sink": {
+												"name": "DimensionSetID",
+												"type": "Int32"
+											}
+										},
+										{
+											"source": {
+												"path": "['DimensionValueCode']"
+											},
+											"sink": {
+												"name": "DimensionValueCode",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['DimensionValueID']"
+											},
+											"sink": {
+												"name": "DimensionValueID",
+												"type": "Int32"
+											}
+										},
+										{
+											"source": {
+												"path": "['DimensionName']"
+											},
+											"sink": {
+												"name": "DimensionName",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['DimensionValueName']"
+											},
+											"sink": {
+												"name": "DimensionValueName",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['CompanyCode']"
+											},
+											"sink": {
+												"name": "CompanyCode",
+												"type": "String"
+											}
+										}
+									],
+									"collectionReference": "$['value']"
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "HttpBC",
+									"type": "DatasetReference",
+									"parameters": {
+										"relUrl": {
+											"value": "@activity('Get_Rel_URL_DimensionSetEntry_Internal').output.firstRow.RelativeURL",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "Tab_DimensionSetEntry",
+									"type": "DatasetReference"
+								}
+							]
+						},
+						{
+							"name": "Set variable2",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "DimensionSetEntry_Internal",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "DimensionSetEntry",
+								"value": {
+									"value": "@{string(activity('DimensionSetEntry_Internal').output.rowsCopied)}",
+									"type": "Expression"
+								}
+							}
+						}
+					],
+					"timeout": "7.00:00:00"
+				}
+			},
+			{
+				"name": "Set DimensionSetEntry variable",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "DimensionSetEntry",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "DimensionSetEntry",
+					"value": {
+						"value": "@{string(activity('DimensionSetEntry').output.rowsCopied)}",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Set GLItemLedgerRelation variable",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "GLItemLedgerRelation",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "GLItemLedgerRelation",
+					"value": {
+						"value": "@{string(activity('GLItemLedgerRelation').output.rowsCopied)}",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Until GLItemLedgerRelation",
+				"type": "Until",
+				"dependsOn": [
+					{
+						"activity": "Set GLItemLedgerRelation variable",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@equals(variables('GLItemLedgerRelation'),'0' )",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "GLItemLedgerRelation_Internal",
+							"type": "Copy",
+							"dependsOn": [
+								{
+									"activity": "Get_Rel_URL_GLItemLedgerRelation_Internal",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 5,
+								"retryIntervalInSeconds": 60,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "JsonSource",
+									"additionalColumns": [
+										{
+											"name": "CompanyCode",
+											"value": {
+												"value": "@activity('Get_Rel_URL_GLItemLedgerRelation_Internal').output.firstRow.CompanyCode",
+												"type": "Expression"
+											}
+										}
+									],
+									"storeSettings": {
+										"type": "HttpReadSettings",
+										"requestMethod": "GET",
+										"additionalHeaders": {
+											"value": "Authorization:Bearer @{pipeline().parameters.AccessToken}",
+											"type": "Expression"
+										},
+										"requestTimeout": ""
+									},
+									"formatSettings": {
+										"type": "JsonReadSettings"
+									}
+								},
+								"sink": {
+									"type": "AzureSqlSink"
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"mappings": [
+										{
+											"source": {
+												"path": "['SystemCreatedDate']"
+											},
+											"sink": {
+												"name": "SystemCreatedDate",
+												"type": "DateTime"
+											}
+										},
+										{
+											"source": {
+												"path": "['SystemModifiedDate']"
+											},
+											"sink": {
+												"name": "SystemModifiedDate",
+												"type": "DateTime"
+											}
+										},
+										{
+											"source": {
+												"path": "['GLEntryNo']"
+											},
+											"sink": {
+												"name": "GLEntryNo",
+												"type": "Int32"
+											}
+										},
+										{
+											"source": {
+												"path": "['GLRegisterNo']"
+											},
+											"sink": {
+												"name": "GLRegisterNo",
+												"type": "Int32"
+											}
+										},
+										{
+											"source": {
+												"path": "['ValueEntryNo']"
+											},
+											"sink": {
+												"name": "ValueEntryNo",
+												"type": "Int32"
+											}
+										},
+										{
+											"source": {
+												"path": "$['CompanyCode']"
+											},
+											"sink": {
+												"name": "CompanyCode",
+												"type": "String"
+											}
+										}
+									],
+									"collectionReference": "$['value']"
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "HttpBC",
+									"type": "DatasetReference",
+									"parameters": {
+										"relUrl": {
+											"value": "@activity('Get_Rel_URL_GLItemLedgerRelation_Internal').output.firstRow.RelativeURL",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "Tab_GLItemLedgerRelation",
+									"type": "DatasetReference"
+								}
+							]
+						},
+						{
+							"name": "Get_Rel_URL_GLItemLedgerRelation_Internal",
+							"type": "Lookup",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 5,
+								"retryIntervalInSeconds": 60,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "AzureSqlSource",
+									"sqlReaderStoredProcedureName": "[dbo].[Get_Service_Configuration_For_Incremental]",
+									"storedProcedureParameters": {
+										"CompanyCode": {
+											"type": "String",
+											"value": {
+												"value": "@pipeline().parameters.CompanyCode",
+												"type": "Expression"
+											}
+										},
+										"ServiceCode": {
+											"type": "String",
+											"value": "GetGLItemLedgerRelation"
+										},
+										"TableName": {
+											"type": "String",
+											"value": "GLItemLedgerRelation"
+										}
+									},
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"dataset": {
+									"referenceName": "Tab_DW_Site_Config",
+									"type": "DatasetReference"
+								}
+							}
+						},
+						{
+							"name": "Set GLItemLedgerRelation_Internal variable",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "GLItemLedgerRelation_Internal",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "GLItemLedgerRelation",
+								"value": {
+									"value": "@{string(activity('GLItemLedgerRelation_Internal').output.rowsCopied)}",
+									"type": "Expression"
+								}
+							}
+						}
+					],
+					"timeout": "7.00:00:00"
+				}
+			}
+		],
+		"parameters": {
+			"CompanyCode": {
+				"type": "string"
+			},
+			"AccessToken": {
+				"type": "string"
+			}
+		},
+		"variables": {
+			"VendorLedgerEntry": {
+				"type": "String"
+			},
+			"DetailedCustomerLedgerEntry": {
+				"type": "String"
+			},
+			"DetailedVendorLedgerEntry": {
+				"type": "String"
+			},
+			"DimensionSetEntry": {
+				"type": "String"
+			},
+			"GLItemLedgerRelation": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "Datawarehouse"
+		},
+		"annotations": []
+	}
+}

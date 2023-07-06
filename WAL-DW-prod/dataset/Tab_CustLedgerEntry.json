@@ -1,0 +1,382 @@
+{
+	"name": "Tab_CustLedgerEntry",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "DwWalProd",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "EntryNo",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "CompanyCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Vendor",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CustomerNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PostingDate",
+				"type": "date"
+			},
+			{
+				"name": "DocumentType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DocumentNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Description",
+				"type": "text"
+			},
+			{
+				"name": "CustomerName",
+				"type": "text"
+			},
+			{
+				"name": "CurrencyCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SalesLCY",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "ProfitLCY",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "InvDiscountLCY",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "SelltoCustomerNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CustomerPostingGroup",
+				"type": "nvarchar"
+			},
+			{
+				"name": "GlobalDimension1Code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "GlobalDimension2Code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SalespersonCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "UserID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SourceCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AppliestoDocType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AppliestoDocNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Open",
+				"type": "bit"
+			},
+			{
+				"name": "DueDate",
+				"type": "date"
+			},
+			{
+				"name": "PmtDiscountDate",
+				"type": "date"
+			},
+			{
+				"name": "OriginalPmtDiscPossible",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "PmtDiscGivenLCY",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "Positive",
+				"type": "bit"
+			},
+			{
+				"name": "ClosedbyEntryNo",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ClosedatDate",
+				"type": "date"
+			},
+			{
+				"name": "ClosedbyAmount",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "AppliestoID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "JournalBatchName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ReasonCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BalAccountType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BalAccountNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TransactionNo",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ClosedbyAmountLCY",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "DocumentDate",
+				"type": "date"
+			},
+			{
+				"name": "ExternalDocumentNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CalculateInterest",
+				"type": "bit"
+			},
+			{
+				"name": "ClosingInterestCalculated",
+				"type": "bit"
+			},
+			{
+				"name": "NoSeries",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ClosedbyCurrencyCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ClosedbyCurrencyAmount",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "AdjustedCurrencyFactor",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "OriginalCurrencyFactor",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "RemainingPmtDiscPossible",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "PmtDiscToleranceDate",
+				"type": "date"
+			},
+			{
+				"name": "MaxPaymentTolerance",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "LastIssuedReminderLevel",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "AcceptedPaymentTolerance",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "AcceptedPmtDiscTolerance",
+				"type": "bit"
+			},
+			{
+				"name": "PmtToleranceLCY",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "AmounttoApply",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "ICPartnerCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ApplyingEntry",
+				"type": "bit"
+			},
+			{
+				"name": "Reversed",
+				"type": "bit"
+			},
+			{
+				"name": "ReversedbyEntryNo",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ReversedEntryNo",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Prepayment",
+				"type": "bit"
+			},
+			{
+				"name": "PaymentMethodCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AppliestoExtDocNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DimensionSetID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Amount",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 18
+			},
+			{
+				"name": "RemainingAmount",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 18
+			},
+			{
+				"name": "OriginalAmtLCY",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 18
+			},
+			{
+				"name": "RemainingAmtLCY",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 18
+			},
+			{
+				"name": "AmountLCY",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 18
+			},
+			{
+				"name": "DebitAmount",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 18
+			},
+			{
+				"name": "CreditAmount",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 18
+			},
+			{
+				"name": "DebitAmountLCY",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 18
+			},
+			{
+				"name": "CreditAmountLCY",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 18
+			},
+			{
+				"name": "OriginalAmount",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 18
+			},
+			{
+				"name": "SystemCreatedDate",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "SystemModifiedDate",
+				"type": "datetime2",
+				"scale": 7
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "CustLedgerEntry"
+		}
+	}
+}

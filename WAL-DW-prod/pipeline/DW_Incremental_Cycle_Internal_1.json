@@ -1,0 +1,8762 @@
+{
+	"name": "DW_Incremental_Cycle_Internal_1",
+	"properties": {
+		"activities": [
+			{
+				"name": "ValueEntry",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Get_Rel_URL_ValueEntry",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 5,
+					"retryIntervalInSeconds": 60,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"additionalColumns": [
+							{
+								"name": "CompanyCode",
+								"value": {
+									"value": "@activity('Get_Rel_URL_ValueEntry').output.firstRow.CompanyCode",
+									"type": "Expression"
+								}
+							}
+						],
+						"storeSettings": {
+							"type": "HttpReadSettings",
+							"requestMethod": "GET",
+							"additionalHeaders": {
+								"value": "Authorization:Bearer @{pipeline().parameters.AccessToken}",
+								"type": "Expression"
+							},
+							"requestTimeout": ""
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink"
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "['SystemCreatedDate']"
+								},
+								"sink": {
+									"name": "SystemCreatedDate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "['SystemModifiedDate']"
+								},
+								"sink": {
+									"name": "SystemModifiedDate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "['EntryNo']"
+								},
+								"sink": {
+									"name": "EntryNo",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"path": "['ItemNo']"
+								},
+								"sink": {
+									"name": "ItemNo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['PostingDate']"
+								},
+								"sink": {
+									"name": "PostingDate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "['ItemLedgerEntryType']"
+								},
+								"sink": {
+									"name": "ItemLedgerEntryType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['SourceNo']"
+								},
+								"sink": {
+									"name": "SourceNo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['DocumentNo']"
+								},
+								"sink": {
+									"name": "DocumentNo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Description']"
+								},
+								"sink": {
+									"name": "Description",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['LocationCode']"
+								},
+								"sink": {
+									"name": "LocationCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['InventoryPostingGroup']"
+								},
+								"sink": {
+									"name": "InventoryPostingGroup",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['SourcePostingGroup']"
+								},
+								"sink": {
+									"name": "SourcePostingGroup",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['ItemLedgerEntryNo']"
+								},
+								"sink": {
+									"name": "ItemLedgerEntryNo",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"path": "['ValuedQuantity']"
+								},
+								"sink": {
+									"name": "ValuedQuantity",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['ItemLedgerEntryQuantity']"
+								},
+								"sink": {
+									"name": "ItemLedgerEntryQuantity",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['InvoicedQuantity']"
+								},
+								"sink": {
+									"name": "InvoicedQuantity",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['CostperUnit']"
+								},
+								"sink": {
+									"name": "CostperUnit",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['SalesAmountActual']"
+								},
+								"sink": {
+									"name": "SalesAmountActual",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['SalespersPurchCode']"
+								},
+								"sink": {
+									"name": "SalespersPurchCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['DiscountAmount']"
+								},
+								"sink": {
+									"name": "DiscountAmount",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['UserID']"
+								},
+								"sink": {
+									"name": "UserID",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['SourceCode']"
+								},
+								"sink": {
+									"name": "SourceCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['AppliestoEntry']"
+								},
+								"sink": {
+									"name": "AppliestoEntry",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['GlobalDimension1Code']"
+								},
+								"sink": {
+									"name": "GlobalDimension1Code",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['GlobalDimension2Code']"
+								},
+								"sink": {
+									"name": "GlobalDimension2Code",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['SourceType']"
+								},
+								"sink": {
+									"name": "SourceType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['CostAmountActual']"
+								},
+								"sink": {
+									"name": "CostAmountActual",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['CostPostedtoGL']"
+								},
+								"sink": {
+									"name": "CostPostedtoGL",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['ReasonCode']"
+								},
+								"sink": {
+									"name": "ReasonCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['DropShipment']"
+								},
+								"sink": {
+									"name": "DropShipment",
+									"type": "Boolean"
+								}
+							},
+							{
+								"source": {
+									"path": "['JournalBatchName']"
+								},
+								"sink": {
+									"name": "JournalBatchName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['GenBusPostingGroup']"
+								},
+								"sink": {
+									"name": "GenBusPostingGroup",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['GenProdPostingGroup']"
+								},
+								"sink": {
+									"name": "GenProdPostingGroup",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['DocumentDate']"
+								},
+								"sink": {
+									"name": "DocumentDate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "['ExternalDocumentNo']"
+								},
+								"sink": {
+									"name": "ExternalDocumentNo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['CostAmountActualACY']"
+								},
+								"sink": {
+									"name": "CostAmountActualACY",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['CostPostedtoGLACY']"
+								},
+								"sink": {
+									"name": "CostPostedtoGLACY",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['CostperUnitACY']"
+								},
+								"sink": {
+									"name": "CostperUnitACY",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['DocumentType']"
+								},
+								"sink": {
+									"name": "DocumentType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['DocumentLineNo']"
+								},
+								"sink": {
+									"name": "DocumentLineNo",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"path": "['OrderType']"
+								},
+								"sink": {
+									"name": "OrderType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['OrderNo']"
+								},
+								"sink": {
+									"name": "OrderNo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['OrderLineNo']"
+								},
+								"sink": {
+									"name": "OrderLineNo",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"path": "['ExpectedCost']"
+								},
+								"sink": {
+									"name": "ExpectedCost",
+									"type": "Boolean"
+								}
+							},
+							{
+								"source": {
+									"path": "['ItemChargeNo']"
+								},
+								"sink": {
+									"name": "ItemChargeNo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['ValuedByAverageCost']"
+								},
+								"sink": {
+									"name": "ValuedByAverageCost",
+									"type": "Boolean"
+								}
+							},
+							{
+								"source": {
+									"path": "['PartialRevaluation']"
+								},
+								"sink": {
+									"name": "PartialRevaluation",
+									"type": "Boolean"
+								}
+							},
+							{
+								"source": {
+									"path": "['Inventoriable']"
+								},
+								"sink": {
+									"name": "Inventoriable",
+									"type": "Boolean"
+								}
+							},
+							{
+								"source": {
+									"path": "['ValuationDate']"
+								},
+								"sink": {
+									"name": "ValuationDate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "['EntryType']"
+								},
+								"sink": {
+									"name": "EntryType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['VarianceType']"
+								},
+								"sink": {
+									"name": "VarianceType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['PurchaseAmountActual']"
+								},
+								"sink": {
+									"name": "PurchaseAmountActual",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['PurchaseAmountExpected']"
+								},
+								"sink": {
+									"name": "PurchaseAmountExpected",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['SalesAmountExpected']"
+								},
+								"sink": {
+									"name": "SalesAmountExpected",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['CostAmountExpected']"
+								},
+								"sink": {
+									"name": "CostAmountExpected",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['CostAmountNonInvtbl']"
+								},
+								"sink": {
+									"name": "CostAmountNonInvtbl",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['CostAmountExpectedACY']"
+								},
+								"sink": {
+									"name": "CostAmountExpectedACY",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['CostAmountNonInvtblACY']"
+								},
+								"sink": {
+									"name": "CostAmountNonInvtblACY",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['ExpectedCostPostedtoGL']"
+								},
+								"sink": {
+									"name": "ExpectedCostPostedtoGL",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['ExpCostPostedtoGLACY']"
+								},
+								"sink": {
+									"name": "ExpCostPostedtoGLACY",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['DimensionSetID']"
+								},
+								"sink": {
+									"name": "DimensionSetID",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"path": "['JobNo']"
+								},
+								"sink": {
+									"name": "JobNo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['JobTaskNo']"
+								},
+								"sink": {
+									"name": "JobTaskNo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['JobLedgerEntryNo']"
+								},
+								"sink": {
+									"name": "JobLedgerEntryNo",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"path": "['VariantCode']"
+								},
+								"sink": {
+									"name": "VariantCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Adjustment']"
+								},
+								"sink": {
+									"name": "Adjustment",
+									"type": "Boolean"
+								}
+							},
+							{
+								"source": {
+									"path": "['AverageCostException']"
+								},
+								"sink": {
+									"name": "AverageCostException",
+									"type": "Boolean"
+								}
+							},
+							{
+								"source": {
+									"path": "['CapacityLedgerEntryNo']"
+								},
+								"sink": {
+									"name": "CapacityLedgerEntryNo",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"path": "['Type']"
+								},
+								"sink": {
+									"name": "Type",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['No']"
+								},
+								"sink": {
+									"name": "No",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['ReturnReasonCode']"
+								},
+								"sink": {
+									"name": "ReturnReasonCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['CompanyCode']"
+								},
+								"sink": {
+									"name": "CompanyCode",
+									"type": "String"
+								}
+							}
+						],
+						"collectionReference": "$['value']"
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "HttpBC",
+						"type": "DatasetReference",
+						"parameters": {
+							"relUrl": {
+								"value": "@activity('Get_Rel_URL_ValueEntry').output.firstRow.RelativeURL",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Tab_ValueEntry",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Get_Rel_URL_ValueEntry",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 5,
+					"retryIntervalInSeconds": 60,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderStoredProcedureName": "[dbo].[Get_Service_Configuration_For_Incremental]",
+						"storedProcedureParameters": {
+							"CompanyCode": {
+								"type": "String",
+								"value": {
+									"value": "@pipeline().parameters.CompanyCode",
+									"type": "Expression"
+								}
+							},
+							"ServiceCode": {
+								"type": "String",
+								"value": "GetValueEntry"
+							},
+							"TableName": {
+								"type": "String",
+								"value": "ValueEntry"
+							}
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "Tab_DW_Site_Config",
+						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "PurchaseInvoiceLine",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Get_Rel_URL_PurchaseInvoiceLine",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 5,
+					"retryIntervalInSeconds": 60,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"additionalColumns": [
+							{
+								"name": "CompanyCode",
+								"value": {
+									"value": "@activity('Get_Rel_URL_PurchaseInvoiceLine').output.firstRow.CompanyCode",
+									"type": "Expression"
+								}
+							}
+						],
+						"storeSettings": {
+							"type": "HttpReadSettings",
+							"requestMethod": "GET",
+							"additionalHeaders": {
+								"value": "Authorization:Bearer @{pipeline().parameters.AccessToken}",
+								"type": "Expression"
+							},
+							"requestTimeout": ""
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink"
+					},
+					"enableStaging": false,
+					"enableSkipIncompatibleRow": true,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "['SystemCreatedDate']"
+								},
+								"sink": {
+									"name": "SystemCreatedDate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "['SystemModifiedDate']"
+								},
+								"sink": {
+									"name": "SystemModifiedDate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "['AllowInvoiceDisc']"
+								},
+								"sink": {
+									"name": "AllowInvoiceDisc",
+									"type": "Boolean"
+								}
+							},
+							{
+								"source": {
+									"path": "['Amount']"
+								},
+								"sink": {
+									"name": "Amount",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['AmountIncludingVAT']"
+								},
+								"sink": {
+									"name": "AmountIncludingVAT",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['AppltoItemEntry']"
+								},
+								"sink": {
+									"name": "AppltoItemEntry",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"path": "['Area']"
+								},
+								"sink": {
+									"name": "Area",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['AttachedtoLineNo']"
+								},
+								"sink": {
+									"name": "AttachedtoLineNo",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"path": "['BinCode']"
+								},
+								"sink": {
+									"name": "BinCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['BlanketOrderLineNo']"
+								},
+								"sink": {
+									"name": "BlanketOrderLineNo",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"path": "['BlanketOrderNo']"
+								},
+								"sink": {
+									"name": "BlanketOrderNo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['BudgetedFANo']"
+								},
+								"sink": {
+									"name": "BudgetedFANo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['BuyfromVendorNo']"
+								},
+								"sink": {
+									"name": "BuyfromVendorNo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['CrossReferenceNo']"
+								},
+								"sink": {
+									"name": "CrossReferenceNo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['CrossReferenceType']"
+								},
+								"sink": {
+									"name": "CrossReferenceType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['CrossReferenceTypeNo']"
+								},
+								"sink": {
+									"name": "CrossReferenceTypeNo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['DeferralCode']"
+								},
+								"sink": {
+									"name": "DeferralCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['DeprAcquisitionCost']"
+								},
+								"sink": {
+									"name": "DeprAcquisitionCost",
+									"type": "Boolean"
+								}
+							},
+							{
+								"source": {
+									"path": "['DepruntilFAPostingDate']"
+								},
+								"sink": {
+									"name": "DepruntilFAPostingDate",
+									"type": "Boolean"
+								}
+							},
+							{
+								"source": {
+									"path": "['DepreciationBookCode']"
+								},
+								"sink": {
+									"name": "DepreciationBookCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Description']"
+								},
+								"sink": {
+									"name": "Description",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Description2']"
+								},
+								"sink": {
+									"name": "Description2",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['DimensionSetID']"
+								},
+								"sink": {
+									"name": "DimensionSetID",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"path": "['DirectUnitCost']"
+								},
+								"sink": {
+									"name": "DirectUnitCost",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['DocumentNo']"
+								},
+								"sink": {
+									"name": "DocumentNo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['DuplicateinDepreciationBook']"
+								},
+								"sink": {
+									"name": "DuplicateinDepreciationBook",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['EntryPoint']"
+								},
+								"sink": {
+									"name": "EntryPoint",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['ExpectedReceiptDate']"
+								},
+								"sink": {
+									"name": "ExpectedReceiptDate",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['FAPostingDate']"
+								},
+								"sink": {
+									"name": "FAPostingDate",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['FAPostingType']"
+								},
+								"sink": {
+									"name": "FAPostingType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['GenBusPostingGroup']"
+								},
+								"sink": {
+									"name": "GenBusPostingGroup",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['GenProdPostingGroup']"
+								},
+								"sink": {
+									"name": "GenProdPostingGroup",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['GrossWeight']"
+								},
+								"sink": {
+									"name": "GrossWeight",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['ICCrossReferenceNo']"
+								},
+								"sink": {
+									"name": "ICCrossReferenceNo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['ICPartnerCode']"
+								},
+								"sink": {
+									"name": "ICPartnerCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['ICPartnerRefType']"
+								},
+								"sink": {
+									"name": "ICPartnerRefType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['ICPartnerReference']"
+								},
+								"sink": {
+									"name": "ICPartnerReference",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['IndirectCost']"
+								},
+								"sink": {
+									"name": "IndirectCost",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['InsuranceNo']"
+								},
+								"sink": {
+									"name": "InsuranceNo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['InvDiscountAmount']"
+								},
+								"sink": {
+									"name": "InvDiscountAmount",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['ItemCategoryCode']"
+								},
+								"sink": {
+									"name": "ItemCategoryCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['ItemReferenceNo']"
+								},
+								"sink": {
+									"name": "ItemReferenceNo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['ItemReferenceType']"
+								},
+								"sink": {
+									"name": "ItemReferenceType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['ItemReferenceTypeNo']"
+								},
+								"sink": {
+									"name": "ItemReferenceTypeNo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['ItemReferenceUnitofMeasure']"
+								},
+								"sink": {
+									"name": "ItemReferenceUnitofMeasure",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['JobCurrencyCode']"
+								},
+								"sink": {
+									"name": "JobCurrencyCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['JobCurrencyFactor']"
+								},
+								"sink": {
+									"name": "JobCurrencyFactor",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['JobLineAmount']"
+								},
+								"sink": {
+									"name": "JobLineAmount",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['JobLineAmountLCY']"
+								},
+								"sink": {
+									"name": "JobLineAmountLCY",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['JobLineDiscAmountLCY']"
+								},
+								"sink": {
+									"name": "JobLineDiscAmountLCY",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['JobLineDiscount']"
+								},
+								"sink": {
+									"name": "JobLineDiscount",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['JobLineDiscountAmount']"
+								},
+								"sink": {
+									"name": "JobLineDiscountAmount",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['JobLineType']"
+								},
+								"sink": {
+									"name": "JobLineType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['JobNo']"
+								},
+								"sink": {
+									"name": "JobNo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['JobTaskNo']"
+								},
+								"sink": {
+									"name": "JobTaskNo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['JobTotalPrice']"
+								},
+								"sink": {
+									"name": "JobTotalPrice",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['JobTotalPriceLCY']"
+								},
+								"sink": {
+									"name": "JobTotalPriceLCY",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['JobUnitPrice']"
+								},
+								"sink": {
+									"name": "JobUnitPrice",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['JobUnitPriceLCY']"
+								},
+								"sink": {
+									"name": "JobUnitPriceLCY",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['LineAmount']"
+								},
+								"sink": {
+									"name": "LineAmount",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['LineDiscount']"
+								},
+								"sink": {
+									"name": "LineDiscount",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['LineDiscountAmount']"
+								},
+								"sink": {
+									"name": "LineDiscountAmount",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['LineNo']"
+								},
+								"sink": {
+									"name": "LineNo",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"path": "['LocationCode']"
+								},
+								"sink": {
+									"name": "LocationCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['MaintenanceCode']"
+								},
+								"sink": {
+									"name": "MaintenanceCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['NetWeight']"
+								},
+								"sink": {
+									"name": "NetWeight",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['No']"
+								},
+								"sink": {
+									"name": "No",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Nonstock']"
+								},
+								"sink": {
+									"name": "Nonstock",
+									"type": "Boolean"
+								}
+							},
+							{
+								"source": {
+									"path": "['OperationNo']"
+								},
+								"sink": {
+									"name": "OperationNo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['OrderLineNo']"
+								},
+								"sink": {
+									"name": "OrderLineNo",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"path": "['OrderNo']"
+								},
+								"sink": {
+									"name": "OrderNo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['OverheadRate']"
+								},
+								"sink": {
+									"name": "OverheadRate",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['PaytoVendorNo']"
+								},
+								"sink": {
+									"name": "PaytoVendorNo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['PmtDiscountAmount']"
+								},
+								"sink": {
+									"name": "PmtDiscountAmount",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['PostingDate']"
+								},
+								"sink": {
+									"name": "PostingDate",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['PostingGroup']"
+								},
+								"sink": {
+									"name": "PostingGroup",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['PrepaymentLine']"
+								},
+								"sink": {
+									"name": "PrepaymentLine",
+									"type": "Boolean"
+								}
+							},
+							{
+								"source": {
+									"path": "['PriceCalculationMethod']"
+								},
+								"sink": {
+									"name": "PriceCalculationMethod",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['ProdOrderLineNo']"
+								},
+								"sink": {
+									"name": "ProdOrderLineNo",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"path": "['ProdOrderNo']"
+								},
+								"sink": {
+									"name": "ProdOrderNo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['PurchasingCode']"
+								},
+								"sink": {
+									"name": "PurchasingCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['QtyperUnitofMeasure']"
+								},
+								"sink": {
+									"name": "QtyperUnitofMeasure",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['Quantity']"
+								},
+								"sink": {
+									"name": "Quantity",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['QuantityBase']"
+								},
+								"sink": {
+									"name": "QuantityBase",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['ReceiptLineNo']"
+								},
+								"sink": {
+									"name": "ReceiptLineNo",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"path": "['ReceiptNo']"
+								},
+								"sink": {
+									"name": "ReceiptNo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['ResponsibilityCenter']"
+								},
+								"sink": {
+									"name": "ResponsibilityCenter",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['ReturnReasonCode']"
+								},
+								"sink": {
+									"name": "ReturnReasonCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['ReverseCharge']"
+								},
+								"sink": {
+									"name": "ReverseCharge",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['ReverseChargeItem']"
+								},
+								"sink": {
+									"name": "ReverseChargeItem",
+									"type": "Boolean"
+								}
+							},
+							{
+								"source": {
+									"path": "['RoutingNo']"
+								},
+								"sink": {
+									"name": "RoutingNo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['RoutingReferenceNo']"
+								},
+								"sink": {
+									"name": "RoutingReferenceNo",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"path": "['SalvageValue']"
+								},
+								"sink": {
+									"name": "SalvageValue",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['ShortcutDimension1Code']"
+								},
+								"sink": {
+									"name": "ShortcutDimension1Code",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['ShortcutDimension2Code']"
+								},
+								"sink": {
+									"name": "ShortcutDimension2Code",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['SystemCreatedEntry']"
+								},
+								"sink": {
+									"name": "SystemCreatedEntry",
+									"type": "Boolean"
+								}
+							},
+							{
+								"source": {
+									"path": "['SystemCreatedAt']"
+								},
+								"sink": {
+									"name": "SystemCreatedAt",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['SystemCreatedBy']"
+								},
+								"sink": {
+									"name": "SystemCreatedBy",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['SystemId']"
+								},
+								"sink": {
+									"name": "SystemId",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['SystemModifiedAt']"
+								},
+								"sink": {
+									"name": "SystemModifiedAt",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['SystemModifiedBy']"
+								},
+								"sink": {
+									"name": "SystemModifiedBy",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['TaxAreaCode']"
+								},
+								"sink": {
+									"name": "TaxAreaCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['TaxGroupCode']"
+								},
+								"sink": {
+									"name": "TaxGroupCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['TaxLiable']"
+								},
+								"sink": {
+									"name": "TaxLiable",
+									"type": "Boolean"
+								}
+							},
+							{
+								"source": {
+									"path": "['TransactionSpecification']"
+								},
+								"sink": {
+									"name": "TransactionSpecification",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['TransactionType']"
+								},
+								"sink": {
+									"name": "TransactionType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['TransportMethod']"
+								},
+								"sink": {
+									"name": "TransportMethod",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Type']"
+								},
+								"sink": {
+									"name": "Type",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['UnitCost']"
+								},
+								"sink": {
+									"name": "UnitCost",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['UnitCostLCY']"
+								},
+								"sink": {
+									"name": "UnitCostLCY",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['UnitPriceLCY']"
+								},
+								"sink": {
+									"name": "UnitPriceLCY",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['UnitVolume']"
+								},
+								"sink": {
+									"name": "UnitVolume",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['UnitofMeasure']"
+								},
+								"sink": {
+									"name": "UnitofMeasure",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['UnitofMeasureCrossRef']"
+								},
+								"sink": {
+									"name": "UnitofMeasureCrossRef",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['UnitofMeasureCode']"
+								},
+								"sink": {
+									"name": "UnitofMeasureCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['UnitsperParcel']"
+								},
+								"sink": {
+									"name": "UnitsperParcel",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['UseDuplicationList']"
+								},
+								"sink": {
+									"name": "UseDuplicationList",
+									"type": "Boolean"
+								}
+							},
+							{
+								"source": {
+									"path": "['UseTax']"
+								},
+								"sink": {
+									"name": "UseTax",
+									"type": "Boolean"
+								}
+							},
+							{
+								"source": {
+									"path": "['VAT']"
+								},
+								"sink": {
+									"name": "VAT",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['VATBaseAmount']"
+								},
+								"sink": {
+									"name": "VATBaseAmount",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['VATBusPostingGroup']"
+								},
+								"sink": {
+									"name": "VATBusPostingGroup",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['VATCalculationType']"
+								},
+								"sink": {
+									"name": "VATCalculationType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['VATDifference']"
+								},
+								"sink": {
+									"name": "VATDifference",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['VATIdentifier']"
+								},
+								"sink": {
+									"name": "VATIdentifier",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['VATProdPostingGroup']"
+								},
+								"sink": {
+									"name": "VATProdPostingGroup",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['VariantCode']"
+								},
+								"sink": {
+									"name": "VariantCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['VendorItemNo']"
+								},
+								"sink": {
+									"name": "VendorItemNo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['WorkCenterNo']"
+								},
+								"sink": {
+									"name": "WorkCenterNo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['CompanyCode']"
+								},
+								"sink": {
+									"name": "CompanyCode",
+									"type": "String"
+								}
+							}
+						],
+						"collectionReference": "$['value']"
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "HttpBC",
+						"type": "DatasetReference",
+						"parameters": {
+							"relUrl": {
+								"value": "@activity('Get_Rel_URL_PurchaseInvoiceLine').output.firstRow.RelativeURL",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Tab_PurchaseInvoiceLine",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Get_Rel_URL_PurchaseInvoiceLine",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 5,
+					"retryIntervalInSeconds": 60,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderStoredProcedureName": "[dbo].[Get_Service_Configuration_For_Incremental]",
+						"storedProcedureParameters": {
+							"CompanyCode": {
+								"type": "String",
+								"value": {
+									"value": "@pipeline().parameters.CompanyCode",
+									"type": "Expression"
+								}
+							},
+							"ServiceCode": {
+								"type": "String",
+								"value": "GetPurchaseInvoiceLine"
+							},
+							"TableName": {
+								"type": "String",
+								"value": "PurchaseInvoiceLine"
+							}
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "Tab_DW_Site_Config",
+						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "WarehouseEntry",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Get_Rel_URL_WarehouseEntry",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 5,
+					"retryIntervalInSeconds": 60,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"additionalColumns": [
+							{
+								"name": "CompanyCode",
+								"value": {
+									"value": "@activity('Get_Rel_URL_WarehouseEntry').output.firstRow.CompanyCode",
+									"type": "Expression"
+								}
+							}
+						],
+						"storeSettings": {
+							"type": "HttpReadSettings",
+							"requestMethod": "GET",
+							"additionalHeaders": {
+								"value": "Authorization:Bearer @{pipeline().parameters.AccessToken}",
+								"type": "Expression"
+							},
+							"requestTimeout": ""
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink"
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "['SystemCreatedDate']"
+								},
+								"sink": {
+									"name": "SystemCreatedDate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "['SystemModifiedDate']"
+								},
+								"sink": {
+									"name": "SystemModifiedDate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "['BinCode']"
+								},
+								"sink": {
+									"name": "BinCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['BinTypeCode']"
+								},
+								"sink": {
+									"name": "BinTypeCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Cubage']"
+								},
+								"sink": {
+									"name": "Cubage",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['Dedicated']"
+								},
+								"sink": {
+									"name": "Dedicated",
+									"type": "Boolean"
+								}
+							},
+							{
+								"source": {
+									"path": "['Description']"
+								},
+								"sink": {
+									"name": "Description",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['EntryNo']"
+								},
+								"sink": {
+									"name": "EntryNo",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"path": "['EntryType']"
+								},
+								"sink": {
+									"name": "EntryType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['ExpirationDate']"
+								},
+								"sink": {
+									"name": "ExpirationDate",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['ItemNo']"
+								},
+								"sink": {
+									"name": "ItemNo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['JournalBatchName']"
+								},
+								"sink": {
+									"name": "JournalBatchName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['JournalTemplateName']"
+								},
+								"sink": {
+									"name": "JournalTemplateName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['LineNo']"
+								},
+								"sink": {
+									"name": "LineNo",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"path": "['LocationCode']"
+								},
+								"sink": {
+									"name": "LocationCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['LotNo']"
+								},
+								"sink": {
+									"name": "LotNo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['NoSeries']"
+								},
+								"sink": {
+									"name": "NoSeries",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['PackageNo']"
+								},
+								"sink": {
+									"name": "PackageNo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['PhysInvtCountingPeriodCode']"
+								},
+								"sink": {
+									"name": "PhysInvtCountingPeriodCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['PhysInvtCountingPeriodType']"
+								},
+								"sink": {
+									"name": "PhysInvtCountingPeriodType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['QtyBase']"
+								},
+								"sink": {
+									"name": "QtyBase",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['QtyperUnitofMeasure']"
+								},
+								"sink": {
+									"name": "QtyperUnitofMeasure",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['Quantity']"
+								},
+								"sink": {
+									"name": "Quantity",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['ReasonCode']"
+								},
+								"sink": {
+									"name": "ReasonCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['ReferenceDocument']"
+								},
+								"sink": {
+									"name": "ReferenceDocument",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['ReferenceNo']"
+								},
+								"sink": {
+									"name": "ReferenceNo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['RegisteringDate']"
+								},
+								"sink": {
+									"name": "RegisteringDate",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['SerialNo']"
+								},
+								"sink": {
+									"name": "SerialNo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['SourceCode']"
+								},
+								"sink": {
+									"name": "SourceCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['SourceDocument']"
+								},
+								"sink": {
+									"name": "SourceDocument",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['SourceLineNo']"
+								},
+								"sink": {
+									"name": "SourceLineNo",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"path": "['SourceNo']"
+								},
+								"sink": {
+									"name": "SourceNo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['SourceSublineNo']"
+								},
+								"sink": {
+									"name": "SourceSublineNo",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"path": "['SourceSubtype']"
+								},
+								"sink": {
+									"name": "SourceSubtype",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['SourceType']"
+								},
+								"sink": {
+									"name": "SourceType",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['SystemCreatedAt']"
+								},
+								"sink": {
+									"name": "SystemCreatedAt",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['SystemCreatedBy']"
+								},
+								"sink": {
+									"name": "SystemCreatedBy",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['SystemId']"
+								},
+								"sink": {
+									"name": "SystemId",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['SystemModifiedAt']"
+								},
+								"sink": {
+									"name": "SystemModifiedAt",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['SystemModifiedBy']"
+								},
+								"sink": {
+									"name": "SystemModifiedBy",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['UnitofMeasureCode']"
+								},
+								"sink": {
+									"name": "UnitofMeasureCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['UserID']"
+								},
+								"sink": {
+									"name": "UserID",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['VariantCode']"
+								},
+								"sink": {
+									"name": "VariantCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['WarrantyDate']"
+								},
+								"sink": {
+									"name": "WarrantyDate",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Weight']"
+								},
+								"sink": {
+									"name": "Weight",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['WhseDocumentLineNo']"
+								},
+								"sink": {
+									"name": "WhseDocumentLineNo",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"path": "['WhseDocumentNo']"
+								},
+								"sink": {
+									"name": "WhseDocumentNo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['WhseDocumentType']"
+								},
+								"sink": {
+									"name": "WhseDocumentType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['ZoneCode']"
+								},
+								"sink": {
+									"name": "ZoneCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['CompanyCode']"
+								},
+								"sink": {
+									"name": "CompanyCode",
+									"type": "String"
+								}
+							}
+						],
+						"collectionReference": "$['value']"
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "HttpBC",
+						"type": "DatasetReference",
+						"parameters": {
+							"relUrl": {
+								"value": "@activity('Get_Rel_URL_WarehouseEntry').output.firstRow.RelativeURL",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Tab_WarehouseEntry",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Get_Rel_URL_WarehouseEntry",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 5,
+					"retryIntervalInSeconds": 60,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderStoredProcedureName": "[dbo].[Get_Service_Configuration_For_Incremental]",
+						"storedProcedureParameters": {
+							"CompanyCode": {
+								"type": "String",
+								"value": {
+									"value": "@pipeline().parameters.CompanyCode",
+									"type": "Expression"
+								}
+							},
+							"ServiceCode": {
+								"type": "String",
+								"value": "GetWarehouseEntry"
+							},
+							"TableName": {
+								"type": "String",
+								"value": "WarehouseEntry"
+							}
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "Tab_DW_Site_Config",
+						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "ItemLedgerEntry",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Get_Rel_URL_ItemLedgerEntry",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 5,
+					"retryIntervalInSeconds": 60,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"additionalColumns": [
+							{
+								"name": "CompanyCode",
+								"value": {
+									"value": "@activity('Get_Rel_URL_ItemLedgerEntry').output.firstRow.CompanyCode",
+									"type": "Expression"
+								}
+							}
+						],
+						"storeSettings": {
+							"type": "HttpReadSettings",
+							"requestMethod": "GET",
+							"additionalHeaders": {
+								"value": "Authorization:Bearer @{pipeline().parameters.AccessToken}",
+								"type": "Expression"
+							},
+							"requestTimeout": ""
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink"
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "['SystemCreatedDate']"
+								},
+								"sink": {
+									"name": "SystemCreatedDate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "['SystemModifiedDate']"
+								},
+								"sink": {
+									"name": "SystemModifiedDate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "['EntryNo']"
+								},
+								"sink": {
+									"name": "EntryNo",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"path": "['ItemNo']"
+								},
+								"sink": {
+									"name": "ItemNo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['PostingDate']"
+								},
+								"sink": {
+									"name": "PostingDate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "['EntryType']"
+								},
+								"sink": {
+									"name": "EntryType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['SourceNo']"
+								},
+								"sink": {
+									"name": "SourceNo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['DocumentNo']"
+								},
+								"sink": {
+									"name": "DocumentNo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Description']"
+								},
+								"sink": {
+									"name": "Description",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['LocationCode']"
+								},
+								"sink": {
+									"name": "LocationCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Quantity']"
+								},
+								"sink": {
+									"name": "Quantity",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['RemainingQuantity']"
+								},
+								"sink": {
+									"name": "RemainingQuantity",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['InvoicedQuantity']"
+								},
+								"sink": {
+									"name": "InvoicedQuantity",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['AppliestoEntry']"
+								},
+								"sink": {
+									"name": "AppliestoEntry",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['Open']"
+								},
+								"sink": {
+									"name": "Open",
+									"type": "Boolean"
+								}
+							},
+							{
+								"source": {
+									"path": "['GlobalDimension1Code']"
+								},
+								"sink": {
+									"name": "GlobalDimension1Code",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['GlobalDimension2Code']"
+								},
+								"sink": {
+									"name": "GlobalDimension2Code",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Positive']"
+								},
+								"sink": {
+									"name": "Positive",
+									"type": "Boolean"
+								}
+							},
+							{
+								"source": {
+									"path": "['ShptMethodCode']"
+								},
+								"sink": {
+									"name": "ShptMethodCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['SourceType']"
+								},
+								"sink": {
+									"name": "SourceType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['DropShipment']"
+								},
+								"sink": {
+									"name": "DropShipment",
+									"type": "Boolean"
+								}
+							},
+							{
+								"source": {
+									"path": "['TransactionType']"
+								},
+								"sink": {
+									"name": "TransactionType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['TransportMethod']"
+								},
+								"sink": {
+									"name": "TransportMethod",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['CountryRegionCode']"
+								},
+								"sink": {
+									"name": "CountryRegionCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['EntryExitPoint']"
+								},
+								"sink": {
+									"name": "EntryExitPoint",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['DocumentDate']"
+								},
+								"sink": {
+									"name": "DocumentDate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "['ExternalDocumentNo']"
+								},
+								"sink": {
+									"name": "ExternalDocumentNo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Area']"
+								},
+								"sink": {
+									"name": "Area",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['TransactionSpecification']"
+								},
+								"sink": {
+									"name": "TransactionSpecification",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['NoSeries']"
+								},
+								"sink": {
+									"name": "NoSeries",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['DocumentType']"
+								},
+								"sink": {
+									"name": "DocumentType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['DocumentLineNo']"
+								},
+								"sink": {
+									"name": "DocumentLineNo",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"path": "['OrderType']"
+								},
+								"sink": {
+									"name": "OrderType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['OrderNo']"
+								},
+								"sink": {
+									"name": "OrderNo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['OrderLineNo']"
+								},
+								"sink": {
+									"name": "OrderLineNo",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"path": "['DimensionSetID']"
+								},
+								"sink": {
+									"name": "DimensionSetID",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"path": "['AssembletoOrder']"
+								},
+								"sink": {
+									"name": "AssembletoOrder",
+									"type": "Boolean"
+								}
+							},
+							{
+								"source": {
+									"path": "['JobNo']"
+								},
+								"sink": {
+									"name": "JobNo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['JobTaskNo']"
+								},
+								"sink": {
+									"name": "JobTaskNo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['JobPurchase']"
+								},
+								"sink": {
+									"name": "JobPurchase",
+									"type": "Boolean"
+								}
+							},
+							{
+								"source": {
+									"path": "['VariantCode']"
+								},
+								"sink": {
+									"name": "VariantCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['QtyperUnitofMeasure']"
+								},
+								"sink": {
+									"name": "QtyperUnitofMeasure",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['UnitofMeasureCode']"
+								},
+								"sink": {
+									"name": "UnitofMeasureCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['DerivedfromBlanketOrder']"
+								},
+								"sink": {
+									"name": "DerivedfromBlanketOrder",
+									"type": "Boolean"
+								}
+							},
+							{
+								"source": {
+									"path": "['CrossReferenceNo']"
+								},
+								"sink": {
+									"name": "CrossReferenceNo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['OriginallyOrderedNo']"
+								},
+								"sink": {
+									"name": "OriginallyOrderedNo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['OriginallyOrderedVarCode']"
+								},
+								"sink": {
+									"name": "OriginallyOrderedVarCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['OutofStockSubstitution']"
+								},
+								"sink": {
+									"name": "OutofStockSubstitution",
+									"type": "Boolean"
+								}
+							},
+							{
+								"source": {
+									"path": "['ItemCategoryCode']"
+								},
+								"sink": {
+									"name": "ItemCategoryCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Nonstock']"
+								},
+								"sink": {
+									"name": "Nonstock",
+									"type": "Boolean"
+								}
+							},
+							{
+								"source": {
+									"path": "['PurchasingCode']"
+								},
+								"sink": {
+									"name": "PurchasingCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['ItemReferenceNo']"
+								},
+								"sink": {
+									"name": "ItemReferenceNo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['CompletelyInvoiced']"
+								},
+								"sink": {
+									"name": "CompletelyInvoiced",
+									"type": "Boolean"
+								}
+							},
+							{
+								"source": {
+									"path": "['LastInvoiceDate']"
+								},
+								"sink": {
+									"name": "LastInvoiceDate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "['AppliedEntrytoAdjust']"
+								},
+								"sink": {
+									"name": "AppliedEntrytoAdjust",
+									"type": "Boolean"
+								}
+							},
+							{
+								"source": {
+									"path": "['Correction']"
+								},
+								"sink": {
+									"name": "Correction",
+									"type": "Boolean"
+								}
+							},
+							{
+								"source": {
+									"path": "['ShippedQtyNotReturned']"
+								},
+								"sink": {
+									"name": "ShippedQtyNotReturned",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['ProdOrderCompLineNo']"
+								},
+								"sink": {
+									"name": "ProdOrderCompLineNo",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"path": "['SerialNo']"
+								},
+								"sink": {
+									"name": "SerialNo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['LotNo']"
+								},
+								"sink": {
+									"name": "LotNo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['WarrantyDate']"
+								},
+								"sink": {
+									"name": "WarrantyDate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "['ExpirationDate']"
+								},
+								"sink": {
+									"name": "ExpirationDate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "['ItemTracking']"
+								},
+								"sink": {
+									"name": "ItemTracking",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['PackageNo']"
+								},
+								"sink": {
+									"name": "PackageNo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['ReturnReasonCode']"
+								},
+								"sink": {
+									"name": "ReturnReasonCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['ReservedQuantity']"
+								},
+								"sink": {
+									"name": "ReservedQuantity",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['CostAmountExpected']"
+								},
+								"sink": {
+									"name": "CostAmountExpected",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['CostAmountActual']"
+								},
+								"sink": {
+									"name": "CostAmountActual",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['CostAmountNonInvtbl']"
+								},
+								"sink": {
+									"name": "CostAmountNonInvtbl",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['CostAmountExpectedACY']"
+								},
+								"sink": {
+									"name": "CostAmountExpectedACY",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['CostAmountActualACY']"
+								},
+								"sink": {
+									"name": "CostAmountActualACY",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['CostAmountNonInvtblACY']"
+								},
+								"sink": {
+									"name": "CostAmountNonInvtblACY",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['PurchaseAmountExpected']"
+								},
+								"sink": {
+									"name": "PurchaseAmountExpected",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['PurchaseAmountActual']"
+								},
+								"sink": {
+									"name": "PurchaseAmountActual",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['SalesAmountExpected']"
+								},
+								"sink": {
+									"name": "SalesAmountExpected",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['SalesAmountActual']"
+								},
+								"sink": {
+									"name": "SalesAmountActual",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "$['CompanyCode']"
+								},
+								"sink": {
+									"name": "CompanyCode",
+									"type": "String"
+								}
+							}
+						],
+						"collectionReference": "$['value']"
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "HttpBC",
+						"type": "DatasetReference",
+						"parameters": {
+							"relUrl": {
+								"value": "@activity('Get_Rel_URL_ItemLedgerEntry').output.firstRow.RelativeURL",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Tab_ItemLedgerEntry",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Get_Rel_URL_ItemLedgerEntry",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 5,
+					"retryIntervalInSeconds": 60,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderStoredProcedureName": "[dbo].[Get_Service_Configuration_For_Incremental]",
+						"storedProcedureParameters": {
+							"CompanyCode": {
+								"type": "String",
+								"value": {
+									"value": "@pipeline().parameters.CompanyCode",
+									"type": "Expression"
+								}
+							},
+							"ServiceCode": {
+								"type": "String",
+								"value": "GetItemLedgerEntry"
+							},
+							"TableName": {
+								"type": "String",
+								"value": "ItemLedgerEntry"
+							}
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "Tab_DW_Site_Config",
+						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "Get_Rel_URL_CustLedgerEntry",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 5,
+					"retryIntervalInSeconds": 60,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderStoredProcedureName": "[dbo].[Get_Service_Configuration_For_Incremental]",
+						"storedProcedureParameters": {
+							"CompanyCode": {
+								"type": "String",
+								"value": {
+									"value": "@pipeline().parameters.CompanyCode",
+									"type": "Expression"
+								}
+							},
+							"ServiceCode": {
+								"type": "String",
+								"value": "GetCustLedgerEntry"
+							},
+							"TableName": {
+								"type": "String",
+								"value": "CustLedgerEntry"
+							}
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "Tab_DW_Site_Config",
+						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "Set valueEntry Variable",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "ValueEntry",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "ValueEntry",
+					"value": {
+						"value": "@{string(activity('ValueEntry').output.rowsCopied)}",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Until ValueEntry",
+				"type": "Until",
+				"dependsOn": [
+					{
+						"activity": "Set valueEntry Variable",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@equals(variables('ValueEntry'),'0')",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "ValueEntry_Internal",
+							"type": "Copy",
+							"dependsOn": [
+								{
+									"activity": "Get_Rel_URL_ValueEntry_Internal",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 5,
+								"retryIntervalInSeconds": 60,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "JsonSource",
+									"additionalColumns": [
+										{
+											"name": "CompanyCode",
+											"value": {
+												"value": "@activity('Get_Rel_URL_ValueEntry_Internal').output.firstRow.CompanyCode",
+												"type": "Expression"
+											}
+										}
+									],
+									"storeSettings": {
+										"type": "HttpReadSettings",
+										"requestMethod": "GET",
+										"additionalHeaders": {
+											"value": "Authorization:Bearer @{pipeline().parameters.AccessToken}",
+											"type": "Expression"
+										},
+										"requestTimeout": ""
+									},
+									"formatSettings": {
+										"type": "JsonReadSettings"
+									}
+								},
+								"sink": {
+									"type": "AzureSqlSink"
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"mappings": [
+										{
+											"source": {
+												"path": "['SystemCreatedDate']"
+											},
+											"sink": {
+												"name": "SystemCreatedDate",
+												"type": "DateTime"
+											}
+										},
+										{
+											"source": {
+												"path": "['SystemModifiedDate']"
+											},
+											"sink": {
+												"name": "SystemModifiedDate",
+												"type": "DateTime"
+											}
+										},
+										{
+											"source": {
+												"path": "['EntryNo']"
+											},
+											"sink": {
+												"name": "EntryNo",
+												"type": "Int64"
+											}
+										},
+										{
+											"source": {
+												"path": "['ItemNo']"
+											},
+											"sink": {
+												"name": "ItemNo",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['PostingDate']"
+											},
+											"sink": {
+												"name": "PostingDate",
+												"type": "DateTime"
+											}
+										},
+										{
+											"source": {
+												"path": "['ItemLedgerEntryType']"
+											},
+											"sink": {
+												"name": "ItemLedgerEntryType",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['SourceNo']"
+											},
+											"sink": {
+												"name": "SourceNo",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['DocumentNo']"
+											},
+											"sink": {
+												"name": "DocumentNo",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['Description']"
+											},
+											"sink": {
+												"name": "Description",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['LocationCode']"
+											},
+											"sink": {
+												"name": "LocationCode",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['InventoryPostingGroup']"
+											},
+											"sink": {
+												"name": "InventoryPostingGroup",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['SourcePostingGroup']"
+											},
+											"sink": {
+												"name": "SourcePostingGroup",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['ItemLedgerEntryNo']"
+											},
+											"sink": {
+												"name": "ItemLedgerEntryNo",
+												"type": "Int64"
+											}
+										},
+										{
+											"source": {
+												"path": "['ValuedQuantity']"
+											},
+											"sink": {
+												"name": "ValuedQuantity",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['ItemLedgerEntryQuantity']"
+											},
+											"sink": {
+												"name": "ItemLedgerEntryQuantity",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['InvoicedQuantity']"
+											},
+											"sink": {
+												"name": "InvoicedQuantity",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['CostperUnit']"
+											},
+											"sink": {
+												"name": "CostperUnit",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['SalesAmountActual']"
+											},
+											"sink": {
+												"name": "SalesAmountActual",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['SalespersPurchCode']"
+											},
+											"sink": {
+												"name": "SalespersPurchCode",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['DiscountAmount']"
+											},
+											"sink": {
+												"name": "DiscountAmount",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['UserID']"
+											},
+											"sink": {
+												"name": "UserID",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['SourceCode']"
+											},
+											"sink": {
+												"name": "SourceCode",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['AppliestoEntry']"
+											},
+											"sink": {
+												"name": "AppliestoEntry",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['GlobalDimension1Code']"
+											},
+											"sink": {
+												"name": "GlobalDimension1Code",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['GlobalDimension2Code']"
+											},
+											"sink": {
+												"name": "GlobalDimension2Code",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['SourceType']"
+											},
+											"sink": {
+												"name": "SourceType",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['CostAmountActual']"
+											},
+											"sink": {
+												"name": "CostAmountActual",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['CostPostedtoGL']"
+											},
+											"sink": {
+												"name": "CostPostedtoGL",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['ReasonCode']"
+											},
+											"sink": {
+												"name": "ReasonCode",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['DropShipment']"
+											},
+											"sink": {
+												"name": "DropShipment",
+												"type": "Boolean"
+											}
+										},
+										{
+											"source": {
+												"path": "['JournalBatchName']"
+											},
+											"sink": {
+												"name": "JournalBatchName",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['GenBusPostingGroup']"
+											},
+											"sink": {
+												"name": "GenBusPostingGroup",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['GenProdPostingGroup']"
+											},
+											"sink": {
+												"name": "GenProdPostingGroup",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['DocumentDate']"
+											},
+											"sink": {
+												"name": "DocumentDate",
+												"type": "DateTime"
+											}
+										},
+										{
+											"source": {
+												"path": "['ExternalDocumentNo']"
+											},
+											"sink": {
+												"name": "ExternalDocumentNo",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['CostAmountActualACY']"
+											},
+											"sink": {
+												"name": "CostAmountActualACY",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['CostPostedtoGLACY']"
+											},
+											"sink": {
+												"name": "CostPostedtoGLACY",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['CostperUnitACY']"
+											},
+											"sink": {
+												"name": "CostperUnitACY",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['DocumentType']"
+											},
+											"sink": {
+												"name": "DocumentType",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['DocumentLineNo']"
+											},
+											"sink": {
+												"name": "DocumentLineNo",
+												"type": "Int64"
+											}
+										},
+										{
+											"source": {
+												"path": "['OrderType']"
+											},
+											"sink": {
+												"name": "OrderType",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['OrderNo']"
+											},
+											"sink": {
+												"name": "OrderNo",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['OrderLineNo']"
+											},
+											"sink": {
+												"name": "OrderLineNo",
+												"type": "Int64"
+											}
+										},
+										{
+											"source": {
+												"path": "['ExpectedCost']"
+											},
+											"sink": {
+												"name": "ExpectedCost",
+												"type": "Boolean"
+											}
+										},
+										{
+											"source": {
+												"path": "['ItemChargeNo']"
+											},
+											"sink": {
+												"name": "ItemChargeNo",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['ValuedByAverageCost']"
+											},
+											"sink": {
+												"name": "ValuedByAverageCost",
+												"type": "Boolean"
+											}
+										},
+										{
+											"source": {
+												"path": "['PartialRevaluation']"
+											},
+											"sink": {
+												"name": "PartialRevaluation",
+												"type": "Boolean"
+											}
+										},
+										{
+											"source": {
+												"path": "['Inventoriable']"
+											},
+											"sink": {
+												"name": "Inventoriable",
+												"type": "Boolean"
+											}
+										},
+										{
+											"source": {
+												"path": "['ValuationDate']"
+											},
+											"sink": {
+												"name": "ValuationDate",
+												"type": "DateTime"
+											}
+										},
+										{
+											"source": {
+												"path": "['EntryType']"
+											},
+											"sink": {
+												"name": "EntryType",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['VarianceType']"
+											},
+											"sink": {
+												"name": "VarianceType",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['PurchaseAmountActual']"
+											},
+											"sink": {
+												"name": "PurchaseAmountActual",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['PurchaseAmountExpected']"
+											},
+											"sink": {
+												"name": "PurchaseAmountExpected",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['SalesAmountExpected']"
+											},
+											"sink": {
+												"name": "SalesAmountExpected",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['CostAmountExpected']"
+											},
+											"sink": {
+												"name": "CostAmountExpected",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['CostAmountNonInvtbl']"
+											},
+											"sink": {
+												"name": "CostAmountNonInvtbl",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['CostAmountExpectedACY']"
+											},
+											"sink": {
+												"name": "CostAmountExpectedACY",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['CostAmountNonInvtblACY']"
+											},
+											"sink": {
+												"name": "CostAmountNonInvtblACY",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['ExpectedCostPostedtoGL']"
+											},
+											"sink": {
+												"name": "ExpectedCostPostedtoGL",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['ExpCostPostedtoGLACY']"
+											},
+											"sink": {
+												"name": "ExpCostPostedtoGLACY",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['DimensionSetID']"
+											},
+											"sink": {
+												"name": "DimensionSetID",
+												"type": "Int64"
+											}
+										},
+										{
+											"source": {
+												"path": "['JobNo']"
+											},
+											"sink": {
+												"name": "JobNo",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['JobTaskNo']"
+											},
+											"sink": {
+												"name": "JobTaskNo",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['JobLedgerEntryNo']"
+											},
+											"sink": {
+												"name": "JobLedgerEntryNo",
+												"type": "Int64"
+											}
+										},
+										{
+											"source": {
+												"path": "['VariantCode']"
+											},
+											"sink": {
+												"name": "VariantCode",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['Adjustment']"
+											},
+											"sink": {
+												"name": "Adjustment",
+												"type": "Boolean"
+											}
+										},
+										{
+											"source": {
+												"path": "['AverageCostException']"
+											},
+											"sink": {
+												"name": "AverageCostException",
+												"type": "Boolean"
+											}
+										},
+										{
+											"source": {
+												"path": "['CapacityLedgerEntryNo']"
+											},
+											"sink": {
+												"name": "CapacityLedgerEntryNo",
+												"type": "Int64"
+											}
+										},
+										{
+											"source": {
+												"path": "['Type']"
+											},
+											"sink": {
+												"name": "Type",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['No']"
+											},
+											"sink": {
+												"name": "No",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['ReturnReasonCode']"
+											},
+											"sink": {
+												"name": "ReturnReasonCode",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['CompanyCode']"
+											},
+											"sink": {
+												"name": "CompanyCode",
+												"type": "String"
+											}
+										}
+									],
+									"collectionReference": "$['value']"
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "HttpBC",
+									"type": "DatasetReference",
+									"parameters": {
+										"relUrl": {
+											"value": "@activity('Get_Rel_URL_ValueEntry_Internal').output.firstRow.RelativeURL",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "Tab_ValueEntry",
+									"type": "DatasetReference"
+								}
+							]
+						},
+						{
+							"name": "Get_Rel_URL_ValueEntry_Internal",
+							"type": "Lookup",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 5,
+								"retryIntervalInSeconds": 60,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "AzureSqlSource",
+									"sqlReaderStoredProcedureName": "[dbo].[Get_Service_Configuration_For_Incremental]",
+									"storedProcedureParameters": {
+										"CompanyCode": {
+											"type": "String",
+											"value": {
+												"value": "@pipeline().parameters.CompanyCode",
+												"type": "Expression"
+											}
+										},
+										"ServiceCode": {
+											"type": "String",
+											"value": "GetValueEntry"
+										},
+										"TableName": {
+											"type": "String",
+											"value": "ValueEntry"
+										}
+									},
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"dataset": {
+									"referenceName": "Tab_DW_Site_Config",
+									"type": "DatasetReference"
+								}
+							}
+						},
+						{
+							"name": "valueEntry Variable Internal",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "ValueEntry_Internal",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "ValueEntry",
+								"value": {
+									"value": "@{string(activity('ValueEntry_Internal').output.rowsCopied)}",
+									"type": "Expression"
+								}
+							}
+						}
+					],
+					"timeout": "7.00:00:00"
+				}
+			},
+			{
+				"name": "Set PurchaseInvoiceLine Variable",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "PurchaseInvoiceLine",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "PurchaseInvoiceLine",
+					"value": {
+						"value": "@{string(activity('PurchaseInvoiceLine').output.rowsCopied)}",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Until PurchaseInvoiceLine",
+				"type": "Until",
+				"dependsOn": [
+					{
+						"activity": "Set PurchaseInvoiceLine Variable",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@equals(variables('PurchaseInvoiceLine'),'0')\n",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "PurchaseInvoiceLine_Internal",
+							"type": "Copy",
+							"dependsOn": [
+								{
+									"activity": "Get_Rel_URL_PurchaseInvoiceLine_Internal",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 5,
+								"retryIntervalInSeconds": 60,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "JsonSource",
+									"additionalColumns": [
+										{
+											"name": "CompanyCode",
+											"value": {
+												"value": "@activity('Get_Rel_URL_PurchaseInvoiceLine_Internal').output.firstRow.CompanyCode",
+												"type": "Expression"
+											}
+										}
+									],
+									"storeSettings": {
+										"type": "HttpReadSettings",
+										"requestMethod": "GET",
+										"additionalHeaders": {
+											"value": "Authorization:Bearer @{pipeline().parameters.AccessToken}",
+											"type": "Expression"
+										},
+										"requestTimeout": ""
+									},
+									"formatSettings": {
+										"type": "JsonReadSettings"
+									}
+								},
+								"sink": {
+									"type": "AzureSqlSink"
+								},
+								"enableStaging": false,
+								"enableSkipIncompatibleRow": true,
+								"translator": {
+									"type": "TabularTranslator",
+									"mappings": [
+										{
+											"source": {
+												"path": "['SystemCreatedDate']"
+											},
+											"sink": {
+												"name": "SystemCreatedDate",
+												"type": "DateTime"
+											}
+										},
+										{
+											"source": {
+												"path": "['SystemModifiedDate']"
+											},
+											"sink": {
+												"name": "SystemModifiedDate",
+												"type": "DateTime"
+											}
+										},
+										{
+											"source": {
+												"path": "['AllowInvoiceDisc']"
+											},
+											"sink": {
+												"name": "AllowInvoiceDisc",
+												"type": "Boolean"
+											}
+										},
+										{
+											"source": {
+												"path": "['Amount']"
+											},
+											"sink": {
+												"name": "Amount",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['AmountIncludingVAT']"
+											},
+											"sink": {
+												"name": "AmountIncludingVAT",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['AppltoItemEntry']"
+											},
+											"sink": {
+												"name": "AppltoItemEntry",
+												"type": "Int64"
+											}
+										},
+										{
+											"source": {
+												"path": "['Area']"
+											},
+											"sink": {
+												"name": "Area",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['AttachedtoLineNo']"
+											},
+											"sink": {
+												"name": "AttachedtoLineNo",
+												"type": "Int64"
+											}
+										},
+										{
+											"source": {
+												"path": "['BinCode']"
+											},
+											"sink": {
+												"name": "BinCode",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['BlanketOrderLineNo']"
+											},
+											"sink": {
+												"name": "BlanketOrderLineNo",
+												"type": "Int64"
+											}
+										},
+										{
+											"source": {
+												"path": "['BlanketOrderNo']"
+											},
+											"sink": {
+												"name": "BlanketOrderNo",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['BudgetedFANo']"
+											},
+											"sink": {
+												"name": "BudgetedFANo",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['BuyfromVendorNo']"
+											},
+											"sink": {
+												"name": "BuyfromVendorNo",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['CrossReferenceNo']"
+											},
+											"sink": {
+												"name": "CrossReferenceNo",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['CrossReferenceType']"
+											},
+											"sink": {
+												"name": "CrossReferenceType",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['CrossReferenceTypeNo']"
+											},
+											"sink": {
+												"name": "CrossReferenceTypeNo",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['DeferralCode']"
+											},
+											"sink": {
+												"name": "DeferralCode",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['DeprAcquisitionCost']"
+											},
+											"sink": {
+												"name": "DeprAcquisitionCost",
+												"type": "Boolean"
+											}
+										},
+										{
+											"source": {
+												"path": "['DepruntilFAPostingDate']"
+											},
+											"sink": {
+												"name": "DepruntilFAPostingDate",
+												"type": "Boolean"
+											}
+										},
+										{
+											"source": {
+												"path": "['DepreciationBookCode']"
+											},
+											"sink": {
+												"name": "DepreciationBookCode",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['Description']"
+											},
+											"sink": {
+												"name": "Description",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['Description2']"
+											},
+											"sink": {
+												"name": "Description2",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['DimensionSetID']"
+											},
+											"sink": {
+												"name": "DimensionSetID",
+												"type": "Int64"
+											}
+										},
+										{
+											"source": {
+												"path": "['DirectUnitCost']"
+											},
+											"sink": {
+												"name": "DirectUnitCost",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['DocumentNo']"
+											},
+											"sink": {
+												"name": "DocumentNo",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['DuplicateinDepreciationBook']"
+											},
+											"sink": {
+												"name": "DuplicateinDepreciationBook",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['EntryPoint']"
+											},
+											"sink": {
+												"name": "EntryPoint",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['ExpectedReceiptDate']"
+											},
+											"sink": {
+												"name": "ExpectedReceiptDate",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['FAPostingDate']"
+											},
+											"sink": {
+												"name": "FAPostingDate",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['FAPostingType']"
+											},
+											"sink": {
+												"name": "FAPostingType",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['GenBusPostingGroup']"
+											},
+											"sink": {
+												"name": "GenBusPostingGroup",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['GenProdPostingGroup']"
+											},
+											"sink": {
+												"name": "GenProdPostingGroup",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['GrossWeight']"
+											},
+											"sink": {
+												"name": "GrossWeight",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['ICCrossReferenceNo']"
+											},
+											"sink": {
+												"name": "ICCrossReferenceNo",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['ICPartnerCode']"
+											},
+											"sink": {
+												"name": "ICPartnerCode",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['ICPartnerRefType']"
+											},
+											"sink": {
+												"name": "ICPartnerRefType",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['ICPartnerReference']"
+											},
+											"sink": {
+												"name": "ICPartnerReference",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['IndirectCost']"
+											},
+											"sink": {
+												"name": "IndirectCost",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['InsuranceNo']"
+											},
+											"sink": {
+												"name": "InsuranceNo",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['InvDiscountAmount']"
+											},
+											"sink": {
+												"name": "InvDiscountAmount",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['ItemCategoryCode']"
+											},
+											"sink": {
+												"name": "ItemCategoryCode",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['ItemReferenceNo']"
+											},
+											"sink": {
+												"name": "ItemReferenceNo",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['ItemReferenceType']"
+											},
+											"sink": {
+												"name": "ItemReferenceType",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['ItemReferenceTypeNo']"
+											},
+											"sink": {
+												"name": "ItemReferenceTypeNo",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['ItemReferenceUnitofMeasure']"
+											},
+											"sink": {
+												"name": "ItemReferenceUnitofMeasure",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['JobCurrencyCode']"
+											},
+											"sink": {
+												"name": "JobCurrencyCode",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['JobCurrencyFactor']"
+											},
+											"sink": {
+												"name": "JobCurrencyFactor",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['JobLineAmount']"
+											},
+											"sink": {
+												"name": "JobLineAmount",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['JobLineAmountLCY']"
+											},
+											"sink": {
+												"name": "JobLineAmountLCY",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['JobLineDiscAmountLCY']"
+											},
+											"sink": {
+												"name": "JobLineDiscAmountLCY",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['JobLineDiscount']"
+											},
+											"sink": {
+												"name": "JobLineDiscount",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['JobLineDiscountAmount']"
+											},
+											"sink": {
+												"name": "JobLineDiscountAmount",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['JobLineType']"
+											},
+											"sink": {
+												"name": "JobLineType",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['JobNo']"
+											},
+											"sink": {
+												"name": "JobNo",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['JobTaskNo']"
+											},
+											"sink": {
+												"name": "JobTaskNo",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['JobTotalPrice']"
+											},
+											"sink": {
+												"name": "JobTotalPrice",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['JobTotalPriceLCY']"
+											},
+											"sink": {
+												"name": "JobTotalPriceLCY",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['JobUnitPrice']"
+											},
+											"sink": {
+												"name": "JobUnitPrice",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['JobUnitPriceLCY']"
+											},
+											"sink": {
+												"name": "JobUnitPriceLCY",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['LineAmount']"
+											},
+											"sink": {
+												"name": "LineAmount",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['LineDiscount']"
+											},
+											"sink": {
+												"name": "LineDiscount",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['LineDiscountAmount']"
+											},
+											"sink": {
+												"name": "LineDiscountAmount",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['LineNo']"
+											},
+											"sink": {
+												"name": "LineNo",
+												"type": "Int64"
+											}
+										},
+										{
+											"source": {
+												"path": "['LocationCode']"
+											},
+											"sink": {
+												"name": "LocationCode",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['MaintenanceCode']"
+											},
+											"sink": {
+												"name": "MaintenanceCode",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['NetWeight']"
+											},
+											"sink": {
+												"name": "NetWeight",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['No']"
+											},
+											"sink": {
+												"name": "No",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['Nonstock']"
+											},
+											"sink": {
+												"name": "Nonstock",
+												"type": "Boolean"
+											}
+										},
+										{
+											"source": {
+												"path": "['OperationNo']"
+											},
+											"sink": {
+												"name": "OperationNo",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['OrderLineNo']"
+											},
+											"sink": {
+												"name": "OrderLineNo",
+												"type": "Int64"
+											}
+										},
+										{
+											"source": {
+												"path": "['OrderNo']"
+											},
+											"sink": {
+												"name": "OrderNo",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['OverheadRate']"
+											},
+											"sink": {
+												"name": "OverheadRate",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['PaytoVendorNo']"
+											},
+											"sink": {
+												"name": "PaytoVendorNo",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['PmtDiscountAmount']"
+											},
+											"sink": {
+												"name": "PmtDiscountAmount",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['PostingDate']"
+											},
+											"sink": {
+												"name": "PostingDate",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['PostingGroup']"
+											},
+											"sink": {
+												"name": "PostingGroup",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['PrepaymentLine']"
+											},
+											"sink": {
+												"name": "PrepaymentLine",
+												"type": "Boolean"
+											}
+										},
+										{
+											"source": {
+												"path": "['PriceCalculationMethod']"
+											},
+											"sink": {
+												"name": "PriceCalculationMethod",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['ProdOrderLineNo']"
+											},
+											"sink": {
+												"name": "ProdOrderLineNo",
+												"type": "Int64"
+											}
+										},
+										{
+											"source": {
+												"path": "['ProdOrderNo']"
+											},
+											"sink": {
+												"name": "ProdOrderNo",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['PurchasingCode']"
+											},
+											"sink": {
+												"name": "PurchasingCode",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['QtyperUnitofMeasure']"
+											},
+											"sink": {
+												"name": "QtyperUnitofMeasure",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['Quantity']"
+											},
+											"sink": {
+												"name": "Quantity",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['QuantityBase']"
+											},
+											"sink": {
+												"name": "QuantityBase",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['ReceiptLineNo']"
+											},
+											"sink": {
+												"name": "ReceiptLineNo",
+												"type": "Int64"
+											}
+										},
+										{
+											"source": {
+												"path": "['ReceiptNo']"
+											},
+											"sink": {
+												"name": "ReceiptNo",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['ResponsibilityCenter']"
+											},
+											"sink": {
+												"name": "ResponsibilityCenter",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['ReturnReasonCode']"
+											},
+											"sink": {
+												"name": "ReturnReasonCode",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['ReverseCharge']"
+											},
+											"sink": {
+												"name": "ReverseCharge",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['ReverseChargeItem']"
+											},
+											"sink": {
+												"name": "ReverseChargeItem",
+												"type": "Boolean"
+											}
+										},
+										{
+											"source": {
+												"path": "['RoutingNo']"
+											},
+											"sink": {
+												"name": "RoutingNo",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['RoutingReferenceNo']"
+											},
+											"sink": {
+												"name": "RoutingReferenceNo",
+												"type": "Int64"
+											}
+										},
+										{
+											"source": {
+												"path": "['SalvageValue']"
+											},
+											"sink": {
+												"name": "SalvageValue",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['ShortcutDimension1Code']"
+											},
+											"sink": {
+												"name": "ShortcutDimension1Code",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['ShortcutDimension2Code']"
+											},
+											"sink": {
+												"name": "ShortcutDimension2Code",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['SystemCreatedEntry']"
+											},
+											"sink": {
+												"name": "SystemCreatedEntry",
+												"type": "Boolean"
+											}
+										},
+										{
+											"source": {
+												"path": "['SystemCreatedAt']"
+											},
+											"sink": {
+												"name": "SystemCreatedAt",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['SystemCreatedBy']"
+											},
+											"sink": {
+												"name": "SystemCreatedBy",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['SystemId']"
+											},
+											"sink": {
+												"name": "SystemId",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['SystemModifiedAt']"
+											},
+											"sink": {
+												"name": "SystemModifiedAt",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['SystemModifiedBy']"
+											},
+											"sink": {
+												"name": "SystemModifiedBy",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['TaxAreaCode']"
+											},
+											"sink": {
+												"name": "TaxAreaCode",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['TaxGroupCode']"
+											},
+											"sink": {
+												"name": "TaxGroupCode",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['TaxLiable']"
+											},
+											"sink": {
+												"name": "TaxLiable",
+												"type": "Boolean"
+											}
+										},
+										{
+											"source": {
+												"path": "['TransactionSpecification']"
+											},
+											"sink": {
+												"name": "TransactionSpecification",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['TransactionType']"
+											},
+											"sink": {
+												"name": "TransactionType",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['TransportMethod']"
+											},
+											"sink": {
+												"name": "TransportMethod",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['Type']"
+											},
+											"sink": {
+												"name": "Type",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['UnitCost']"
+											},
+											"sink": {
+												"name": "UnitCost",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['UnitCostLCY']"
+											},
+											"sink": {
+												"name": "UnitCostLCY",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['UnitPriceLCY']"
+											},
+											"sink": {
+												"name": "UnitPriceLCY",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['UnitVolume']"
+											},
+											"sink": {
+												"name": "UnitVolume",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['UnitofMeasure']"
+											},
+											"sink": {
+												"name": "UnitofMeasure",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['UnitofMeasureCrossRef']"
+											},
+											"sink": {
+												"name": "UnitofMeasureCrossRef",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['UnitofMeasureCode']"
+											},
+											"sink": {
+												"name": "UnitofMeasureCode",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['UnitsperParcel']"
+											},
+											"sink": {
+												"name": "UnitsperParcel",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['UseDuplicationList']"
+											},
+											"sink": {
+												"name": "UseDuplicationList",
+												"type": "Boolean"
+											}
+										},
+										{
+											"source": {
+												"path": "['UseTax']"
+											},
+											"sink": {
+												"name": "UseTax",
+												"type": "Boolean"
+											}
+										},
+										{
+											"source": {
+												"path": "['VAT']"
+											},
+											"sink": {
+												"name": "VAT",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['VATBaseAmount']"
+											},
+											"sink": {
+												"name": "VATBaseAmount",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['VATBusPostingGroup']"
+											},
+											"sink": {
+												"name": "VATBusPostingGroup",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['VATCalculationType']"
+											},
+											"sink": {
+												"name": "VATCalculationType",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['VATDifference']"
+											},
+											"sink": {
+												"name": "VATDifference",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['VATIdentifier']"
+											},
+											"sink": {
+												"name": "VATIdentifier",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['VATProdPostingGroup']"
+											},
+											"sink": {
+												"name": "VATProdPostingGroup",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['VariantCode']"
+											},
+											"sink": {
+												"name": "VariantCode",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['VendorItemNo']"
+											},
+											"sink": {
+												"name": "VendorItemNo",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['WorkCenterNo']"
+											},
+											"sink": {
+												"name": "WorkCenterNo",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['CompanyCode']"
+											},
+											"sink": {
+												"name": "CompanyCode",
+												"type": "String"
+											}
+										}
+									],
+									"collectionReference": "$['value']"
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "HttpBC",
+									"type": "DatasetReference",
+									"parameters": {
+										"relUrl": {
+											"value": "@activity('Get_Rel_URL_PurchaseInvoiceLine_Internal').output.firstRow.RelativeURL",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "Tab_PurchaseInvoiceLine",
+									"type": "DatasetReference"
+								}
+							]
+						},
+						{
+							"name": "Get_Rel_URL_PurchaseInvoiceLine_Internal",
+							"type": "Lookup",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 5,
+								"retryIntervalInSeconds": 60,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "AzureSqlSource",
+									"sqlReaderStoredProcedureName": "[dbo].[Get_Service_Configuration_For_Incremental]",
+									"storedProcedureParameters": {
+										"CompanyCode": {
+											"type": "String",
+											"value": {
+												"value": "@pipeline().parameters.CompanyCode",
+												"type": "Expression"
+											}
+										},
+										"ServiceCode": {
+											"type": "String",
+											"value": "GetPurchaseInvoiceLine"
+										},
+										"TableName": {
+											"type": "String",
+											"value": "PurchaseInvoiceLine"
+										}
+									},
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"dataset": {
+									"referenceName": "Tab_DW_Site_Config",
+									"type": "DatasetReference"
+								}
+							}
+						},
+						{
+							"name": "Set PurchaseInvoiceLine_Internal",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "PurchaseInvoiceLine_Internal",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "PurchaseInvoiceLine",
+								"value": {
+									"value": "@{string(activity('PurchaseInvoiceLine_Internal').output.rowsCopied)}",
+									"type": "Expression"
+								}
+							}
+						}
+					],
+					"timeout": "7.00:00:00"
+				}
+			},
+			{
+				"name": "Set WarehouseEntry Variable",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "WarehouseEntry",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "WareHouseEntry",
+					"value": {
+						"value": "@{string(activity('WarehouseEntry').output.rowsCopied)}",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Until WarehouseEntry",
+				"type": "Until",
+				"dependsOn": [
+					{
+						"activity": "Set WarehouseEntry Variable",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@equals(variables('WareHouseEntry'),'0')",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "WarehouseEntry_Internal",
+							"type": "Copy",
+							"dependsOn": [
+								{
+									"activity": "Get_Rel_URL_WarehouseEntry_Internal",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 5,
+								"retryIntervalInSeconds": 60,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "JsonSource",
+									"additionalColumns": [
+										{
+											"name": "CompanyCode",
+											"value": {
+												"value": "@activity('Get_Rel_URL_WarehouseEntry_Internal').output.firstRow.CompanyCode",
+												"type": "Expression"
+											}
+										}
+									],
+									"storeSettings": {
+										"type": "HttpReadSettings",
+										"requestMethod": "GET",
+										"additionalHeaders": {
+											"value": "Authorization:Bearer @{pipeline().parameters.AccessToken}",
+											"type": "Expression"
+										},
+										"requestTimeout": ""
+									},
+									"formatSettings": {
+										"type": "JsonReadSettings"
+									}
+								},
+								"sink": {
+									"type": "AzureSqlSink"
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"mappings": [
+										{
+											"source": {
+												"path": "['SystemCreatedDate']"
+											},
+											"sink": {
+												"name": "SystemCreatedDate",
+												"type": "DateTime"
+											}
+										},
+										{
+											"source": {
+												"path": "['SystemModifiedDate']"
+											},
+											"sink": {
+												"name": "SystemModifiedDate",
+												"type": "DateTime"
+											}
+										},
+										{
+											"source": {
+												"path": "['BinCode']"
+											},
+											"sink": {
+												"name": "BinCode",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['BinTypeCode']"
+											},
+											"sink": {
+												"name": "BinTypeCode",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['Cubage']"
+											},
+											"sink": {
+												"name": "Cubage",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['Dedicated']"
+											},
+											"sink": {
+												"name": "Dedicated",
+												"type": "Boolean"
+											}
+										},
+										{
+											"source": {
+												"path": "['Description']"
+											},
+											"sink": {
+												"name": "Description",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['EntryNo']"
+											},
+											"sink": {
+												"name": "EntryNo",
+												"type": "Int64"
+											}
+										},
+										{
+											"source": {
+												"path": "['EntryType']"
+											},
+											"sink": {
+												"name": "EntryType",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['ExpirationDate']"
+											},
+											"sink": {
+												"name": "ExpirationDate",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['ItemNo']"
+											},
+											"sink": {
+												"name": "ItemNo",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['JournalBatchName']"
+											},
+											"sink": {
+												"name": "JournalBatchName",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['JournalTemplateName']"
+											},
+											"sink": {
+												"name": "JournalTemplateName",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['LineNo']"
+											},
+											"sink": {
+												"name": "LineNo",
+												"type": "Int64"
+											}
+										},
+										{
+											"source": {
+												"path": "['LocationCode']"
+											},
+											"sink": {
+												"name": "LocationCode",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['LotNo']"
+											},
+											"sink": {
+												"name": "LotNo",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['NoSeries']"
+											},
+											"sink": {
+												"name": "NoSeries",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['PackageNo']"
+											},
+											"sink": {
+												"name": "PackageNo",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['PhysInvtCountingPeriodCode']"
+											},
+											"sink": {
+												"name": "PhysInvtCountingPeriodCode",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['PhysInvtCountingPeriodType']"
+											},
+											"sink": {
+												"name": "PhysInvtCountingPeriodType",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['QtyBase']"
+											},
+											"sink": {
+												"name": "QtyBase",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['QtyperUnitofMeasure']"
+											},
+											"sink": {
+												"name": "QtyperUnitofMeasure",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['Quantity']"
+											},
+											"sink": {
+												"name": "Quantity",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['ReasonCode']"
+											},
+											"sink": {
+												"name": "ReasonCode",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['ReferenceDocument']"
+											},
+											"sink": {
+												"name": "ReferenceDocument",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['ReferenceNo']"
+											},
+											"sink": {
+												"name": "ReferenceNo",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['RegisteringDate']"
+											},
+											"sink": {
+												"name": "RegisteringDate",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['SerialNo']"
+											},
+											"sink": {
+												"name": "SerialNo",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['SourceCode']"
+											},
+											"sink": {
+												"name": "SourceCode",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['SourceDocument']"
+											},
+											"sink": {
+												"name": "SourceDocument",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['SourceLineNo']"
+											},
+											"sink": {
+												"name": "SourceLineNo",
+												"type": "Int64"
+											}
+										},
+										{
+											"source": {
+												"path": "['SourceNo']"
+											},
+											"sink": {
+												"name": "SourceNo",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['SourceSublineNo']"
+											},
+											"sink": {
+												"name": "SourceSublineNo",
+												"type": "Int64"
+											}
+										},
+										{
+											"source": {
+												"path": "['SourceSubtype']"
+											},
+											"sink": {
+												"name": "SourceSubtype",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['SourceType']"
+											},
+											"sink": {
+												"name": "SourceType",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['SystemCreatedAt']"
+											},
+											"sink": {
+												"name": "SystemCreatedAt",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['SystemCreatedBy']"
+											},
+											"sink": {
+												"name": "SystemCreatedBy",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['SystemId']"
+											},
+											"sink": {
+												"name": "SystemId",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['SystemModifiedAt']"
+											},
+											"sink": {
+												"name": "SystemModifiedAt",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['SystemModifiedBy']"
+											},
+											"sink": {
+												"name": "SystemModifiedBy",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['UnitofMeasureCode']"
+											},
+											"sink": {
+												"name": "UnitofMeasureCode",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['UserID']"
+											},
+											"sink": {
+												"name": "UserID",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['VariantCode']"
+											},
+											"sink": {
+												"name": "VariantCode",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['WarrantyDate']"
+											},
+											"sink": {
+												"name": "WarrantyDate",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['Weight']"
+											},
+											"sink": {
+												"name": "Weight",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['WhseDocumentLineNo']"
+											},
+											"sink": {
+												"name": "WhseDocumentLineNo",
+												"type": "Int64"
+											}
+										},
+										{
+											"source": {
+												"path": "['WhseDocumentNo']"
+											},
+											"sink": {
+												"name": "WhseDocumentNo",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['WhseDocumentType']"
+											},
+											"sink": {
+												"name": "WhseDocumentType",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['ZoneCode']"
+											},
+											"sink": {
+												"name": "ZoneCode",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['CompanyCode']"
+											},
+											"sink": {
+												"name": "CompanyCode",
+												"type": "String"
+											}
+										}
+									],
+									"collectionReference": "$['value']"
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "HttpBC",
+									"type": "DatasetReference",
+									"parameters": {
+										"relUrl": {
+											"value": "@activity('Get_Rel_URL_WarehouseEntry_Internal').output.firstRow.RelativeURL\n",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "Tab_WarehouseEntry",
+									"type": "DatasetReference"
+								}
+							]
+						},
+						{
+							"name": "Get_Rel_URL_WarehouseEntry_Internal",
+							"type": "Lookup",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 5,
+								"retryIntervalInSeconds": 60,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "AzureSqlSource",
+									"sqlReaderStoredProcedureName": "[dbo].[Get_Service_Configuration_For_Incremental]",
+									"storedProcedureParameters": {
+										"CompanyCode": {
+											"type": "String",
+											"value": {
+												"value": "@pipeline().parameters.CompanyCode",
+												"type": "Expression"
+											}
+										},
+										"ServiceCode": {
+											"type": "String",
+											"value": "GetWarehouseEntry"
+										},
+										"TableName": {
+											"type": "String",
+											"value": "WarehouseEntry"
+										}
+									},
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"dataset": {
+									"referenceName": "Tab_DW_Site_Config",
+									"type": "DatasetReference"
+								}
+							}
+						},
+						{
+							"name": "Set WarehouseEntry Variable Internal",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "WarehouseEntry_Internal",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "WareHouseEntry",
+								"value": {
+									"value": "@{string(activity('WarehouseEntry_Internal').output.rowsCopied)}",
+									"type": "Expression"
+								}
+							}
+						}
+					],
+					"timeout": "7.00:00:00"
+				}
+			},
+			{
+				"name": "Set ItemLedgerEntry Variable",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "ItemLedgerEntry",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "ItemLedgerEntry",
+					"value": {
+						"value": "@{string(activity('ItemLedgerEntry').output.rowsCopied)}",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Until ItemLedgerEntry",
+				"type": "Until",
+				"dependsOn": [
+					{
+						"activity": "Set ItemLedgerEntry Variable",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@equals(variables('ItemLedgerEntry'),'0' )",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "ItemLedgerEntry_Internal",
+							"type": "Copy",
+							"dependsOn": [
+								{
+									"activity": "Get_Rel_URL_ItemLedgerEntry_Internal",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 5,
+								"retryIntervalInSeconds": 60,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "JsonSource",
+									"additionalColumns": [
+										{
+											"name": "CompanyCode",
+											"value": {
+												"value": "@activity('Get_Rel_URL_ItemLedgerEntry_Internal').output.firstRow.CompanyCode",
+												"type": "Expression"
+											}
+										}
+									],
+									"storeSettings": {
+										"type": "HttpReadSettings",
+										"requestMethod": "GET",
+										"additionalHeaders": {
+											"value": "Authorization:Bearer @{pipeline().parameters.AccessToken}",
+											"type": "Expression"
+										},
+										"requestTimeout": ""
+									},
+									"formatSettings": {
+										"type": "JsonReadSettings"
+									}
+								},
+								"sink": {
+									"type": "AzureSqlSink"
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"mappings": [
+										{
+											"source": {
+												"path": "['SystemCreatedDate']"
+											},
+											"sink": {
+												"name": "SystemCreatedDate",
+												"type": "DateTime"
+											}
+										},
+										{
+											"source": {
+												"path": "['SystemModifiedDate']"
+											},
+											"sink": {
+												"name": "SystemModifiedDate",
+												"type": "DateTime"
+											}
+										},
+										{
+											"source": {
+												"path": "['EntryNo']"
+											},
+											"sink": {
+												"name": "EntryNo",
+												"type": "Int64"
+											}
+										},
+										{
+											"source": {
+												"path": "['ItemNo']"
+											},
+											"sink": {
+												"name": "ItemNo",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['PostingDate']"
+											},
+											"sink": {
+												"name": "PostingDate",
+												"type": "DateTime"
+											}
+										},
+										{
+											"source": {
+												"path": "['EntryType']"
+											},
+											"sink": {
+												"name": "EntryType",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['SourceNo']"
+											},
+											"sink": {
+												"name": "SourceNo",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['DocumentNo']"
+											},
+											"sink": {
+												"name": "DocumentNo",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['Description']"
+											},
+											"sink": {
+												"name": "Description",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['LocationCode']"
+											},
+											"sink": {
+												"name": "LocationCode",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['Quantity']"
+											},
+											"sink": {
+												"name": "Quantity",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['RemainingQuantity']"
+											},
+											"sink": {
+												"name": "RemainingQuantity",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['InvoicedQuantity']"
+											},
+											"sink": {
+												"name": "InvoicedQuantity",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['AppliestoEntry']"
+											},
+											"sink": {
+												"name": "AppliestoEntry",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['Open']"
+											},
+											"sink": {
+												"name": "Open",
+												"type": "Boolean"
+											}
+										},
+										{
+											"source": {
+												"path": "['GlobalDimension1Code']"
+											},
+											"sink": {
+												"name": "GlobalDimension1Code",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['GlobalDimension2Code']"
+											},
+											"sink": {
+												"name": "GlobalDimension2Code",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['Positive']"
+											},
+											"sink": {
+												"name": "Positive",
+												"type": "Boolean"
+											}
+										},
+										{
+											"source": {
+												"path": "['ShptMethodCode']"
+											},
+											"sink": {
+												"name": "ShptMethodCode",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['SourceType']"
+											},
+											"sink": {
+												"name": "SourceType",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['DropShipment']"
+											},
+											"sink": {
+												"name": "DropShipment",
+												"type": "Boolean"
+											}
+										},
+										{
+											"source": {
+												"path": "['TransactionType']"
+											},
+											"sink": {
+												"name": "TransactionType",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['TransportMethod']"
+											},
+											"sink": {
+												"name": "TransportMethod",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['CountryRegionCode']"
+											},
+											"sink": {
+												"name": "CountryRegionCode",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['EntryExitPoint']"
+											},
+											"sink": {
+												"name": "EntryExitPoint",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['DocumentDate']"
+											},
+											"sink": {
+												"name": "DocumentDate",
+												"type": "DateTime"
+											}
+										},
+										{
+											"source": {
+												"path": "['ExternalDocumentNo']"
+											},
+											"sink": {
+												"name": "ExternalDocumentNo",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['Area']"
+											},
+											"sink": {
+												"name": "Area",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['TransactionSpecification']"
+											},
+											"sink": {
+												"name": "TransactionSpecification",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['NoSeries']"
+											},
+											"sink": {
+												"name": "NoSeries",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['DocumentType']"
+											},
+											"sink": {
+												"name": "DocumentType",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['DocumentLineNo']"
+											},
+											"sink": {
+												"name": "DocumentLineNo",
+												"type": "Int64"
+											}
+										},
+										{
+											"source": {
+												"path": "['OrderType']"
+											},
+											"sink": {
+												"name": "OrderType",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['OrderNo']"
+											},
+											"sink": {
+												"name": "OrderNo",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['OrderLineNo']"
+											},
+											"sink": {
+												"name": "OrderLineNo",
+												"type": "Int64"
+											}
+										},
+										{
+											"source": {
+												"path": "['DimensionSetID']"
+											},
+											"sink": {
+												"name": "DimensionSetID",
+												"type": "Int64"
+											}
+										},
+										{
+											"source": {
+												"path": "['AssembletoOrder']"
+											},
+											"sink": {
+												"name": "AssembletoOrder",
+												"type": "Boolean"
+											}
+										},
+										{
+											"source": {
+												"path": "['JobNo']"
+											},
+											"sink": {
+												"name": "JobNo",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['JobTaskNo']"
+											},
+											"sink": {
+												"name": "JobTaskNo",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['JobPurchase']"
+											},
+											"sink": {
+												"name": "JobPurchase",
+												"type": "Boolean"
+											}
+										},
+										{
+											"source": {
+												"path": "['VariantCode']"
+											},
+											"sink": {
+												"name": "VariantCode",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['QtyperUnitofMeasure']"
+											},
+											"sink": {
+												"name": "QtyperUnitofMeasure",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['UnitofMeasureCode']"
+											},
+											"sink": {
+												"name": "UnitofMeasureCode",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['DerivedfromBlanketOrder']"
+											},
+											"sink": {
+												"name": "DerivedfromBlanketOrder",
+												"type": "Boolean"
+											}
+										},
+										{
+											"source": {
+												"path": "['CrossReferenceNo']"
+											},
+											"sink": {
+												"name": "CrossReferenceNo",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['OriginallyOrderedNo']"
+											},
+											"sink": {
+												"name": "OriginallyOrderedNo",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['OriginallyOrderedVarCode']"
+											},
+											"sink": {
+												"name": "OriginallyOrderedVarCode",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['OutofStockSubstitution']"
+											},
+											"sink": {
+												"name": "OutofStockSubstitution",
+												"type": "Boolean"
+											}
+										},
+										{
+											"source": {
+												"path": "['ItemCategoryCode']"
+											},
+											"sink": {
+												"name": "ItemCategoryCode",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['Nonstock']"
+											},
+											"sink": {
+												"name": "Nonstock",
+												"type": "Boolean"
+											}
+										},
+										{
+											"source": {
+												"path": "['PurchasingCode']"
+											},
+											"sink": {
+												"name": "PurchasingCode",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['ItemReferenceNo']"
+											},
+											"sink": {
+												"name": "ItemReferenceNo",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['CompletelyInvoiced']"
+											},
+											"sink": {
+												"name": "CompletelyInvoiced",
+												"type": "Boolean"
+											}
+										},
+										{
+											"source": {
+												"path": "['LastInvoiceDate']"
+											},
+											"sink": {
+												"name": "LastInvoiceDate",
+												"type": "DateTime"
+											}
+										},
+										{
+											"source": {
+												"path": "['AppliedEntrytoAdjust']"
+											},
+											"sink": {
+												"name": "AppliedEntrytoAdjust",
+												"type": "Boolean"
+											}
+										},
+										{
+											"source": {
+												"path": "['Correction']"
+											},
+											"sink": {
+												"name": "Correction",
+												"type": "Boolean"
+											}
+										},
+										{
+											"source": {
+												"path": "['ShippedQtyNotReturned']"
+											},
+											"sink": {
+												"name": "ShippedQtyNotReturned",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['ProdOrderCompLineNo']"
+											},
+											"sink": {
+												"name": "ProdOrderCompLineNo",
+												"type": "Int64"
+											}
+										},
+										{
+											"source": {
+												"path": "['SerialNo']"
+											},
+											"sink": {
+												"name": "SerialNo",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['LotNo']"
+											},
+											"sink": {
+												"name": "LotNo",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['WarrantyDate']"
+											},
+											"sink": {
+												"name": "WarrantyDate",
+												"type": "DateTime"
+											}
+										},
+										{
+											"source": {
+												"path": "['ExpirationDate']"
+											},
+											"sink": {
+												"name": "ExpirationDate",
+												"type": "DateTime"
+											}
+										},
+										{
+											"source": {
+												"path": "['ItemTracking']"
+											},
+											"sink": {
+												"name": "ItemTracking",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['PackageNo']"
+											},
+											"sink": {
+												"name": "PackageNo",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['ReturnReasonCode']"
+											},
+											"sink": {
+												"name": "ReturnReasonCode",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['ReservedQuantity']"
+											},
+											"sink": {
+												"name": "ReservedQuantity",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['CostAmountExpected']"
+											},
+											"sink": {
+												"name": "CostAmountExpected",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['CostAmountActual']"
+											},
+											"sink": {
+												"name": "CostAmountActual",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['CostAmountNonInvtbl']"
+											},
+											"sink": {
+												"name": "CostAmountNonInvtbl",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['CostAmountExpectedACY']"
+											},
+											"sink": {
+												"name": "CostAmountExpectedACY",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['CostAmountActualACY']"
+											},
+											"sink": {
+												"name": "CostAmountActualACY",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['CostAmountNonInvtblACY']"
+											},
+											"sink": {
+												"name": "CostAmountNonInvtblACY",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['PurchaseAmountExpected']"
+											},
+											"sink": {
+												"name": "PurchaseAmountExpected",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['PurchaseAmountActual']"
+											},
+											"sink": {
+												"name": "PurchaseAmountActual",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['SalesAmountExpected']"
+											},
+											"sink": {
+												"name": "SalesAmountExpected",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['SalesAmountActual']"
+											},
+											"sink": {
+												"name": "SalesAmountActual",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "$['CompanyCode']"
+											},
+											"sink": {
+												"name": "CompanyCode",
+												"type": "String"
+											}
+										}
+									],
+									"collectionReference": "$['value']"
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "HttpBC",
+									"type": "DatasetReference",
+									"parameters": {
+										"relUrl": {
+											"value": "@activity('Get_Rel_URL_ItemLedgerEntry_Internal').output.firstRow.RelativeURL",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "Tab_ItemLedgerEntry",
+									"type": "DatasetReference"
+								}
+							]
+						},
+						{
+							"name": "Get_Rel_URL_ItemLedgerEntry_Internal",
+							"type": "Lookup",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 5,
+								"retryIntervalInSeconds": 60,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "AzureSqlSource",
+									"sqlReaderStoredProcedureName": "[dbo].[Get_Service_Configuration_For_Incremental]",
+									"storedProcedureParameters": {
+										"CompanyCode": {
+											"type": "String",
+											"value": {
+												"value": "@pipeline().parameters.CompanyCode",
+												"type": "Expression"
+											}
+										},
+										"ServiceCode": {
+											"type": "String",
+											"value": "GetItemLedgerEntry"
+										},
+										"TableName": {
+											"type": "String",
+											"value": "ItemLedgerEntry"
+										}
+									},
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"dataset": {
+									"referenceName": "Tab_DW_Site_Config",
+									"type": "DatasetReference"
+								}
+							}
+						},
+						{
+							"name": "Set ItemLedgerEntry Variable Internal",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "ItemLedgerEntry_Internal",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "ItemLedgerEntry",
+								"value": {
+									"value": "@{string(activity('ItemLedgerEntry_Internal').output.rowsCopied)}",
+									"type": "Expression"
+								}
+							}
+						}
+					],
+					"timeout": "7.00:00:00"
+				}
+			},
+			{
+				"name": "Set CustLedgerEntry Variable",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "CustLedgerEntry",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "CustLedgerEntry",
+					"value": {
+						"value": "@{string(activity('CustLedgerEntry').output.rowsCopied)}",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Until CustLedgerEntry",
+				"type": "Until",
+				"dependsOn": [
+					{
+						"activity": "Set CustLedgerEntry Variable",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@equals(variables('CustLedgerEntry'),'0' )",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "CustLedgerEntry_Internal",
+							"type": "Copy",
+							"dependsOn": [
+								{
+									"activity": "Get_Rel_URL_CustLedgerEntry_Internal",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 5,
+								"retryIntervalInSeconds": 60,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "JsonSource",
+									"additionalColumns": [
+										{
+											"name": "CompanyCode",
+											"value": {
+												"value": "@activity('Get_Rel_URL_CustLedgerEntry_Internal').output.firstRow.CompanyCode",
+												"type": "Expression"
+											}
+										}
+									],
+									"storeSettings": {
+										"type": "HttpReadSettings",
+										"requestMethod": "GET",
+										"additionalHeaders": {
+											"value": "Authorization:Bearer @{pipeline().parameters.AccessToken}",
+											"type": "Expression"
+										},
+										"requestTimeout": ""
+									},
+									"formatSettings": {
+										"type": "JsonReadSettings"
+									}
+								},
+								"sink": {
+									"type": "AzureSqlSink"
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"mappings": [
+										{
+											"source": {
+												"path": "['SystemCreatedDate']"
+											},
+											"sink": {
+												"name": "SystemCreatedDate",
+												"type": "DateTime"
+											}
+										},
+										{
+											"source": {
+												"path": "['SystemModifiedDate']"
+											},
+											"sink": {
+												"name": "SystemModifiedDate",
+												"type": "DateTime"
+											}
+										},
+										{
+											"source": {
+												"path": "['EntryNo']"
+											},
+											"sink": {
+												"name": "EntryNo",
+												"type": "Int64"
+											}
+										},
+										{
+											"source": {
+												"path": "['CustomerNo']"
+											},
+											"sink": {
+												"name": "CustomerNo",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['PostingDate']"
+											},
+											"sink": {
+												"name": "PostingDate",
+												"type": "DateTime"
+											}
+										},
+										{
+											"source": {
+												"path": "['DocumentType']"
+											},
+											"sink": {
+												"name": "DocumentType",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['DocumentNo']"
+											},
+											"sink": {
+												"name": "DocumentNo",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['Description']"
+											},
+											"sink": {
+												"name": "Description",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['CustomerName']"
+											},
+											"sink": {
+												"name": "CustomerName",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['CurrencyCode']"
+											},
+											"sink": {
+												"name": "CurrencyCode",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['SalesLCY']"
+											},
+											"sink": {
+												"name": "SalesLCY",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['ProfitLCY']"
+											},
+											"sink": {
+												"name": "ProfitLCY",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['InvDiscountLCY']"
+											},
+											"sink": {
+												"name": "InvDiscountLCY",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['SelltoCustomerNo']"
+											},
+											"sink": {
+												"name": "SelltoCustomerNo",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['CustomerPostingGroup']"
+											},
+											"sink": {
+												"name": "CustomerPostingGroup",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['GlobalDimension1Code']"
+											},
+											"sink": {
+												"name": "GlobalDimension1Code",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['GlobalDimension2Code']"
+											},
+											"sink": {
+												"name": "GlobalDimension2Code",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['SalespersonCode']"
+											},
+											"sink": {
+												"name": "SalespersonCode",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['UserID']"
+											},
+											"sink": {
+												"name": "UserID",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['SourceCode']"
+											},
+											"sink": {
+												"name": "SourceCode",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['AppliestoDocType']"
+											},
+											"sink": {
+												"name": "AppliestoDocType",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['AppliestoDocNo']"
+											},
+											"sink": {
+												"name": "AppliestoDocNo",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['Open']"
+											},
+											"sink": {
+												"name": "Open",
+												"type": "Boolean"
+											}
+										},
+										{
+											"source": {
+												"path": "['DueDate']"
+											},
+											"sink": {
+												"name": "DueDate",
+												"type": "DateTime"
+											}
+										},
+										{
+											"source": {
+												"path": "['PmtDiscountDate']"
+											},
+											"sink": {
+												"name": "PmtDiscountDate",
+												"type": "DateTime"
+											}
+										},
+										{
+											"source": {
+												"path": "['OriginalPmtDiscPossible']"
+											},
+											"sink": {
+												"name": "OriginalPmtDiscPossible",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['PmtDiscGivenLCY']"
+											},
+											"sink": {
+												"name": "PmtDiscGivenLCY",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['Positive']"
+											},
+											"sink": {
+												"name": "Positive",
+												"type": "Boolean"
+											}
+										},
+										{
+											"source": {
+												"path": "['ClosedbyEntryNo']"
+											},
+											"sink": {
+												"name": "ClosedbyEntryNo",
+												"type": "Int32"
+											}
+										},
+										{
+											"source": {
+												"path": "['ClosedatDate']"
+											},
+											"sink": {
+												"name": "ClosedatDate",
+												"type": "DateTime"
+											}
+										},
+										{
+											"source": {
+												"path": "['ClosedbyAmount']"
+											},
+											"sink": {
+												"name": "ClosedbyAmount",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['AppliestoID']"
+											},
+											"sink": {
+												"name": "AppliestoID",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['JournalBatchName']"
+											},
+											"sink": {
+												"name": "JournalBatchName",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['ReasonCode']"
+											},
+											"sink": {
+												"name": "ReasonCode",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['BalAccountType']"
+											},
+											"sink": {
+												"name": "BalAccountType",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['BalAccountNo']"
+											},
+											"sink": {
+												"name": "BalAccountNo",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['TransactionNo']"
+											},
+											"sink": {
+												"name": "TransactionNo",
+												"type": "Int32"
+											}
+										},
+										{
+											"source": {
+												"path": "['ClosedbyAmountLCY']"
+											},
+											"sink": {
+												"name": "ClosedbyAmountLCY",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['DocumentDate']"
+											},
+											"sink": {
+												"name": "DocumentDate",
+												"type": "DateTime"
+											}
+										},
+										{
+											"source": {
+												"path": "['ExternalDocumentNo']"
+											},
+											"sink": {
+												"name": "ExternalDocumentNo",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['CalculateInterest']"
+											},
+											"sink": {
+												"name": "CalculateInterest",
+												"type": "Boolean"
+											}
+										},
+										{
+											"source": {
+												"path": "['ClosingInterestCalculated']"
+											},
+											"sink": {
+												"name": "ClosingInterestCalculated",
+												"type": "Boolean"
+											}
+										},
+										{
+											"source": {
+												"path": "['NoSeries']"
+											},
+											"sink": {
+												"name": "NoSeries",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['ClosedbyCurrencyCode']"
+											},
+											"sink": {
+												"name": "ClosedbyCurrencyCode",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['ClosedbyCurrencyAmount']"
+											},
+											"sink": {
+												"name": "ClosedbyCurrencyAmount",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['AdjustedCurrencyFactor']"
+											},
+											"sink": {
+												"name": "AdjustedCurrencyFactor",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['OriginalCurrencyFactor']"
+											},
+											"sink": {
+												"name": "OriginalCurrencyFactor",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['RemainingPmtDiscPossible']"
+											},
+											"sink": {
+												"name": "RemainingPmtDiscPossible",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['PmtDiscToleranceDate']"
+											},
+											"sink": {
+												"name": "PmtDiscToleranceDate",
+												"type": "DateTime"
+											}
+										},
+										{
+											"source": {
+												"path": "['MaxPaymentTolerance']"
+											},
+											"sink": {
+												"name": "MaxPaymentTolerance",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['LastIssuedReminderLevel']"
+											},
+											"sink": {
+												"name": "LastIssuedReminderLevel",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['AcceptedPaymentTolerance']"
+											},
+											"sink": {
+												"name": "AcceptedPaymentTolerance",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['AcceptedPmtDiscTolerance']"
+											},
+											"sink": {
+												"name": "AcceptedPmtDiscTolerance",
+												"type": "Boolean"
+											}
+										},
+										{
+											"source": {
+												"path": "['PmtToleranceLCY']"
+											},
+											"sink": {
+												"name": "PmtToleranceLCY",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['AmounttoApply']"
+											},
+											"sink": {
+												"name": "AmounttoApply",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['ICPartnerCode']"
+											},
+											"sink": {
+												"name": "ICPartnerCode",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['ApplyingEntry']"
+											},
+											"sink": {
+												"name": "ApplyingEntry",
+												"type": "Boolean"
+											}
+										},
+										{
+											"source": {
+												"path": "['Reversed']"
+											},
+											"sink": {
+												"name": "Reversed",
+												"type": "Boolean"
+											}
+										},
+										{
+											"source": {
+												"path": "['ReversedbyEntryNo']"
+											},
+											"sink": {
+												"name": "ReversedbyEntryNo",
+												"type": "Int32"
+											}
+										},
+										{
+											"source": {
+												"path": "['ReversedEntryNo']"
+											},
+											"sink": {
+												"name": "ReversedEntryNo",
+												"type": "Int32"
+											}
+										},
+										{
+											"source": {
+												"path": "['Prepayment']"
+											},
+											"sink": {
+												"name": "Prepayment",
+												"type": "Boolean"
+											}
+										},
+										{
+											"source": {
+												"path": "['PaymentMethodCode']"
+											},
+											"sink": {
+												"name": "PaymentMethodCode",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['AppliestoExtDocNo']"
+											},
+											"sink": {
+												"name": "AppliestoExtDocNo",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['DimensionSetID']"
+											},
+											"sink": {
+												"name": "DimensionSetID",
+												"type": "Int32"
+											}
+										},
+										{
+											"source": {
+												"path": "['Amount']"
+											},
+											"sink": {
+												"name": "Amount",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['RemainingAmount']"
+											},
+											"sink": {
+												"name": "RemainingAmount",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['OriginalAmtLCY']"
+											},
+											"sink": {
+												"name": "OriginalAmtLCY",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['RemainingAmtLCY']"
+											},
+											"sink": {
+												"name": "RemainingAmtLCY",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['AmountLCY']"
+											},
+											"sink": {
+												"name": "AmountLCY",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['DebitAmount']"
+											},
+											"sink": {
+												"name": "DebitAmount",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['CreditAmount']"
+											},
+											"sink": {
+												"name": "CreditAmount",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['DebitAmountLCY']"
+											},
+											"sink": {
+												"name": "DebitAmountLCY",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['CreditAmountLCY']"
+											},
+											"sink": {
+												"name": "CreditAmountLCY",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "['OriginalAmount']"
+											},
+											"sink": {
+												"name": "OriginalAmount",
+												"type": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"path": "$['CompanyCode']"
+											},
+											"sink": {
+												"name": "CompanyCode",
+												"type": "String"
+											}
+										}
+									],
+									"collectionReference": "$['value']"
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "HttpBC",
+									"type": "DatasetReference",
+									"parameters": {
+										"relUrl": {
+											"value": "@activity('Get_Rel_URL_CustLedgerEntry_Internal').output.firstRow.RelativeURL",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "Tab_CustLedgerEntry",
+									"type": "DatasetReference"
+								}
+							]
+						},
+						{
+							"name": "Get_Rel_URL_CustLedgerEntry_Internal",
+							"type": "Lookup",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 5,
+								"retryIntervalInSeconds": 60,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "AzureSqlSource",
+									"sqlReaderStoredProcedureName": "[dbo].[Get_Service_Configuration_For_Incremental]",
+									"storedProcedureParameters": {
+										"CompanyCode": {
+											"type": "String",
+											"value": {
+												"value": "@pipeline().parameters.CompanyCode",
+												"type": "Expression"
+											}
+										},
+										"ServiceCode": {
+											"type": "String",
+											"value": "GetCustLedgerEntry"
+										},
+										"TableName": {
+											"type": "String",
+											"value": "CustLedgerEntry"
+										}
+									},
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"dataset": {
+									"referenceName": "Tab_DW_Site_Config",
+									"type": "DatasetReference"
+								}
+							}
+						},
+						{
+							"name": "Set CustLedgerEntry Internal variable",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "CustLedgerEntry_Internal",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "CustLedgerEntry",
+								"value": {
+									"value": "@{string(activity('CustLedgerEntry_Internal').output.rowsCopied)}",
+									"type": "Expression"
+								}
+							}
+						}
+					],
+					"timeout": "7.00:00:00"
+				}
+			},
+			{
+				"name": "CustLedgerEntry",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Get_Rel_URL_CustLedgerEntry",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 5,
+					"retryIntervalInSeconds": 60,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"additionalColumns": [
+							{
+								"name": "CompanyCode",
+								"value": {
+									"value": "@activity('Get_Rel_URL_CustLedgerEntry').output.firstRow.CompanyCode",
+									"type": "Expression"
+								}
+							}
+						],
+						"storeSettings": {
+							"type": "HttpReadSettings",
+							"requestMethod": "GET",
+							"additionalHeaders": {
+								"value": "Authorization:Bearer @{pipeline().parameters.AccessToken}",
+								"type": "Expression"
+							},
+							"requestTimeout": ""
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink"
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "['SystemCreatedDate']"
+								},
+								"sink": {
+									"name": "SystemCreatedDate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "['SystemModifiedDate']"
+								},
+								"sink": {
+									"name": "SystemModifiedDate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "['EntryNo']"
+								},
+								"sink": {
+									"name": "EntryNo",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"path": "['CustomerNo']"
+								},
+								"sink": {
+									"name": "CustomerNo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['PostingDate']"
+								},
+								"sink": {
+									"name": "PostingDate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "['DocumentType']"
+								},
+								"sink": {
+									"name": "DocumentType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['DocumentNo']"
+								},
+								"sink": {
+									"name": "DocumentNo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Description']"
+								},
+								"sink": {
+									"name": "Description",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['CustomerName']"
+								},
+								"sink": {
+									"name": "CustomerName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['CurrencyCode']"
+								},
+								"sink": {
+									"name": "CurrencyCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['SalesLCY']"
+								},
+								"sink": {
+									"name": "SalesLCY",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['ProfitLCY']"
+								},
+								"sink": {
+									"name": "ProfitLCY",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['InvDiscountLCY']"
+								},
+								"sink": {
+									"name": "InvDiscountLCY",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['SelltoCustomerNo']"
+								},
+								"sink": {
+									"name": "SelltoCustomerNo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['CustomerPostingGroup']"
+								},
+								"sink": {
+									"name": "CustomerPostingGroup",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['GlobalDimension1Code']"
+								},
+								"sink": {
+									"name": "GlobalDimension1Code",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['GlobalDimension2Code']"
+								},
+								"sink": {
+									"name": "GlobalDimension2Code",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['SalespersonCode']"
+								},
+								"sink": {
+									"name": "SalespersonCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['UserID']"
+								},
+								"sink": {
+									"name": "UserID",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['SourceCode']"
+								},
+								"sink": {
+									"name": "SourceCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['AppliestoDocType']"
+								},
+								"sink": {
+									"name": "AppliestoDocType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['AppliestoDocNo']"
+								},
+								"sink": {
+									"name": "AppliestoDocNo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Open']"
+								},
+								"sink": {
+									"name": "Open",
+									"type": "Boolean"
+								}
+							},
+							{
+								"source": {
+									"path": "['DueDate']"
+								},
+								"sink": {
+									"name": "DueDate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "['PmtDiscountDate']"
+								},
+								"sink": {
+									"name": "PmtDiscountDate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "['OriginalPmtDiscPossible']"
+								},
+								"sink": {
+									"name": "OriginalPmtDiscPossible",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['PmtDiscGivenLCY']"
+								},
+								"sink": {
+									"name": "PmtDiscGivenLCY",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['Positive']"
+								},
+								"sink": {
+									"name": "Positive",
+									"type": "Boolean"
+								}
+							},
+							{
+								"source": {
+									"path": "['ClosedbyEntryNo']"
+								},
+								"sink": {
+									"name": "ClosedbyEntryNo",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "['ClosedatDate']"
+								},
+								"sink": {
+									"name": "ClosedatDate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "['ClosedbyAmount']"
+								},
+								"sink": {
+									"name": "ClosedbyAmount",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['AppliestoID']"
+								},
+								"sink": {
+									"name": "AppliestoID",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['JournalBatchName']"
+								},
+								"sink": {
+									"name": "JournalBatchName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['ReasonCode']"
+								},
+								"sink": {
+									"name": "ReasonCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['BalAccountType']"
+								},
+								"sink": {
+									"name": "BalAccountType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['BalAccountNo']"
+								},
+								"sink": {
+									"name": "BalAccountNo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['TransactionNo']"
+								},
+								"sink": {
+									"name": "TransactionNo",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "['ClosedbyAmountLCY']"
+								},
+								"sink": {
+									"name": "ClosedbyAmountLCY",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['DocumentDate']"
+								},
+								"sink": {
+									"name": "DocumentDate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "['ExternalDocumentNo']"
+								},
+								"sink": {
+									"name": "ExternalDocumentNo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['CalculateInterest']"
+								},
+								"sink": {
+									"name": "CalculateInterest",
+									"type": "Boolean"
+								}
+							},
+							{
+								"source": {
+									"path": "['ClosingInterestCalculated']"
+								},
+								"sink": {
+									"name": "ClosingInterestCalculated",
+									"type": "Boolean"
+								}
+							},
+							{
+								"source": {
+									"path": "['NoSeries']"
+								},
+								"sink": {
+									"name": "NoSeries",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['ClosedbyCurrencyCode']"
+								},
+								"sink": {
+									"name": "ClosedbyCurrencyCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['ClosedbyCurrencyAmount']"
+								},
+								"sink": {
+									"name": "ClosedbyCurrencyAmount",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['AdjustedCurrencyFactor']"
+								},
+								"sink": {
+									"name": "AdjustedCurrencyFactor",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['OriginalCurrencyFactor']"
+								},
+								"sink": {
+									"name": "OriginalCurrencyFactor",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['RemainingPmtDiscPossible']"
+								},
+								"sink": {
+									"name": "RemainingPmtDiscPossible",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['PmtDiscToleranceDate']"
+								},
+								"sink": {
+									"name": "PmtDiscToleranceDate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "['MaxPaymentTolerance']"
+								},
+								"sink": {
+									"name": "MaxPaymentTolerance",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['LastIssuedReminderLevel']"
+								},
+								"sink": {
+									"name": "LastIssuedReminderLevel",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['AcceptedPaymentTolerance']"
+								},
+								"sink": {
+									"name": "AcceptedPaymentTolerance",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['AcceptedPmtDiscTolerance']"
+								},
+								"sink": {
+									"name": "AcceptedPmtDiscTolerance",
+									"type": "Boolean"
+								}
+							},
+							{
+								"source": {
+									"path": "['PmtToleranceLCY']"
+								},
+								"sink": {
+									"name": "PmtToleranceLCY",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['AmounttoApply']"
+								},
+								"sink": {
+									"name": "AmounttoApply",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['ICPartnerCode']"
+								},
+								"sink": {
+									"name": "ICPartnerCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['ApplyingEntry']"
+								},
+								"sink": {
+									"name": "ApplyingEntry",
+									"type": "Boolean"
+								}
+							},
+							{
+								"source": {
+									"path": "['Reversed']"
+								},
+								"sink": {
+									"name": "Reversed",
+									"type": "Boolean"
+								}
+							},
+							{
+								"source": {
+									"path": "['ReversedbyEntryNo']"
+								},
+								"sink": {
+									"name": "ReversedbyEntryNo",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "['ReversedEntryNo']"
+								},
+								"sink": {
+									"name": "ReversedEntryNo",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "['Prepayment']"
+								},
+								"sink": {
+									"name": "Prepayment",
+									"type": "Boolean"
+								}
+							},
+							{
+								"source": {
+									"path": "['PaymentMethodCode']"
+								},
+								"sink": {
+									"name": "PaymentMethodCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['AppliestoExtDocNo']"
+								},
+								"sink": {
+									"name": "AppliestoExtDocNo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['DimensionSetID']"
+								},
+								"sink": {
+									"name": "DimensionSetID",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "['Amount']"
+								},
+								"sink": {
+									"name": "Amount",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['RemainingAmount']"
+								},
+								"sink": {
+									"name": "RemainingAmount",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['OriginalAmtLCY']"
+								},
+								"sink": {
+									"name": "OriginalAmtLCY",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['RemainingAmtLCY']"
+								},
+								"sink": {
+									"name": "RemainingAmtLCY",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['AmountLCY']"
+								},
+								"sink": {
+									"name": "AmountLCY",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['DebitAmount']"
+								},
+								"sink": {
+									"name": "DebitAmount",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['CreditAmount']"
+								},
+								"sink": {
+									"name": "CreditAmount",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['DebitAmountLCY']"
+								},
+								"sink": {
+									"name": "DebitAmountLCY",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['CreditAmountLCY']"
+								},
+								"sink": {
+									"name": "CreditAmountLCY",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['OriginalAmount']"
+								},
+								"sink": {
+									"name": "OriginalAmount",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "$['CompanyCode']"
+								},
+								"sink": {
+									"name": "CompanyCode",
+									"type": "String"
+								}
+							}
+						],
+						"collectionReference": "$['value']"
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "HttpBC",
+						"type": "DatasetReference",
+						"parameters": {
+							"relUrl": {
+								"value": "@activity('Get_Rel_URL_CustLedgerEntry').output.firstRow.RelativeURL",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Tab_CustLedgerEntry",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"parameters": {
+			"CompanyCode": {
+				"type": "string"
+			},
+			"AccessToken": {
+				"type": "string"
+			}
+		},
+		"variables": {
+			"ValueEntry": {
+				"type": "String"
+			},
+			"PurchaseInvoiceLine": {
+				"type": "String"
+			},
+			"WareHouseEntry": {
+				"type": "String"
+			},
+			"ItemLedgerEntry": {
+				"type": "String"
+			},
+			"CustLedgerEntry": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "Datawarehouse"
+		},
+		"annotations": []
+	}
+}

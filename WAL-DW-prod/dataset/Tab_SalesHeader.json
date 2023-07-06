@@ -1,0 +1,680 @@
+{
+	"name": "Tab_SalesHeader",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "DwWalProd",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "DocumentType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "No",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CompanyCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SelltoCustomerNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BilltoCustomerNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BilltoName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BilltoName2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BilltoAddress",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BilltoAddress2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BilltoCity",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BilltoContact",
+				"type": "nvarchar"
+			},
+			{
+				"name": "YourReference",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ShiptoCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ShiptoName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ShiptoName2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ShiptoAddress",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ShiptoAddress2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ShiptoCity",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ShiptoContact",
+				"type": "nvarchar"
+			},
+			{
+				"name": "OrderDate",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PostingDate",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ShipmentDate",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PostingDescription",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PaymentTermsCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DueDate",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PaymentDiscount",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "PmtDiscountDate",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ShipmentMethodCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LocationCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ShortcutDimension1Code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ShortcutDimension2Code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CustomerPostingGroup",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CurrencyCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CurrencyFactor",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 10
+			},
+			{
+				"name": "CustomerPriceGroup",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PricesIncludingVAT",
+				"type": "bit"
+			},
+			{
+				"name": "InvoiceDiscCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CustomerDiscGroup",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LanguageCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SalespersonCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "OrderClass",
+				"type": "nvarchar"
+			},
+			{
+				"name": "NoPrinted",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "OnHold",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AppliestoDocType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AppliestoDocNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BalAccountNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Ship",
+				"type": "bit"
+			},
+			{
+				"name": "Invoice",
+				"type": "bit"
+			},
+			{
+				"name": "PrintPostedDocuments",
+				"type": "bit"
+			},
+			{
+				"name": "VATRegistrationNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CombineShipments",
+				"type": "bit"
+			},
+			{
+				"name": "ReasonCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "GenBusPostingGroup",
+				"type": "nvarchar"
+			},
+			{
+				"name": "EU3PartyTrade",
+				"type": "bit"
+			},
+			{
+				"name": "TransactionType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TransportMethod",
+				"type": "nvarchar"
+			},
+			{
+				"name": "VATCountryRegionCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SelltoCustomerName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SelltoCustomerName2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SelltoAddress",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SelltoAddress2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SelltoCity",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SelltoContact",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BilltoPostCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BilltoCounty",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BilltoCountryRegionCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LastPrepmtCrMemoNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SelltoPostCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SelltoCounty",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SelltoCountryRegionCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ShiptoPostCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ShiptoCounty",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ShiptoCountryRegionCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BalAccountType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ExitPoint",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Correction",
+				"type": "bit"
+			},
+			{
+				"name": "DocumentDate",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ExternalDocumentNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Area",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TransactionSpecification",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PaymentMethodCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ShippingAgentCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PackageTrackingNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "NoSeries",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PostingNoSeries",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ShippingNoSeries",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TaxAreaCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TaxLiable",
+				"type": "bit"
+			},
+			{
+				"name": "VATBusPostingGroup",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Reserve",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AppliestoID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "VATBaseDiscount",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "Status",
+				"type": "nvarchar"
+			},
+			{
+				"name": "InvoiceDiscountCalculation",
+				"type": "nvarchar"
+			},
+			{
+				"name": "InvoiceDiscountValue",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "SendICDocument",
+				"type": "bit"
+			},
+			{
+				"name": "ICStatus",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SelltoICPartnerCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BilltoICPartnerCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ICDirection",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Prepayment",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "PrepaymentNoSeries",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CompressPrepayment",
+				"type": "bit"
+			},
+			{
+				"name": "PrepaymentDueDate",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PrepmtCrMemoNoSeries",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PrepmtPostingDescription",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PrepmtPmtDiscountDate",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PrepmtPaymentTermsCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PrepmtPaymentDiscount",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "QuoteNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "QuoteValidUntilDate",
+				"type": "nvarchar"
+			},
+			{
+				"name": "QuoteSenttoCustomer",
+				"type": "nvarchar"
+			},
+			{
+				"name": "QuoteAccepted",
+				"type": "bit"
+			},
+			{
+				"name": "QuoteAcceptedDate",
+				"type": "nvarchar"
+			},
+			{
+				"name": "JobQueueStatus",
+				"type": "nvarchar"
+			},
+			{
+				"name": "JobQueueEntryID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "IncomingDocumentEntryNo",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "IsTest",
+				"type": "bit"
+			},
+			{
+				"name": "SelltoPhoneNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SelltoEMail",
+				"type": "nvarchar"
+			},
+			{
+				"name": "WorkDescription@odata.mediaReadLink",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DimensionSetID",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "PaymentServiceSetID",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "DirectDebitMandateID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DocNoOccurrence",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "CampaignNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SelltoContactNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BilltoContactNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "OpportunityNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SelltoCustomerTemplCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BilltoCustomerTemplCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ResponsibilityCenter",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ShippingAdvice",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PostingfromWhseRef",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "RequestedDeliveryDate",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PromisedDeliveryDate",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ShippingTime",
+				"type": "nvarchar"
+			},
+			{
+				"name": "OutboundWhseHandlingTime",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ShippingAgentServiceCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Receive",
+				"type": "bit"
+			},
+			{
+				"name": "ReturnReceiptNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ReturnReceiptNoSeries",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LastReturnReceiptNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AllowLineDisc",
+				"type": "bit"
+			},
+			{
+				"name": "GetShipmentUsed",
+				"type": "bit"
+			},
+			{
+				"name": "Comment",
+				"type": "bit"
+			},
+			{
+				"name": "RecalculateInvoiceDisc",
+				"type": "bit"
+			},
+			{
+				"name": "Amount",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 10
+			},
+			{
+				"name": "AmountIncludingVAT",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 10
+			},
+			{
+				"name": "LastEmailSentTime",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SentasEmail",
+				"type": "bit"
+			},
+			{
+				"name": "AmtShipNotInvLCY",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 10
+			},
+			{
+				"name": "AmtShipNotInvLCYBase",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 10
+			},
+			{
+				"name": "InvoiceDiscountAmount",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "NoofArchivedVersions",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "ShippedNotInvoiced",
+				"type": "bit"
+			},
+			{
+				"name": "CompletelyShipped",
+				"type": "bit"
+			},
+			{
+				"name": "Shipped",
+				"type": "bit"
+			},
+			{
+				"name": "LastShipmentDate",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LateOrderShipping",
+				"type": "bit"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "SalesHeader"
+		}
+	}
+}

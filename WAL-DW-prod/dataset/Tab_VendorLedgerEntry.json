@@ -1,0 +1,365 @@
+{
+	"name": "Tab_VendorLedgerEntry",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "DwWalProd",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "EntryNo",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "CompanyCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "VendorNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PostingDate",
+				"type": "date"
+			},
+			{
+				"name": "DocumentType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DocumentNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Description",
+				"type": "text"
+			},
+			{
+				"name": "VendorName",
+				"type": "text"
+			},
+			{
+				"name": "CurrencyCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PurchaseLCY",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 18
+			},
+			{
+				"name": "InvDiscountLCY",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 18
+			},
+			{
+				"name": "BuyfromVendorNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "VendorPostingGroup",
+				"type": "nvarchar"
+			},
+			{
+				"name": "GlobalDimension1Code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "GlobalDimension2Code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PurchaserCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "UserID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SourceCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "OnHold",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AppliestoDocType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AppliestoDocNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Open",
+				"type": "bit"
+			},
+			{
+				"name": "DueDate",
+				"type": "date"
+			},
+			{
+				"name": "PmtDiscountDate",
+				"type": "date"
+			},
+			{
+				"name": "OriginalPmtDiscPossible",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 18
+			},
+			{
+				"name": "PmtDiscRcdLCY",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 18
+			},
+			{
+				"name": "Positive",
+				"type": "bit"
+			},
+			{
+				"name": "ClosedbyEntryNo",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ClosedatDate",
+				"type": "date"
+			},
+			{
+				"name": "ClosedbyAmount",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 18
+			},
+			{
+				"name": "AppliestoID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "JournalBatchName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ReasonCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BalAccountType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BalAccountNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TransactionNo",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ClosedbyAmountLCY",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 18
+			},
+			{
+				"name": "DocumentDate",
+				"type": "date"
+			},
+			{
+				"name": "ExternalDocumentNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ClosedbyCurrencyCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ClosedbyCurrencyAmount",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 18
+			},
+			{
+				"name": "AdjustedCurrencyFactor",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 18
+			},
+			{
+				"name": "OriginalCurrencyFactor",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 18
+			},
+			{
+				"name": "RemainingPmtDiscPossible",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 18
+			},
+			{
+				"name": "PmtDiscToleranceDate",
+				"type": "date"
+			},
+			{
+				"name": "MaxPaymentTolerance",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 18
+			},
+			{
+				"name": "AcceptedPaymentTolerance",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 18
+			},
+			{
+				"name": "AcceptedPmtDiscTolerance",
+				"type": "bit"
+			},
+			{
+				"name": "PmtToleranceLCY",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 18
+			},
+			{
+				"name": "AmounttoApply",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 18
+			},
+			{
+				"name": "ICPartnerCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ApplyingEntry",
+				"type": "bit"
+			},
+			{
+				"name": "Reversed",
+				"type": "bit"
+			},
+			{
+				"name": "ReversedbyEntryNo",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ReversedEntryNo",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Prepayment",
+				"type": "bit"
+			},
+			{
+				"name": "CreditorNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PaymentReference",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PaymentMethodCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AppliestoExtDocNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DimensionSetID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Amount",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 18
+			},
+			{
+				"name": "RemainingAmount",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 18
+			},
+			{
+				"name": "OriginalAmtLCY",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 18
+			},
+			{
+				"name": "RemainingAmtLCY",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 18
+			},
+			{
+				"name": "AmountLCY",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 18
+			},
+			{
+				"name": "DebitAmount",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 18
+			},
+			{
+				"name": "CreditAmount",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 18
+			},
+			{
+				"name": "DebitAmountLCY",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 18
+			},
+			{
+				"name": "CreditAmountLCY",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 18
+			},
+			{
+				"name": "OriginalAmount",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 18
+			},
+			{
+				"name": "SystemCreatedDate",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "SystemModifiedDate",
+				"type": "datetime2",
+				"scale": 7
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "VendorLedgerEntry"
+		}
+	}
+}

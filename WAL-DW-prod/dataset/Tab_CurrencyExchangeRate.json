@@ -1,0 +1,61 @@
+{
+	"name": "Tab_CurrencyExchangeRate",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "DwWalProd",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "CurrencyCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "StartingDate",
+				"type": "date"
+			},
+			{
+				"name": "CompanyCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ExchangeRateAmount",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "AdjustmentExchRateAmount",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "RelationalCurrencyCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RelationalExchRateAmount",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "FixExchangeRateAmount",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RelationalAdjmtExchRateAmt",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "CurrencyExchangeRate"
+		}
+	}
+}

@@ -1,0 +1,1951 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "adfDWSetupProd"
+		},
+		"HttpBCServer_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://api.businesscentral.dynamics.com/"
+		},
+		"kvDWProd_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://kvDWProd.vault.azure.net/"
+		},
+		"DwWalProd_properties_typeProperties_connectionString_secretName": {
+			"type": "string",
+			"defaultValue": "SQL-Database-Connection-String"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/HttpBCServer')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "HttpServer",
+				"typeProperties": {
+					"url": "[parameters('HttpBCServer_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": true,
+					"authenticationType": "Anonymous"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/kvDWProd')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureKeyVault",
+				"typeProperties": {
+					"baseUrl": "[parameters('kvDWProd_properties_typeProperties_baseUrl')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/HttpBC')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "HttpBCServer",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"relUrl": {
+						"type": "String"
+					}
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "HttpServerLocation",
+						"relativeUrl": {
+							"value": "@dataset().relUrl",
+							"type": "Expression"
+						}
+					}
+				},
+				"schema": {}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/HttpBCServer')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DwWalProd')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"connectionString": {
+						"type": "AzureKeyVaultSecret",
+						"store": {
+							"referenceName": "kvDWProd",
+							"type": "LinkedServiceReference"
+						},
+						"secretName": "[parameters('DwWalProd_properties_typeProperties_connectionString_secretName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/kvDWProd')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Tab_BinContent')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "DwWalProd",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "LocationCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BinCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ItemNo",
+						"type": "nvarchar"
+					},
+					{
+						"name": "VariantCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "UnitofMeasureCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CompanyCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BinRanking",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 10
+					},
+					{
+						"name": "BinTypeCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BlockMovement",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CrossDockBin",
+						"type": "bit"
+					},
+					{
+						"name": "Dedicated",
+						"type": "bit"
+					},
+					{
+						"name": "Default",
+						"type": "bit"
+					},
+					{
+						"name": "Fixed",
+						"type": "bit"
+					},
+					{
+						"name": "MaxQty",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 10
+					},
+					{
+						"name": "MinQty",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 10
+					},
+					{
+						"name": "QtyperUnitofMeasure",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 10
+					},
+					{
+						"name": "SystemCreatedAt",
+						"type": "nvarchar"
+					},
+					{
+						"name": "SystemCreatedBy",
+						"type": "nvarchar"
+					},
+					{
+						"name": "SystemId",
+						"type": "nvarchar"
+					},
+					{
+						"name": "SystemModifiedAt",
+						"type": "nvarchar"
+					},
+					{
+						"name": "SystemModifiedBy",
+						"type": "nvarchar"
+					},
+					{
+						"name": "WarehouseClassCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ZoneCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ATOComponentsPickQtyBase",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 10
+					},
+					{
+						"name": "ATOComponentsPickQty",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 10
+					},
+					{
+						"name": "NegAdjmtQty",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 10
+					},
+					{
+						"name": "NegativeAdjmtQtyBase",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 10
+					},
+					{
+						"name": "PickQty",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 10
+					},
+					{
+						"name": "PickQuantityBase",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 10
+					},
+					{
+						"name": "PosAdjmtQty",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 10
+					},
+					{
+						"name": "PositiveAdjmtQtyBase",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 10
+					},
+					{
+						"name": "PutawayQty",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 10
+					},
+					{
+						"name": "PutawayQuantityBase",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 10
+					},
+					{
+						"name": "Quantity",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 10
+					},
+					{
+						"name": "QuantityBase",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 10
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "BinContent"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/DwWalProd')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Tab_Currency')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "DwWalProd",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "Code",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CompanyCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ISOCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ISONumericCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Description",
+						"type": "text"
+					},
+					{
+						"name": "EMUCurrency",
+						"type": "bit"
+					},
+					{
+						"name": "CurrencyFactor",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 0
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "Currency"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/DwWalProd')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Tab_CurrencyExchangeRate')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "DwWalProd",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "CurrencyCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "StartingDate",
+						"type": "date"
+					},
+					{
+						"name": "CompanyCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ExchangeRateAmount",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 0
+					},
+					{
+						"name": "AdjustmentExchRateAmount",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 0
+					},
+					{
+						"name": "RelationalCurrencyCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RelationalExchRateAmount",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 0
+					},
+					{
+						"name": "FixExchangeRateAmount",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RelationalAdjmtExchRateAmt",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 0
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "CurrencyExchangeRate"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/DwWalProd')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Tab_CustLedgerEntry')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "DwWalProd",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "EntryNo",
+						"type": "bigint",
+						"precision": 19
+					},
+					{
+						"name": "CompanyCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Vendor",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "CustomerNo",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PostingDate",
+						"type": "date"
+					},
+					{
+						"name": "DocumentType",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DocumentNo",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Description",
+						"type": "text"
+					},
+					{
+						"name": "CustomerName",
+						"type": "text"
+					},
+					{
+						"name": "CurrencyCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "SalesLCY",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 0
+					},
+					{
+						"name": "ProfitLCY",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 0
+					},
+					{
+						"name": "InvDiscountLCY",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 0
+					},
+					{
+						"name": "SelltoCustomerNo",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CustomerPostingGroup",
+						"type": "nvarchar"
+					},
+					{
+						"name": "GlobalDimension1Code",
+						"type": "nvarchar"
+					},
+					{
+						"name": "GlobalDimension2Code",
+						"type": "nvarchar"
+					},
+					{
+						"name": "SalespersonCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "UserID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "SourceCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "AppliestoDocType",
+						"type": "nvarchar"
+					},
+					{
+						"name": "AppliestoDocNo",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Open",
+						"type": "bit"
+					},
+					{
+						"name": "DueDate",
+						"type": "date"
+					},
+					{
+						"name": "PmtDiscountDate",
+						"type": "date"
+					},
+					{
+						"name": "OriginalPmtDiscPossible",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 0
+					},
+					{
+						"name": "PmtDiscGivenLCY",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 0
+					},
+					{
+						"name": "Positive",
+						"type": "bit"
+					},
+					{
+						"name": "ClosedbyEntryNo",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ClosedatDate",
+						"type": "date"
+					},
+					{
+						"name": "ClosedbyAmount",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 0
+					},
+					{
+						"name": "AppliestoID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "JournalBatchName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ReasonCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BalAccountType",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BalAccountNo",
+						"type": "nvarchar"
+					},
+					{
+						"name": "TransactionNo",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ClosedbyAmountLCY",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 0
+					},
+					{
+						"name": "DocumentDate",
+						"type": "date"
+					},
+					{
+						"name": "ExternalDocumentNo",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CalculateInterest",
+						"type": "bit"
+					},
+					{
+						"name": "ClosingInterestCalculated",
+						"type": "bit"
+					},
+					{
+						"name": "NoSeries",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ClosedbyCurrencyCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ClosedbyCurrencyAmount",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 0
+					},
+					{
+						"name": "AdjustedCurrencyFactor",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 0
+					},
+					{
+						"name": "OriginalCurrencyFactor",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 0
+					},
+					{
+						"name": "RemainingPmtDiscPossible",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 0
+					},
+					{
+						"name": "PmtDiscToleranceDate",
+						"type": "date"
+					},
+					{
+						"name": "MaxPaymentTolerance",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 0
+					},
+					{
+						"name": "LastIssuedReminderLevel",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 0
+					},
+					{
+						"name": "AcceptedPaymentTolerance",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 0
+					},
+					{
+						"name": "AcceptedPmtDiscTolerance",
+						"type": "bit"
+					},
+					{
+						"name": "PmtToleranceLCY",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 0
+					},
+					{
+						"name": "AmounttoApply",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 0
+					},
+					{
+						"name": "ICPartnerCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ApplyingEntry",
+						"type": "bit"
+					},
+					{
+						"name": "Reversed",
+						"type": "bit"
+					},
+					{
+						"name": "ReversedbyEntryNo",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ReversedEntryNo",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Prepayment",
+						"type": "bit"
+					},
+					{
+						"name": "PaymentMethodCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "AppliestoExtDocNo",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DimensionSetID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Amount",
+						"type": "decimal",
+						"precision": 38,
+						"scale": 18
+					},
+					{
+						"name": "RemainingAmount",
+						"type": "decimal",
+						"precision": 38,
+						"scale": 18
+					},
+					{
+						"name": "OriginalAmtLCY",
+						"type": "decimal",
+						"precision": 38,
+						"scale": 18
+					},
+					{
+						"name": "RemainingAmtLCY",
+						"type": "decimal",
+						"precision": 38,
+						"scale": 18
+					},
+					{
+						"name": "AmountLCY",
+						"type": "decimal",
+						"precision": 38,
+						"scale": 18
+					},
+					{
+						"name": "DebitAmount",
+						"type": "decimal",
+						"precision": 38,
+						"scale": 18
+					},
+					{
+						"name": "CreditAmount",
+						"type": "decimal",
+						"precision": 38,
+						"scale": 18
+					},
+					{
+						"name": "DebitAmountLCY",
+						"type": "decimal",
+						"precision": 38,
+						"scale": 18
+					},
+					{
+						"name": "CreditAmountLCY",
+						"type": "decimal",
+						"precision": 38,
+						"scale": 18
+					},
+					{
+						"name": "OriginalAmount",
+						"type": "decimal",
+						"precision": 38,
+						"scale": 18
+					},
+					{
+						"name": "SystemCreatedDate",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "SystemModifiedDate",
+						"type": "datetime2",
+						"scale": 7
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "CustLedgerEntry"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/DwWalProd')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Tab_Customer')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "DwWalProd",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "No",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CompanyCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Name",
+						"type": "nvarchar"
+					},
+					{
+						"name": "SearchName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Name2",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Address",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Address2",
+						"type": "nvarchar"
+					},
+					{
+						"name": "City",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Contact",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PhoneNo",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ShiptoCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "OurAccountNo",
+						"type": "nvarchar"
+					},
+					{
+						"name": "TerritoryCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "GlobalDimension1Code",
+						"type": "nvarchar"
+					},
+					{
+						"name": "GlobalDimension2Code",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ChainName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BudgetedAmount",
+						"type": "decimal",
+						"precision": 38,
+						"scale": 10
+					},
+					{
+						"name": "CustomerPostingGroup",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CurrencyCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CustomerPriceGroup",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PaymentTermsCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "FinChargeTermsCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "SalespersonCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ShipmentMethodCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ShippingAgentCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "InvoiceDiscCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CustomerDiscGroup",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CountryRegionCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CollectionMethod",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Amount",
+						"type": "decimal",
+						"precision": 38,
+						"scale": 10
+					},
+					{
+						"name": "Blocked",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BilltoCustomerNo",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PaymentMethodCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PricesIncludingVAT",
+						"type": "bit"
+					},
+					{
+						"name": "LocationCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "GenBusPostingGroup",
+						"type": "nvarchar"
+					},
+					{
+						"name": "GLN",
+						"type": "nvarchar"
+					},
+					{
+						"name": "County",
+						"type": "nvarchar"
+					},
+					{
+						"name": "EMail",
+						"type": "nvarchar"
+					},
+					{
+						"name": "TaxAreaCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "TaxLiable",
+						"type": "bit"
+					},
+					{
+						"name": "VATBusPostingGroup",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ICPartnerCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PartnerType",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PrimaryContactNo",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ContactType",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ResponsibilityCenter",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PostCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CustomerGroup",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "Customer"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/DwWalProd')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Tab_CustomerExpectedOrder')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "DwWalProd",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "Customer_No",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Shortcut_Dimension_1_Code",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CompanyCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Name",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Expected_Order_Amt",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 10
+					},
+					{
+						"name": "Risk_Amount",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 10
+					},
+					{
+						"name": "Created_Date",
+						"type": "date"
+					},
+					{
+						"name": "Modified_Date",
+						"type": "date"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "CustomerExpectedOrder"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/DwWalProd')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Tab_CustomerGroup')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "DwWalProd",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "GroupCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CompanyCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CustomerNo",
+						"type": "nvarchar"
+					},
+					{
+						"name": "SystemCreatedAt",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "SystemCreatedBy",
+						"type": "nvarchar"
+					},
+					{
+						"name": "SystemId",
+						"type": "nvarchar"
+					},
+					{
+						"name": "SystemModifiedAt",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "SystemModifiedBy",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "CustomerGroup"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/DwWalProd')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Tab_DW_Interface_Setup')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "DwWalProd",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "WB_Interface_Setup_Id",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "BCBaseURL",
+						"type": "nvarchar"
+					},
+					{
+						"name": "InterfaceSuccessAlertEmails",
+						"type": "nvarchar"
+					},
+					{
+						"name": "InterfaceFailureAlertEmails",
+						"type": "nvarchar"
+					},
+					{
+						"name": "LastUpadted",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "StartFromDate",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "DW_Interface_Setup"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/DwWalProd')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Tab_DW_Oauth_Access_Token')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "DwWalProd",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ID",
+						"type": "bigint",
+						"precision": 19
+					},
+					{
+						"name": "AccessToken",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "DW_Oauth_Access_Token"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/DwWalProd')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Tab_DW_Oauth_Config')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "DwWalProd",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ServiceCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "TenantID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "OauthBaseURL",
+						"type": "nvarchar"
+					},
+					{
+						"name": "OauthVersion",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ContentType",
+						"type": "nvarchar"
+					},
+					{
+						"name": "GrantType",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ClientID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ClientSecret",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Scope",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "DW_Oauth_Config"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/DwWalProd')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Tab_DW_Site_Config')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "DwWalProd",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "SiteCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Prefix",
+						"type": "nvarchar"
+					},
+					{
+						"name": "TennantID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CompanyName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ActiveEnvironment",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "DW_Company_Config"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/DwWalProd')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Tab_DefaultDimension')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "DwWalProd",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "TableID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "No",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DimensionCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CompanyCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DimensionValueCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ValuePosting",
+						"type": "nvarchar"
+					},
+					{
+						"name": "TableCaption",
+						"type": "text"
+					},
+					{
+						"name": "MultiSelectionAction",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "DefaultDimension"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/DwWalProd')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Tab_DetailedCustomerLedgerEntry')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "DwWalProd",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "EntryNo",
+						"type": "bigint",
+						"precision": 19
+					},
+					{
+						"name": "CompanyCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Amount",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 0
+					},
+					{
+						"name": "AmountLCY",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 0
+					},
+					{
+						"name": "ApplicationNo",
+						"type": "bigint",
+						"precision": 19
+					},
+					{
+						"name": "AppliedCustLedgerEntryNo",
+						"type": "bigint",
+						"precision": 19
+					},
+					{
+						"name": "CreditAmount",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 0
+					},
+					{
+						"name": "CreditAmountLCY",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 0
+					},
+					{
+						"name": "CurrencyCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CustLedgerEntryNo",
+						"type": "bigint",
+						"precision": 19
+					},
+					{
+						"name": "CustomerNo",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DebitAmount",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 0
+					},
+					{
+						"name": "DebitAmountLCY",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 0
+					},
+					{
+						"name": "DocumentNo",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DocumentType",
+						"type": "nvarchar"
+					},
+					{
+						"name": "EntryType",
+						"type": "nvarchar"
+					},
+					{
+						"name": "GenBusPostingGroup",
+						"type": "nvarchar"
+					},
+					{
+						"name": "GenProdPostingGroup",
+						"type": "nvarchar"
+					},
+					{
+						"name": "InitialDocumentType",
+						"type": "nvarchar"
+					},
+					{
+						"name": "InitialEntryDueDate",
+						"type": "date"
+					},
+					{
+						"name": "InitialEntryGlobalDim1",
+						"type": "nvarchar"
+					},
+					{
+						"name": "InitialEntryGlobalDim2",
+						"type": "nvarchar"
+					},
+					{
+						"name": "JournalBatchName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "LedgerEntryAmount",
+						"type": "bit"
+					},
+					{
+						"name": "MaxPaymentTolerance",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 0
+					},
+					{
+						"name": "PostingDate",
+						"type": "date"
+					},
+					{
+						"name": "ReasonCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RemainingPmtDiscPossible",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 0
+					},
+					{
+						"name": "SourceCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "SystemCreatedAt",
+						"type": "nvarchar"
+					},
+					{
+						"name": "SystemCreatedBy",
+						"type": "nvarchar"
+					},
+					{
+						"name": "SystemId",
+						"type": "nvarchar"
+					},
+					{
+						"name": "SystemModifiedAt",
+						"type": "nvarchar"
+					},
+					{
+						"name": "SystemModifiedBy",
+						"type": "nvarchar"
+					},
+					{
+						"name": "TaxJurisdictionCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "TransactionNo",
+						"type": "bigint",
+						"precision": 19
+					},
+					{
+						"name": "Unapplied",
+						"type": "bit"
+					},
+					{
+						"name": "UnappliedbyEntryNo",
+						"type": "bigint",
+						"precision": 19
+					},
+					{
+						"name": "UseTax",
+						"type": "bit"
+					},
+					{
+						"name": "UserID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "VATBusPostingGroup",
+						"type": "nvarchar"
+					},
+					{
+						"name": "VATProdPostingGroup",
+						"type": "nvarchar"
+					},
+					{
+						"name": "SystemCreatedDate",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "SystemModifiedDate",
+						"type": "datetime2",
+						"scale": 7
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "DetailedCustomerLedgerEntry"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/DwWalProd')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Tab_DetailedVendorLedgerEntry')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "DwWalProd",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "EntryNo",
+						"type": "bigint",
+						"precision": 19
+					},
+					{
+						"name": "CompanyCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Amount",
+						"type": "decimal",
+						"precision": 38,
+						"scale": 18
+					},
+					{
+						"name": "AmountLCY",
+						"type": "decimal",
+						"precision": 38,
+						"scale": 18
+					},
+					{
+						"name": "ApplicationNo",
+						"type": "bigint",
+						"precision": 19
+					},
+					{
+						"name": "AppliedVendLedgerEntryNo",
+						"type": "bigint",
+						"precision": 19
+					},
+					{
+						"name": "CreditAmount",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "CreditAmountLCY",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "CurrencyCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DebitAmount",
+						"type": "decimal",
+						"precision": 38,
+						"scale": 18
+					},
+					{
+						"name": "DebitAmountLCY",
+						"type": "decimal",
+						"precision": 38,
+						"scale": 18
+					},
+					{
+						"name": "DocumentNo",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DocumentType",
+						"type": "nvarchar"
+					},
+					{
+						"name": "EntryType",
+						"type": "nvarchar"
+					},
+					{
+						"name": "GenBusPostingGroup",
+						"type": "nvarchar"
+					},
+					{
+						"name": "GenProdPostingGroup",
+						"type": "nvarchar"
+					},
+					{
+						"name": "InitialDocumentType",
+						"type": "nvarchar"
+					},
+					{
+						"name": "InitialEntryDueDate",
+						"type": "nvarchar"
+					},
+					{
+						"name": "InitialEntryGlobalDim1",
+						"type": "nvarchar"
+					},
+					{
+						"name": "InitialEntryGlobalDim2",
+						"type": "nvarchar"
+					},
+					{
+						"name": "JournalBatchName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "LedgerEntryAmount",
+						"type": "bit"
+					},
+					{
+						"name": "MaxPaymentTolerance",
+						"type": "decimal",
+						"precision": 38,
+						"scale": 18
+					},
+					{
+						"name": "PostingDate",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ReasonCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RemainingPmtDiscPossible",
+						"type": "decimal",
+						"precision": 38,
+						"scale": 18
+					},
+					{
+						"name": "SourceCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "SystemCreatedAt",
+						"type": "nvarchar"
+					},
+					{
+						"name": "SystemCreatedBy",
+						"type": "nvarchar"
+					},
+					{
+						"name": "SystemId",
+						"type": "nvarchar"
+					},
+					{
+						"name": "SystemModifiedAt",
+						"type": "nvarchar"
+					},
+					{
+						"name": "SystemModifiedBy",
+						"type": "nvarchar"
+					},
+					{
+						"name": "TaxJurisdictionCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "TransactionNo",
+						"type": "bigint",
+						"precision": 19
+					},
+					{
+						"name": "Unapplied",
+						"type": "bit"
+					},
+					{
+						"name": "UnappliedbyEntryNo",
+						"type": "bigint",
+						"precision": 19
+					},
+					{
+						"name": "UseTax",
+						"type": "bit"
+					},
+					{
+						"name": "UserID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "VATBusPostingGroup",
+						"type": "nvarchar"
+					},
+					{
+						"name": "VATProdPostingGroup",
+						"type": "nvarchar"
+					},
+					{
+						"name": "VendorLedgerEntryNo",
+						"type": "bigint",
+						"precision": 19
+					},
+					{
+						"name": "VendorNo",
+						"type": "nvarchar"
+					},
+					{
+						"name": "SystemCreatedDate",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "SystemModifiedDate",
+						"type": "datetime2",
+						"scale": 7
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "DetailedVendorLedgerEntry"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/DwWalProd')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Tab_Dimension')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "DwWalProd",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "Code",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CompanyCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Name",
+						"type": "text"
+					},
+					{
+						"name": "CodeCaption",
+						"type": "text"
+					},
+					{
+						"name": "FilterCaption",
+						"type": "text"
+					},
+					{
+						"name": "Description",
+						"type": "text"
+					},
+					{
+						"name": "Blocked",
+						"type": "bit"
+					},
+					{
+						"name": "ConsolidationCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "MapToICDimensionCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "LastModifiedDateTime",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "Dimension"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/DwWalProd')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Tab_DimensionSetEntry')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "DwWalProd",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "DimensionSetID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "DimensionCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CompanyCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DimensionValueCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DimensionValueID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "DimensionName",
+						"type": "text"
+					},
+					{
+						"name": "DimensionValueName",
+						"type": "text"
+					},
+					{
+						"name": "SystemCreatedDate",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "SystemModifiedDate",
+						"type": "datetime2",
+						"scale": 7
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "DimensionSetEntry"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/DwWalProd')]"
+			]
+		}
+	]
+}

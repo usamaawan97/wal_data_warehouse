@@ -1,0 +1,76 @@
+{
+	"name": "Temp_Oauth_Test_2",
+	"properties": {
+		"activities": [
+			{
+				"name": "Web2",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "Get_Access_Token_DB",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": {
+						"value": "https://api.businesscentral.dynamics.com/v2.0/ac636b3d-2eb0-41e7-b5a6-7e15645731e9/Production/ODataV4/Company('Future%20Beauty%20Labs%20US%20Inc')/ExpectedOrder",
+						"type": "Expression"
+					},
+					"method": "GET",
+					"headers": {
+						"Authorization": {
+							"value": "Bearer @{activity('Get_Access_Token_DB').output.firstRow.AccessToken}",
+							"type": "Expression"
+						}
+					},
+					"body": {
+						"value": "@{concat('<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n    <soap:Body>\n        <CreateMessage xmlns=\"urn:microsoft-dynamics-schemas/codeunit/MessageMgmt\">\n            <xMLData>\n                <MessageAcknowledgement xmlns=\"urn:microsoft-dynamics-nav/xmlports/x52000\">\n                    <Id/>\n                    <MessageType>',\n\n            '' \n,'</MessageType>\n                    <Direction>Inbound</Direction>\n                    <Payload>\n                        <![CDATA[ ',\n\n            '' \n,'\n                           ]]>\n\t\t\t\t\t\n                    </Payload>\n                    <Status>Unprocessed</Status>\n                    <ExternalRefID>\n                    <![CDATA[ ',\n\n            '112'\n,'\n                           ]]> \n                   </ExternalRefID>\n                  <SiteCode>\n                  <![CDATA[ ',\n\n            ''\n,'\n                           ]]> \n               </SiteCode>\n                </MessageAcknowledgement>\n            </xMLData>\n        </CreateMessage>\n    </soap:Body>\n</soap:Envelope>')}",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Get_Access_Token_DB",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": {
+							"value": "SELECT * FROM DW_Oauth_Access_Token",
+							"type": "Expression"
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "Tab_DW_Oauth_Access_Token",
+						"type": "DatasetReference"
+					}
+				}
+			}
+		],
+		"folder": {
+			"name": "Temp"
+		},
+		"annotations": []
+	}
+}

@@ -1,0 +1,356 @@
+{
+	"name": "Tab_ValueEntry",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "DwWalProd",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "EntryNo",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "CompanyCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ItemNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PostingDate",
+				"type": "date"
+			},
+			{
+				"name": "ItemLedgerEntryType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SourceNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DocumentNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Description",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LocationCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "InventoryPostingGroup",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SourcePostingGroup",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ItemLedgerEntryNo",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "ValuedQuantity",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "ItemLedgerEntryQuantity",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "InvoicedQuantity",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "CostperUnit",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "SalesAmountActual",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "SalespersPurchCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DiscountAmount",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "UserID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SourceCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AppliestoEntry",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "GlobalDimension1Code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "GlobalDimension2Code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SourceType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CostAmountActual",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "CostPostedtoGL",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "ReasonCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DropShipment",
+				"type": "bit"
+			},
+			{
+				"name": "JournalBatchName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "GenBusPostingGroup",
+				"type": "nvarchar"
+			},
+			{
+				"name": "GenProdPostingGroup",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DocumentDate",
+				"type": "date"
+			},
+			{
+				"name": "ExternalDocumentNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CostAmountActualACY",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "CostPostedtoGLACY",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "CostperUnitACY",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "DocumentType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DocumentLineNo",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "OrderType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "OrderNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "OrderLineNo",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "ExpectedCost",
+				"type": "bit"
+			},
+			{
+				"name": "ItemChargeNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ValuedByAverageCost",
+				"type": "bit"
+			},
+			{
+				"name": "PartialRevaluation",
+				"type": "bit"
+			},
+			{
+				"name": "Inventoriable",
+				"type": "bit"
+			},
+			{
+				"name": "ValuationDate",
+				"type": "date"
+			},
+			{
+				"name": "EntryType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "VarianceType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PurchaseAmountActual",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "PurchaseAmountExpected",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "SalesAmountExpected",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "CostAmountExpected",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "CostAmountNonInvtbl",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "CostAmountExpectedACY",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "CostAmountNonInvtblACY",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "ExpectedCostPostedtoGL",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "ExpCostPostedtoGLACY",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "DimensionSetID",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "JobNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "JobTaskNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "JobLedgerEntryNo",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "VariantCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Adjustment",
+				"type": "bit"
+			},
+			{
+				"name": "AverageCostException",
+				"type": "bit"
+			},
+			{
+				"name": "CapacityLedgerEntryNo",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "Type",
+				"type": "nvarchar"
+			},
+			{
+				"name": "No",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ReturnReasonCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SystemCreatedDate",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "SystemModifiedDate",
+				"type": "datetime2",
+				"scale": 7
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "ValueEntry"
+		}
+	}
+}

@@ -1,0 +1,24 @@
+{
+	"name": "TR_DW_2PM",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "Master_DW_Cycle",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2022-02-09T14:00:00Z",
+				"timeZone": "UTC"
+			}
+		}
+	}
+}

@@ -1,0 +1,86 @@
+{
+	"name": "Temp_Pipeline_To_Refill_Any_Table",
+	"properties": {
+		"activities": [
+			{
+				"name": "Get CompanyCode",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": {
+							"value": "SELECT CompanyCode FROM dbo.DW_Company_Config WHERE Enabled = 1",
+							"type": "Expression"
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "Tab_DW_Site_Config",
+						"type": "DatasetReference"
+					},
+					"firstRowOnly": false
+				}
+			},
+			{
+				"name": "ForEach CompanyCode 1",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Get CompanyCode",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Get CompanyCode').output.value",
+						"type": "Expression"
+					},
+					"isSequential": false,
+					"activities": [
+						{
+							"name": "Temp_Pipeline_To_Refill_Any_Table_Internal",
+							"type": "ExecutePipeline",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "Temp_Pipeline_To_Refill_Any_Table_Internal",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true,
+								"parameters": {
+									"CompanyCode": {
+										"value": "@item().CompanyCode",
+										"type": "Expression"
+									}
+								}
+							}
+						}
+					]
+				}
+			}
+		],
+		"variables": {
+			"SalesInvoiceLine": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "Temp"
+		},
+		"annotations": []
+	}
+}

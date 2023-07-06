@@ -1,0 +1,236 @@
+{
+	"name": "Tab_WarehouseEntry",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "DwWalProd",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "EntryNo",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "CompanyCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BinCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BinTypeCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Cubage",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 18
+			},
+			{
+				"name": "Dedicated",
+				"type": "bit"
+			},
+			{
+				"name": "Description",
+				"type": "nvarchar"
+			},
+			{
+				"name": "EntryType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ExpirationDate",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ItemNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "JournalBatchName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "JournalTemplateName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LineNo",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "LocationCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LotNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "NoSeries",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PackageNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PhysInvtCountingPeriodCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PhysInvtCountingPeriodType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "QtyBase",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 18
+			},
+			{
+				"name": "QtyperUnitofMeasure",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 18
+			},
+			{
+				"name": "Quantity",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 18
+			},
+			{
+				"name": "ReasonCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ReferenceDocument",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ReferenceNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RegisteringDate",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SerialNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SourceCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SourceDocument",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SourceLineNo",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "SourceNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SourceSublineNo",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "SourceSubtype",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SourceType",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 18
+			},
+			{
+				"name": "SystemCreatedAt",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SystemCreatedBy",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SystemId",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SystemModifiedAt",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SystemModifiedBy",
+				"type": "nvarchar"
+			},
+			{
+				"name": "UnitofMeasureCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "UserID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "VariantCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "WarrantyDate",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Weight",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 18
+			},
+			{
+				"name": "WhseDocumentLineNo",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "WhseDocumentNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "WhseDocumentType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ZoneCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SystemCreatedDate",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "SystemModifiedDate",
+				"type": "datetime2",
+				"scale": 7
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "WarehouseEntry"
+		}
+	}
+}

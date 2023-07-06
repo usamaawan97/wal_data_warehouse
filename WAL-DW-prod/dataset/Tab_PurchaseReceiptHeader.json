@@ -1,0 +1,414 @@
+{
+	"name": "Tab_PurchaseReceiptHeader",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "DwWalProd",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "AppliestoDocNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CompanyCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AppliestoDocType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Area",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BalAccountNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BalAccountType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BuyfromAddress",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BuyfromAddress2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BuyfromCity",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BuyfromContact",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BuyfromContactNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BuyfromCountryRegionCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BuyfromCounty",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BuyfromPostCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BuyfromVendorName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BuyfromVendorName2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BuyfromVendorNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CampaignNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Correction",
+				"type": "bit"
+			},
+			{
+				"name": "CurrencyCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CurrencyFactor",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "DimensionSetID",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "DocumentDate",
+				"type": "date"
+			},
+			{
+				"name": "DueDate",
+				"type": "date"
+			},
+			{
+				"name": "EntryPoint",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ExpectedReceiptDate",
+				"type": "date"
+			},
+			{
+				"name": "GenBusPostingGroup",
+				"type": "nvarchar"
+			},
+			{
+				"name": "InboundWhseHandlingTime",
+				"type": "nvarchar"
+			},
+			{
+				"name": "InvoiceDiscCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LanguageCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LeadTimeCalculation",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LocationCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "No",
+				"type": "nvarchar"
+			},
+			{
+				"name": "NoPrinted",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "NoSeries",
+				"type": "nvarchar"
+			},
+			{
+				"name": "OnHold",
+				"type": "nvarchar"
+			},
+			{
+				"name": "OrderAddressCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "OrderDate",
+				"type": "date"
+			},
+			{
+				"name": "OrderNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "OrderNoSeries",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PaytoAddress",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PaytoAddress2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PaytoCity",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PaytoContact",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PaytoContactno",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PaytoCountryRegionCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PaytoCounty",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PaytoName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PaytoName2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PaytoPostCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PaytoVendorNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PaymentDiscount",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "PaymentMethodCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PaymentTermsCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PmtDiscountDate",
+				"type": "date"
+			},
+			{
+				"name": "PostingDate",
+				"type": "date"
+			},
+			{
+				"name": "PostingDescription",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PromisedReceiptDate",
+				"type": "date"
+			},
+			{
+				"name": "PurchaserCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "QuoteNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ReasonCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RequestedReceiptDate",
+				"type": "date"
+			},
+			{
+				"name": "ResponsibilityCenter",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SelltoCustomerNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ShiptoAddress",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ShiptoAddress2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ShiptoCity",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ShiptoCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ShiptoContact",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ShiptoCountryRegionCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ShiptoCounty",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ShiptoName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ShiptoName2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ShiptoPostCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ShipmentMethodCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ShortcutDimension1Code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ShortcutDimension2Code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SourceCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SystemCreatedAt",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SystemCreatedBy",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SystemId",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SystemModifiedAt",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SystemModifiedBy",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TaxAreaCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TaxLiable",
+				"type": "bit"
+			},
+			{
+				"name": "TransactionSpecification",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TransactionType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TransportMethod",
+				"type": "nvarchar"
+			},
+			{
+				"name": "UserID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "VATBaseDiscount",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "VATBusPostingGroup",
+				"type": "nvarchar"
+			},
+			{
+				"name": "VATCountryRegionCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "VATRegistrationNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "VendorOrderNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "VendorPostingGroup",
+				"type": "nvarchar"
+			},
+			{
+				"name": "VendorShipmentNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "YourReference",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Comment",
+				"type": "bit"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "PurchaseReceiptHeader"
+		}
+	}
+}

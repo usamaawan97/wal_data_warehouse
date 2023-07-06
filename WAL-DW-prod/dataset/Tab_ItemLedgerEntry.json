@@ -1,0 +1,366 @@
+{
+	"name": "Tab_ItemLedgerEntry",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "DwWalProd",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "EntryNo",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "CompanyCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ItemNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PostingDate",
+				"type": "date"
+			},
+			{
+				"name": "EntryType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SourceNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DocumentNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Description",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LocationCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Quantity",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "RemainingQuantity",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "InvoicedQuantity",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "AppliestoEntry",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "Open",
+				"type": "bit"
+			},
+			{
+				"name": "GlobalDimension1Code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "GlobalDimension2Code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Positive",
+				"type": "bit"
+			},
+			{
+				"name": "ShptMethodCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SourceType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DropShipment",
+				"type": "bit"
+			},
+			{
+				"name": "TransactionType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TransportMethod",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CountryRegionCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "EntryExitPoint",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DocumentDate",
+				"type": "date"
+			},
+			{
+				"name": "ExternalDocumentNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Area",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TransactionSpecification",
+				"type": "nvarchar"
+			},
+			{
+				"name": "NoSeries",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DocumentType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DocumentLineNo",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "OrderType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "OrderNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "OrderLineNo",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "DimensionSetID",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "AssembletoOrder",
+				"type": "bit"
+			},
+			{
+				"name": "JobNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "JobTaskNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "JobPurchase",
+				"type": "bit"
+			},
+			{
+				"name": "VariantCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "QtyperUnitofMeasure",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "UnitofMeasureCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DerivedfromBlanketOrder",
+				"type": "bit"
+			},
+			{
+				"name": "CrossReferenceNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "OriginallyOrderedNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "OriginallyOrderedVarCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "OutofStockSubstitution",
+				"type": "bit"
+			},
+			{
+				"name": "ItemCategoryCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Nonstock",
+				"type": "bit"
+			},
+			{
+				"name": "PurchasingCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ItemReferenceNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CompletelyInvoiced",
+				"type": "bit"
+			},
+			{
+				"name": "LastInvoiceDate",
+				"type": "date"
+			},
+			{
+				"name": "AppliedEntrytoAdjust",
+				"type": "bit"
+			},
+			{
+				"name": "Correction",
+				"type": "bit"
+			},
+			{
+				"name": "ShippedQtyNotReturned",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "ProdOrderCompLineNo",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "SerialNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LotNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "WarrantyDate",
+				"type": "date"
+			},
+			{
+				"name": "ExpirationDate",
+				"type": "date"
+			},
+			{
+				"name": "ItemTracking",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PackageNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ReturnReasonCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ReservedQuantity",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "CostAmountExpected",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "CostAmountActual",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "CostAmountNonInvtbl",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "CostAmountExpectedACY",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "CostAmountActualACY",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "CostAmountNonInvtblACY",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "PurchaseAmountExpected",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "PurchaseAmountActual",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "SalesAmountExpected",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "SalesAmountActual",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "SystemCreatedDate",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "SystemModifiedDate",
+				"type": "datetime2",
+				"scale": 7
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "ItemLedgerEntry"
+		}
+	}
+}

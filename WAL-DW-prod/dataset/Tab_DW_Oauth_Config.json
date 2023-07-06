@@ -1,0 +1,58 @@
+{
+	"name": "Tab_DW_Oauth_Config",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "DwWalProd",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ServiceCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TenantID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "OauthBaseURL",
+				"type": "nvarchar"
+			},
+			{
+				"name": "OauthVersion",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ContentType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "GrantType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ClientID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ClientSecret",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Scope",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "DW_Oauth_Config"
+		}
+	}
+}

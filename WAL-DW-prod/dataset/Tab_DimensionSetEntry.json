@@ -1,0 +1,57 @@
+{
+	"name": "Tab_DimensionSetEntry",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "DwWalProd",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "DimensionSetID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DimensionCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CompanyCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DimensionValueCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DimensionValueID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DimensionName",
+				"type": "text"
+			},
+			{
+				"name": "DimensionValueName",
+				"type": "text"
+			},
+			{
+				"name": "SystemCreatedDate",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "SystemModifiedDate",
+				"type": "datetime2",
+				"scale": 7
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "DimensionSetEntry"
+		}
+	}
+}

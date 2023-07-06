@@ -1,0 +1,9 @@
+{
+	"name": "adfDWSetupProd",
+	"location": "uksouth",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "5e545f42-f4d4-4e35-9b93-8ff75a889dca",
+		"tenantId": "ac636b3d-2eb0-41e7-b5a6-7e15645731e9"
+	}
+}

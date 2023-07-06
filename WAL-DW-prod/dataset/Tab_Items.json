@@ -1,0 +1,1055 @@
+{
+	"name": "Tab_Items",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "DwWalProd",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "No",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CompanyCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AllowInvoiceDisc",
+				"type": "bit"
+			},
+			{
+				"name": "AllowOnlineAdjustment",
+				"type": "bit"
+			},
+			{
+				"name": "AlternativeItemNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ApplicationWkshUserID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AssemblyPolicy",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AutomaticExtTexts",
+				"type": "bit"
+			},
+			{
+				"name": "BaseUnitofMeasure",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BlockReason",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Blocked",
+				"type": "bit"
+			},
+			{
+				"name": "BudgetProfit",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "BudgetQuantity",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "BudgetedAmount",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "CommissionGroup",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "CommonItemNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CostisAdjusted",
+				"type": "bit"
+			},
+			{
+				"name": "CostingMethod",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CountryRegionPurchasedCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CountryRegionofOriginCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CreatedFromNonstockItem",
+				"type": "bit"
+			},
+			{
+				"name": "Critical",
+				"type": "bit"
+			},
+			{
+				"name": "DampenerPeriod",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DampenerQuantity",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "DefaultDeferralTemplateCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Description",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Description2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DiscreteOrderQuantity",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "Durability",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DutyCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DutyDue",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "DutyUnitConversion",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "ExpirationCalculation",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FlushingMethod",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FreightType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "GTIN",
+				"type": "nvarchar"
+			},
+			{
+				"name": "GenProdPostingGroup",
+				"type": "nvarchar"
+			},
+			{
+				"name": "GlobalDimension1Code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "GlobalDimension2Code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "GrossWeight",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "Id",
+				"type": "nvarchar"
+			},
+			{
+				"name": "IncludeInventory",
+				"type": "bit"
+			},
+			{
+				"name": "IndirectCost",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "InventoryPostingGroup",
+				"type": "nvarchar"
+			},
+			{
+				"name": "InventoryValueZero",
+				"type": "bit"
+			},
+			{
+				"name": "ItemCategoryCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ItemCategoryId",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ItemDiscGroup",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ItemTrackingCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LastCountingPeriodUpdate",
+				"type": "date"
+			},
+			{
+				"name": "LastDateModified",
+				"type": "date"
+			},
+			{
+				"name": "LastDateTimeModified",
+				"type": "date"
+			},
+			{
+				"name": "LastDirectCost",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "LastTimeModified",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LastUnitCostCalcDate",
+				"type": "date"
+			},
+			{
+				"name": "LeadTimeCalculation",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LotAccumulationPeriod",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LotNos",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LotSize",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "LowLevelCode",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "ManufacturerCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ManufacturingPolicy",
+				"type": "nvarchar"
+			},
+			{
+				"name": "MaximumInventory",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "MaximumOrderQuantity",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "MinimumOrderQuantity",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "NetWeight",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "NextCountingEndDate",
+				"type": "date"
+			},
+			{
+				"name": "NextCountingStartDate",
+				"type": "date"
+			},
+			{
+				"name": "No2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "NoSeries",
+				"type": "nvarchar"
+			},
+			{
+				"name": "OrderMultiple",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "OrderTrackingPolicy",
+				"type": "nvarchar"
+			},
+			{
+				"name": "OverReceiptCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "OverflowLevel",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "OverheadRate",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "PhysInvtCountingPeriodCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Picture",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PreventNegativeInventory",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PriceIncludesVAT",
+				"type": "bit"
+			},
+			{
+				"name": "PriceUnitConversion",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "PriceProfitCalculation",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ProductionBOMNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Profit",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "PurchUnitofMeasure",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PurchasingBlocked",
+				"type": "bit"
+			},
+			{
+				"name": "PurchasingCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PutawayTemplateCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PutawayUnitofMeasureCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ReorderPoint",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "ReorderQuantity",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "ReorderingPolicy",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ReplenishmentSystem",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ReschedulingPeriod",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Reserve",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ReverseChargeApplies",
+				"type": "bit"
+			},
+			{
+				"name": "RolledupCapOverheadCost",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "RolledupCapacityCost",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "RolledupMaterialCost",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "RolledupMfgOvhdCost",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "RolledupSubcontractedCost",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "RoundingPrecision",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "RoutingNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SafetyLeadTime",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SafetyStockQuantity",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "SalesBlocked",
+				"type": "bit"
+			},
+			{
+				"name": "SalesUnitofMeasure",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Scrap",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "SearchDescription",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SerialNos",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ServiceItemGroup",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ShelfNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SingleLevelCapOvhdCost",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "SingleLevelCapacityCost",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "SingleLevelMaterialCost",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "SingleLevelMfgOvhdCost",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "SingleLevelSubcontrdCost",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "SpecialEquipmentCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "StandardCost",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "StatisticsGroup",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "StockoutWarning",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SystemCreatedAt",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SystemCreatedBy",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SystemId",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SystemModifiedAt",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SystemModifiedBy",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TariffNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TaxGroupCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TaxGroupId",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TimeBucket",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Type",
+				"type": "nvarchar"
+			},
+			{
+				"name": "UnitCost",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "UnitListPrice",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "UnitPrice",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "UnitVolume",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "UnitofMeasureId",
+				"type": "nvarchar"
+			},
+			{
+				"name": "UnitsperParcel",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "UseCrossDocking",
+				"type": "bit"
+			},
+			{
+				"name": "VATBusPostingGrPrice",
+				"type": "nvarchar"
+			},
+			{
+				"name": "VATProdPostingGroup",
+				"type": "nvarchar"
+			},
+			{
+				"name": "VendorItemNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "VendorNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "WarehouseClassCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AssemblyBOM",
+				"type": "bit"
+			},
+			{
+				"name": "COGSLCY",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "Comment",
+				"type": "bit"
+			},
+			{
+				"name": "CostisPostedtoGL",
+				"type": "bit"
+			},
+			{
+				"name": "CostofOpenProductionOrders",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "FPOrderReceiptQty",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "IdentifierCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Inventory",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "LastPhysInvtDate",
+				"type": "date"
+			},
+			{
+				"name": "NegativeAdjmtLCY",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "NegativeAdjmtQty",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "NetChange",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "NetInvoicedQty",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "NoofSubstitutes",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "PlannedOrderReceiptQty",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "PlannedOrderReleaseQty",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "PlanningIssuesQty",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "PlanningReceiptQty",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "PlanningReleaseQty",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "PlanningTransferShipQty",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "PlanningWorksheetQty",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "PositiveAdjmtLCY",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "PositiveAdjmtQty",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "ProdForecastQuantityBase",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "PurchReqReceiptQty",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "PurchReqReleaseQty",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "PurchasesLCY",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "PurchasesQty",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "QtyAssignedtoship",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "QtyPicked",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "QtyinTransit",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "QtyonAsmComponent",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "QtyonAssemblyOrder",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "QtyonComponentLines",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "QtyonJobOrder",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "QtyonProdOrder",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "QtyonPurchOrder",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "QtyonPurchReturn",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "QtyonSalesOrder",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "QtyonSalesReturn",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "QtyonServiceOrder",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "RelOrderReceiptQty",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "ResQtyonAsmComp",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "ResQtyonAssemblyOrder",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "ResQtyonInboundTransfer",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "ResQtyonJobOrder",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "ResQtyonOutboundTransfer",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "ResQtyonProdOrderComp",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "ResQtyonPurchReturns",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "ResQtyonReqLine",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "ResQtyonSalesReturns",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "ResQtyonServiceOrders",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "ReservedQtyonInventory",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "ReservedQtyonProdOrder",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "ReservedQtyonPurchOrders",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "ReservedQtyonSalesOrders",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "SalesLCY",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "SalesQty",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "ScheduledNeedQty",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "ScheduledReceiptQty",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "StockkeepingUnitExists",
+				"type": "bit"
+			},
+			{
+				"name": "SubstitutesExist",
+				"type": "bit"
+			},
+			{
+				"name": "TransOrdReceiptQty",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "TransOrdShipmentQty",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "TransferredLCY",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "TransferredQty",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Items"
+		}
+	}
+}

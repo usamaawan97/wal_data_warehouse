@@ -1,0 +1,78 @@
+{
+	"name": "Tab_DimensionValue",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "DwWalProd",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "DimensionCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CompanyCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Name",
+				"type": "text"
+			},
+			{
+				"name": "DimensionValueType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Totaling",
+				"type": "text"
+			},
+			{
+				"name": "Blocked",
+				"type": "bit"
+			},
+			{
+				"name": "ConsolidationCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Indentation",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "GlobalDimensionNo",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "MapToICDimensionCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "MapToICDimensionValueCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DimensionValueID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "LastModifiedDateTime",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "DimensionValue"
+		}
+	}
+}

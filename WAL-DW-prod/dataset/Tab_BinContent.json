@@ -1,0 +1,189 @@
+{
+	"name": "Tab_BinContent",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "DwWalProd",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "LocationCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BinCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ItemNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "VariantCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "UnitofMeasureCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CompanyCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BinRanking",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 10
+			},
+			{
+				"name": "BinTypeCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BlockMovement",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CrossDockBin",
+				"type": "bit"
+			},
+			{
+				"name": "Dedicated",
+				"type": "bit"
+			},
+			{
+				"name": "Default",
+				"type": "bit"
+			},
+			{
+				"name": "Fixed",
+				"type": "bit"
+			},
+			{
+				"name": "MaxQty",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 10
+			},
+			{
+				"name": "MinQty",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 10
+			},
+			{
+				"name": "QtyperUnitofMeasure",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 10
+			},
+			{
+				"name": "SystemCreatedAt",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SystemCreatedBy",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SystemId",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SystemModifiedAt",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SystemModifiedBy",
+				"type": "nvarchar"
+			},
+			{
+				"name": "WarehouseClassCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ZoneCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ATOComponentsPickQtyBase",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 10
+			},
+			{
+				"name": "ATOComponentsPickQty",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 10
+			},
+			{
+				"name": "NegAdjmtQty",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 10
+			},
+			{
+				"name": "NegativeAdjmtQtyBase",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 10
+			},
+			{
+				"name": "PickQty",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 10
+			},
+			{
+				"name": "PickQuantityBase",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 10
+			},
+			{
+				"name": "PosAdjmtQty",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 10
+			},
+			{
+				"name": "PositiveAdjmtQtyBase",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 10
+			},
+			{
+				"name": "PutawayQty",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 10
+			},
+			{
+				"name": "PutawayQuantityBase",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 10
+			},
+			{
+				"name": "Quantity",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 10
+			},
+			{
+				"name": "QuantityBase",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "BinContent"
+		}
+	}
+}

@@ -1,0 +1,215 @@
+{
+	"name": "Tab_DetailedVendorLedgerEntry",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "DwWalProd",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "EntryNo",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "CompanyCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Amount",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 18
+			},
+			{
+				"name": "AmountLCY",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 18
+			},
+			{
+				"name": "ApplicationNo",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "AppliedVendLedgerEntryNo",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "CreditAmount",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "CreditAmountLCY",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "CurrencyCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DebitAmount",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 18
+			},
+			{
+				"name": "DebitAmountLCY",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 18
+			},
+			{
+				"name": "DocumentNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DocumentType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "EntryType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "GenBusPostingGroup",
+				"type": "nvarchar"
+			},
+			{
+				"name": "GenProdPostingGroup",
+				"type": "nvarchar"
+			},
+			{
+				"name": "InitialDocumentType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "InitialEntryDueDate",
+				"type": "nvarchar"
+			},
+			{
+				"name": "InitialEntryGlobalDim1",
+				"type": "nvarchar"
+			},
+			{
+				"name": "InitialEntryGlobalDim2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "JournalBatchName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LedgerEntryAmount",
+				"type": "bit"
+			},
+			{
+				"name": "MaxPaymentTolerance",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 18
+			},
+			{
+				"name": "PostingDate",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ReasonCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RemainingPmtDiscPossible",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 18
+			},
+			{
+				"name": "SourceCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SystemCreatedAt",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SystemCreatedBy",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SystemId",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SystemModifiedAt",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SystemModifiedBy",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TaxJurisdictionCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TransactionNo",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "Unapplied",
+				"type": "bit"
+			},
+			{
+				"name": "UnappliedbyEntryNo",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "UseTax",
+				"type": "bit"
+			},
+			{
+				"name": "UserID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "VATBusPostingGroup",
+				"type": "nvarchar"
+			},
+			{
+				"name": "VATProdPostingGroup",
+				"type": "nvarchar"
+			},
+			{
+				"name": "VendorLedgerEntryNo",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "VendorNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SystemCreatedDate",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "SystemModifiedDate",
+				"type": "datetime2",
+				"scale": 7
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "DetailedVendorLedgerEntry"
+		}
+	}
+}

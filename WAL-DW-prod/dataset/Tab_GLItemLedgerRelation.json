@@ -1,0 +1,46 @@
+{
+	"name": "Tab_GLItemLedgerRelation",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "DwWalProd",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "GLEntryNo",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CompanyCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ValueEntryNo",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "GLRegisterNo",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SystemCreatedDate",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "SystemModifiedDate",
+				"type": "datetime2",
+				"scale": 7
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "GLItemLedgerRelation"
+		}
+	}
+}

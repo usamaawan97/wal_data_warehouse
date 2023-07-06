@@ -1,0 +1,37 @@
+{
+	"name": "Tab_DW_Site_Config",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "DwWalProd",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "SiteCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Prefix",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TennantID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CompanyName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ActiveEnvironment",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "DW_Company_Config"
+		}
+	}
+}

@@ -1,0 +1,50 @@
+{
+	"name": "Tab_DefaultDimension",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "DwWalProd",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "TableID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "No",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DimensionCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CompanyCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DimensionValueCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ValuePosting",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TableCaption",
+				"type": "text"
+			},
+			{
+				"name": "MultiSelectionAction",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "DefaultDimension"
+		}
+	}
+}

@@ -1,0 +1,871 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "adfDWSetupProd"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/DW_Incremental_Cycle')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Get CompanyCode",
+						"type": "Lookup",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 5,
+							"retryIntervalInSeconds": 60,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"sqlReaderQuery": {
+									"value": "SELECT CompanyCode FROM dbo.DW_Company_Config WHERE Enabled = 1",
+									"type": "Expression"
+								},
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"dataset": {
+								"referenceName": "Tab_DW_Site_Config",
+								"type": "DatasetReference",
+								"parameters": {}
+							},
+							"firstRowOnly": false
+						}
+					},
+					{
+						"name": "ForEach CompanyCode 1",
+						"type": "ForEach",
+						"dependsOn": [
+							{
+								"activity": "Get CompanyCode",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"items": {
+								"value": "@activity('Get CompanyCode').output.value",
+								"type": "Expression"
+							},
+							"isSequential": false,
+							"activities": [
+								{
+									"name": "DW_Incremental_Cycle_Internal_2",
+									"type": "ExecutePipeline",
+									"dependsOn": [
+										{
+											"activity": "Get_Access_Token_DB",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"userProperties": [],
+									"typeProperties": {
+										"pipeline": {
+											"referenceName": "DW_Incremental_Cycle_Internal_2",
+											"type": "PipelineReference"
+										},
+										"waitOnCompletion": true,
+										"parameters": {
+											"CompanyCode": {
+												"value": "@item().CompanyCode",
+												"type": "Expression"
+											},
+											"AccessToken": {
+												"value": "@{activity('Get_Access_Token_DB').output.firstRow.AccessToken}",
+												"type": "Expression"
+											}
+										}
+									}
+								},
+								{
+									"name": "DW_Incremental_Cycle_Internal_3",
+									"type": "ExecutePipeline",
+									"dependsOn": [
+										{
+											"activity": "Get_Access_Token_DB",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"userProperties": [],
+									"typeProperties": {
+										"pipeline": {
+											"referenceName": "DW_Incremental_Cycle_Internal_3",
+											"type": "PipelineReference"
+										},
+										"waitOnCompletion": true,
+										"parameters": {
+											"CompanyCode": {
+												"value": "@item().CompanyCode",
+												"type": "Expression"
+											},
+											"AccessToken": {
+												"value": "@{activity('Get_Access_Token_DB').output.firstRow.AccessToken}",
+												"type": "Expression"
+											}
+										}
+									}
+								},
+								{
+									"name": "DW_Incremental_Cycle_Internal_4",
+									"type": "ExecutePipeline",
+									"dependsOn": [
+										{
+											"activity": "Get_Access_Token_DB",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"userProperties": [],
+									"typeProperties": {
+										"pipeline": {
+											"referenceName": "DW_Incremental_Cycle_Internal_4",
+											"type": "PipelineReference"
+										},
+										"waitOnCompletion": true,
+										"parameters": {
+											"CompanyCode": {
+												"value": "@item().CompanyCode",
+												"type": "Expression"
+											},
+											"AccessToken": {
+												"value": "@{activity('Get_Access_Token_DB').output.firstRow.AccessToken}",
+												"type": "Expression"
+											}
+										}
+									}
+								},
+								{
+									"name": "DW_Incremental_Cycle_Internal_1",
+									"type": "ExecutePipeline",
+									"dependsOn": [
+										{
+											"activity": "Get_Access_Token_DB",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"userProperties": [],
+									"typeProperties": {
+										"pipeline": {
+											"referenceName": "DW_Incremental_Cycle_Internal_1",
+											"type": "PipelineReference"
+										},
+										"waitOnCompletion": true,
+										"parameters": {
+											"CompanyCode": {
+												"value": "@item().CompanyCode",
+												"type": "Expression"
+											},
+											"AccessToken": {
+												"value": "@{activity('Get_Access_Token_DB').output.firstRow.AccessToken}",
+												"type": "Expression"
+											}
+										}
+									}
+								},
+								{
+									"name": "Get_Access_Token_DB",
+									"type": "Lookup",
+									"dependsOn": [],
+									"policy": {
+										"timeout": "7.00:00:00",
+										"retry": 5,
+										"retryIntervalInSeconds": 60,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"source": {
+											"type": "AzureSqlSource",
+											"sqlReaderQuery": {
+												"value": "SELECT * FROM DW_Oauth_Access_Token",
+												"type": "Expression"
+											},
+											"queryTimeout": "02:00:00",
+											"partitionOption": "None"
+										},
+										"dataset": {
+											"referenceName": "Tab_DW_Oauth_Access_Token",
+											"type": "DatasetReference",
+											"parameters": {}
+										}
+									}
+								}
+							]
+						}
+					},
+					{
+						"name": "Modify_Last_Updated_Date",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [
+							{
+								"activity": "ForEach CompanyCode 1",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 5,
+							"retryIntervalInSeconds": 60,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[dbo].[Modify_Last_Updated_Date]"
+						},
+						"linkedServiceName": {
+							"referenceName": "DwWalProd",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
+				"folder": {
+					"name": "Datawarehouse"
+				},
+				"annotations": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DW_Reload_Cycle')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Clear Reloading Tables",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 5,
+							"retryIntervalInSeconds": 60,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[dbo].[Clear Reloading Tables]"
+						},
+						"linkedServiceName": {
+							"referenceName": "DwWalProd",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "Get CompanyCode",
+						"type": "Lookup",
+						"dependsOn": [
+							{
+								"activity": "Clear Reloading Tables",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 5,
+							"retryIntervalInSeconds": 60,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"sqlReaderQuery": {
+									"value": "SELECT CompanyCode FROM dbo.DW_Company_Config WHERE Enabled = 1",
+									"type": "Expression"
+								},
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"dataset": {
+								"referenceName": "Tab_DW_Site_Config",
+								"type": "DatasetReference",
+								"parameters": {}
+							},
+							"firstRowOnly": false
+						}
+					},
+					{
+						"name": "ForEach CompanyCode",
+						"type": "ForEach",
+						"dependsOn": [
+							{
+								"activity": "Get CompanyCode",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"items": {
+								"value": "@activity('Get CompanyCode').output.value",
+								"type": "Expression"
+							},
+							"isSequential": false,
+							"activities": [
+								{
+									"name": "DW_Reload_Cycle_Internal_2",
+									"type": "ExecutePipeline",
+									"dependsOn": [
+										{
+											"activity": "Get_Access_Token_DB",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"userProperties": [],
+									"typeProperties": {
+										"pipeline": {
+											"referenceName": "DW_Reload_Cycle_Internal_2",
+											"type": "PipelineReference"
+										},
+										"waitOnCompletion": true,
+										"parameters": {
+											"CompanyCode": {
+												"value": "@item().CompanyCode",
+												"type": "Expression"
+											},
+											"AccessToken": {
+												"value": "@{activity('Get_Access_Token_DB').output.firstRow.AccessToken}",
+												"type": "Expression"
+											}
+										}
+									}
+								},
+								{
+									"name": "DW_Reload_Cycle_Internal_1",
+									"type": "ExecutePipeline",
+									"dependsOn": [
+										{
+											"activity": "Get_Access_Token_DB",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"userProperties": [],
+									"typeProperties": {
+										"pipeline": {
+											"referenceName": "DW_Reload_Cycle_Internal_1",
+											"type": "PipelineReference"
+										},
+										"waitOnCompletion": true,
+										"parameters": {
+											"CompanyCode": {
+												"value": "@item().CompanyCode",
+												"type": "Expression"
+											},
+											"AccessToken": {
+												"value": "@{activity('Get_Access_Token_DB').output.firstRow.AccessToken}",
+												"type": "Expression"
+											}
+										}
+									}
+								},
+								{
+									"name": "Get_Access_Token_DB",
+									"type": "Lookup",
+									"dependsOn": [],
+									"policy": {
+										"timeout": "7.00:00:00",
+										"retry": 5,
+										"retryIntervalInSeconds": 60,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"source": {
+											"type": "AzureSqlSource",
+											"sqlReaderQuery": {
+												"value": "SELECT * FROM DW_Oauth_Access_Token",
+												"type": "Expression"
+											},
+											"queryTimeout": "02:00:00",
+											"partitionOption": "None"
+										},
+										"dataset": {
+											"referenceName": "Tab_DW_Oauth_Access_Token",
+											"type": "DatasetReference",
+											"parameters": {}
+										}
+									}
+								}
+							]
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
+				"folder": {
+					"name": "Datawarehouse"
+				},
+				"annotations": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Temp_Pipeline_To_Refill_Any_Table')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Get CompanyCode",
+						"type": "Lookup",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"sqlReaderQuery": {
+									"value": "SELECT CompanyCode FROM dbo.DW_Company_Config WHERE Enabled = 1",
+									"type": "Expression"
+								},
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"dataset": {
+								"referenceName": "Tab_DW_Site_Config",
+								"type": "DatasetReference",
+								"parameters": {}
+							},
+							"firstRowOnly": false
+						}
+					},
+					{
+						"name": "ForEach CompanyCode 1",
+						"type": "ForEach",
+						"dependsOn": [
+							{
+								"activity": "Get CompanyCode",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"items": {
+								"value": "@activity('Get CompanyCode').output.value",
+								"type": "Expression"
+							},
+							"isSequential": false,
+							"activities": [
+								{
+									"name": "Temp_Pipeline_To_Refill_Any_Table_Internal",
+									"type": "ExecutePipeline",
+									"dependsOn": [],
+									"userProperties": [],
+									"typeProperties": {
+										"pipeline": {
+											"referenceName": "Temp_Pipeline_To_Refill_Any_Table_Internal",
+											"type": "PipelineReference"
+										},
+										"waitOnCompletion": true,
+										"parameters": {
+											"CompanyCode": {
+												"value": "@item().CompanyCode",
+												"type": "Expression"
+											}
+										}
+									}
+								}
+							]
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
+				"variables": {
+					"SalesInvoiceLine": {
+						"type": "String"
+					}
+				},
+				"folder": {
+					"name": "Temp"
+				},
+				"annotations": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Master_DW_Cycle')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "DW_Reload_Cycle",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "GetEmailList",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "DW_Reload_Cycle",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {}
+						}
+					},
+					{
+						"name": "GetEmailList",
+						"type": "Lookup",
+						"dependsOn": [
+							{
+								"activity": "Update_Oauth_Access_Token_DB",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 5,
+							"retryIntervalInSeconds": 60,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"sqlReaderQuery": {
+									"value": "SELECT InterfaceSuccessAlertEmails,InterfaceFailureAlertEmails FROM dbo.DW_Interface_Setup",
+									"type": "Expression"
+								},
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"dataset": {
+								"referenceName": "Tab_DW_Interface_Setup",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						}
+					},
+					{
+						"name": "Send Failure Email Reload",
+						"type": "WebActivity",
+						"dependsOn": [
+							{
+								"activity": "DW_Reload_Cycle",
+								"dependencyConditions": [
+									"Failed"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 5,
+							"retryIntervalInSeconds": 60,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"url": {
+								"value": "https://prod-26.uksouth.logic.azure.com:443/workflows/660cbc90a51a40dab53e76f370f74e70/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=rslDaEeWOQuFduFl-Q7zq0CcPvzeZBaVvKrOXGfeAak",
+								"type": "Expression"
+							},
+							"method": "POST",
+							"headers": {},
+							"body": {
+								"value": "{\n    \"title\": \"@{activity('DW_Reload_Cycle').output.pipelineName} FAILED!\",\n    \"message\": \"Error: @{activity('DW_Reload_Cycle').error.message}\",\n    \"color\": \"Red\",\n    \"dataFactoryName\": \"@{pipeline().DataFactory}\",\n    \"pipelineName\": \"@{activity('DW_Reload_Cycle').output.pipelineName}\",\n    \"pipelineRunId\": \"@{activity('DW_Reload_Cycle').output.pipelineRunId}\",\n    \"time\": \"@{utcnow()}\",\n   \"recipientEmailAddress\":\"@{activity('GetEmailList').output.firstRow.InterfaceFailureAlertEmails}\"\n    }",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "DW_Incremental_Cycle",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "GetEmailList",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "DW_Incremental_Cycle",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {}
+						}
+					},
+					{
+						"name": "Send Failure Email Incremental",
+						"type": "WebActivity",
+						"dependsOn": [
+							{
+								"activity": "DW_Incremental_Cycle",
+								"dependencyConditions": [
+									"Failed"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 5,
+							"retryIntervalInSeconds": 60,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"url": {
+								"value": "https://prod-26.uksouth.logic.azure.com:443/workflows/660cbc90a51a40dab53e76f370f74e70/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=rslDaEeWOQuFduFl-Q7zq0CcPvzeZBaVvKrOXGfeAak",
+								"type": "Expression"
+							},
+							"method": "POST",
+							"headers": {},
+							"body": {
+								"value": "{\n    \"title\": \"@{activity('DW_Incremental_Cycle').output.pipelineName} FAILED!\",\n    \"message\": \"Error: @{activity('DW_Incremental_Cycle').error.message}\",\n    \"color\": \"Red\",\n    \"dataFactoryName\": \"@{pipeline().DataFactory}\",\n    \"pipelineName\": \"@{activity('DW_Incremental_Cycle').output.pipelineName}\",\n    \"pipelineRunId\": \"@{activity('DW_Incremental_Cycle').output.pipelineRunId}\",\n    \"time\": \"@{utcnow()}\",\n   \"recipientEmailAddress\":\"@{activity('GetEmailList').output.firstRow.InterfaceFailureAlertEmails}\"\n    }",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "Get_BC_Access_Token",
+						"type": "WebActivity",
+						"dependsOn": [
+							{
+								"activity": "Get_Oauth_Service_Configuration",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 5,
+							"retryIntervalInSeconds": 60,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"url": {
+								"value": "@activity('Get_Oauth_Service_Configuration').output.firstRow.ServiceURL",
+								"type": "Expression"
+							},
+							"method": "POST",
+							"headers": {
+								"Content-type": {
+									"value": "@activity('Get_Oauth_Service_Configuration').output.firstRow.ContentType",
+									"type": "Expression"
+								}
+							},
+							"body": {
+								"value": "grant_type=@{activity('Get_Oauth_Service_Configuration').output.firstRow.GrantType}\n&client_id=@{activity('Get_Oauth_Service_Configuration').output.firstRow.ClientID}\n&client_secret=@{activity('Get_Oauth_Service_Configuration').output.firstRow.ClientSecret}\n&scope=@{activity('Get_Oauth_Service_Configuration').output.firstRow.Scope}",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "Get_Oauth_Service_Configuration",
+						"type": "Lookup",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 5,
+							"retryIntervalInSeconds": 60,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"sqlReaderStoredProcedureName": "[[dbo].[Get_Oauth_Service_Configuration]",
+								"storedProcedureParameters": {
+									"ServiceCode": {
+										"type": "String",
+										"value": "GetOauthConfig"
+									}
+								},
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"dataset": {
+								"referenceName": "Tab_DW_Oauth_Config",
+								"type": "DatasetReference",
+								"parameters": {}
+							},
+							"firstRowOnly": true
+						}
+					},
+					{
+						"name": "Update_Oauth_Access_Token_DB",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [
+							{
+								"activity": "Get_BC_Access_Token",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 5,
+							"retryIntervalInSeconds": 60,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[dbo].[Update_Oauth_Access_Token]",
+							"storedProcedureParameters": {
+								"AccessToken": {
+									"value": {
+										"value": "@activity('Get_BC_Access_Token').output.access_token",
+										"type": "Expression"
+									},
+									"type": "String"
+								}
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "DwWalProd",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
+				"folder": {
+					"name": "Datawarehouse"
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/DW_Reload_Cycle')]",
+				"[concat(variables('factoryId'), '/pipelines/DW_Incremental_Cycle')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/TR_DW_2PM')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "Master_DW_Cycle",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Day",
+						"interval": 1,
+						"startTime": "2022-02-09T14:00:00Z",
+						"timeZone": "UTC"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/Master_DW_Cycle')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/TR_DW_5AM')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "Master_DW_Cycle",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Day",
+						"interval": 1,
+						"startTime": "2022-02-09T05:00:00Z",
+						"timeZone": "UTC"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/Master_DW_Cycle')]"
+			]
+		}
+	]
+}

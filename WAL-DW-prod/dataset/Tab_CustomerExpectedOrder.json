@@ -1,0 +1,53 @@
+{
+	"name": "Tab_CustomerExpectedOrder",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "DwWalProd",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Customer_No",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Shortcut_Dimension_1_Code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CompanyCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Expected_Order_Amt",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 10
+			},
+			{
+				"name": "Risk_Amount",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 10
+			},
+			{
+				"name": "Created_Date",
+				"type": "date"
+			},
+			{
+				"name": "Modified_Date",
+				"type": "date"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "CustomerExpectedOrder"
+		}
+	}
+}

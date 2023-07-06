@@ -1,0 +1,9 @@
+{
+	"name": "WALDW-DEV",
+	"location": "uksouth",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "f150c6f2-40cd-4ea3-94ef-4e307bfaa038",
+		"tenantId": "ac636b3d-2eb0-41e7-b5a6-7e15645731e9"
+	}
+}

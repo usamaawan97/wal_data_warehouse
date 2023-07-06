@@ -1,0 +1,217 @@
+{
+	"name": "Tab_Customer",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "DwWalProd",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "No",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CompanyCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SearchName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Name2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Address",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Address2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "City",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Contact",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PhoneNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ShiptoCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "OurAccountNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TerritoryCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "GlobalDimension1Code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "GlobalDimension2Code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ChainName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BudgetedAmount",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 10
+			},
+			{
+				"name": "CustomerPostingGroup",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CurrencyCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CustomerPriceGroup",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PaymentTermsCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FinChargeTermsCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SalespersonCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ShipmentMethodCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ShippingAgentCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "InvoiceDiscCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CustomerDiscGroup",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CountryRegionCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CollectionMethod",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Amount",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 10
+			},
+			{
+				"name": "Blocked",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BilltoCustomerNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PaymentMethodCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PricesIncludingVAT",
+				"type": "bit"
+			},
+			{
+				"name": "LocationCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "GenBusPostingGroup",
+				"type": "nvarchar"
+			},
+			{
+				"name": "GLN",
+				"type": "nvarchar"
+			},
+			{
+				"name": "County",
+				"type": "nvarchar"
+			},
+			{
+				"name": "EMail",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TaxAreaCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TaxLiable",
+				"type": "bit"
+			},
+			{
+				"name": "VATBusPostingGroup",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ICPartnerCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PartnerType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PrimaryContactNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ContactType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ResponsibilityCenter",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PostCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CustomerGroup",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Customer"
+		}
+	}
+}

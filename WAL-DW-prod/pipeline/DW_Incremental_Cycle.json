@@ -1,0 +1,237 @@
+{
+	"name": "DW_Incremental_Cycle",
+	"properties": {
+		"activities": [
+			{
+				"name": "Get CompanyCode",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 5,
+					"retryIntervalInSeconds": 60,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": {
+							"value": "SELECT CompanyCode FROM dbo.DW_Company_Config WHERE Enabled = 1",
+							"type": "Expression"
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "Tab_DW_Site_Config",
+						"type": "DatasetReference"
+					},
+					"firstRowOnly": false
+				}
+			},
+			{
+				"name": "ForEach CompanyCode 1",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Get CompanyCode",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Get CompanyCode').output.value",
+						"type": "Expression"
+					},
+					"isSequential": false,
+					"activities": [
+						{
+							"name": "DW_Incremental_Cycle_Internal_2",
+							"type": "ExecutePipeline",
+							"dependsOn": [
+								{
+									"activity": "Get_Access_Token_DB",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "DW_Incremental_Cycle_Internal_2",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true,
+								"parameters": {
+									"CompanyCode": {
+										"value": "@item().CompanyCode",
+										"type": "Expression"
+									},
+									"AccessToken": {
+										"value": "@{activity('Get_Access_Token_DB').output.firstRow.AccessToken}",
+										"type": "Expression"
+									}
+								}
+							}
+						},
+						{
+							"name": "DW_Incremental_Cycle_Internal_3",
+							"type": "ExecutePipeline",
+							"dependsOn": [
+								{
+									"activity": "Get_Access_Token_DB",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "DW_Incremental_Cycle_Internal_3",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true,
+								"parameters": {
+									"CompanyCode": {
+										"value": "@item().CompanyCode",
+										"type": "Expression"
+									},
+									"AccessToken": {
+										"value": "@{activity('Get_Access_Token_DB').output.firstRow.AccessToken}",
+										"type": "Expression"
+									}
+								}
+							}
+						},
+						{
+							"name": "DW_Incremental_Cycle_Internal_4",
+							"type": "ExecutePipeline",
+							"dependsOn": [
+								{
+									"activity": "Get_Access_Token_DB",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "DW_Incremental_Cycle_Internal_4",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true,
+								"parameters": {
+									"CompanyCode": {
+										"value": "@item().CompanyCode",
+										"type": "Expression"
+									},
+									"AccessToken": {
+										"value": "@{activity('Get_Access_Token_DB').output.firstRow.AccessToken}",
+										"type": "Expression"
+									}
+								}
+							}
+						},
+						{
+							"name": "DW_Incremental_Cycle_Internal_1",
+							"type": "ExecutePipeline",
+							"dependsOn": [
+								{
+									"activity": "Get_Access_Token_DB",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "DW_Incremental_Cycle_Internal_1",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true,
+								"parameters": {
+									"CompanyCode": {
+										"value": "@item().CompanyCode",
+										"type": "Expression"
+									},
+									"AccessToken": {
+										"value": "@{activity('Get_Access_Token_DB').output.firstRow.AccessToken}",
+										"type": "Expression"
+									}
+								}
+							}
+						},
+						{
+							"name": "Get_Access_Token_DB",
+							"type": "Lookup",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 5,
+								"retryIntervalInSeconds": 60,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "AzureSqlSource",
+									"sqlReaderQuery": {
+										"value": "SELECT * FROM DW_Oauth_Access_Token",
+										"type": "Expression"
+									},
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"dataset": {
+									"referenceName": "Tab_DW_Oauth_Access_Token",
+									"type": "DatasetReference"
+								}
+							}
+						}
+					]
+				}
+			},
+			{
+				"name": "Modify_Last_Updated_Date",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "ForEach CompanyCode 1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 5,
+					"retryIntervalInSeconds": 60,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[Modify_Last_Updated_Date]"
+				},
+				"linkedServiceName": {
+					"referenceName": "DwWalProd",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"folder": {
+			"name": "Datawarehouse"
+		},
+		"annotations": []
+	}
+}

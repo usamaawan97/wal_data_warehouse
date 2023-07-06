@@ -1,0 +1,116 @@
+{
+	"name": "Tab_GLBudgetEntry",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "DwWalProd",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "EntryNo",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "CompanyCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Amount",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 10
+			},
+			{
+				"name": "BudgetDimension1Code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BudgetDimension2Code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BudgetDimension3Code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BudgetDimension4Code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BudgetName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BusinessUnitCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Date",
+				"type": "date"
+			},
+			{
+				"name": "Description",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DimensionSetID",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "GLAccountNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "GlobalDimension1Code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "GlobalDimension2Code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LastDateModified",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "SystemCreatedAt",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "SystemCreatedBy",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SystemId",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SystemModifiedAt",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "SystemModifiedBy",
+				"type": "nvarchar"
+			},
+			{
+				"name": "UserID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Include_in_Reports",
+				"type": "bit"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "GLBudgetEntry"
+		}
+	}
+}

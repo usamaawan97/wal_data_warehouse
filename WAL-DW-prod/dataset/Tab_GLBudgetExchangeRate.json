@@ -1,0 +1,63 @@
+{
+	"name": "Tab_GLBudgetExchangeRate",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "DwWalProd",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "BudgetExchageRateUSD",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 6
+			},
+			{
+				"name": "CompanyCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "GLBudgetName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Month",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "Year",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "SystemCreatedAt",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "SystemCreatedBy",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SystemId",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SystemModifiedAt",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "SystemModifiedBy",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "GLBudgetExchangeRate"
+		}
+	}
+}

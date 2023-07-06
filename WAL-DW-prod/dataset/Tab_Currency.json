@@ -1,0 +1,47 @@
+{
+	"name": "Tab_Currency",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "DwWalProd",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CompanyCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ISOCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ISONumericCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Description",
+				"type": "text"
+			},
+			{
+				"name": "EMUCurrency",
+				"type": "bit"
+			},
+			{
+				"name": "CurrencyFactor",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Currency"
+		}
+	}
+}

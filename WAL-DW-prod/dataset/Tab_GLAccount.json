@@ -1,0 +1,208 @@
+{
+	"name": "Tab_GLAccount",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "DwWalProd",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "No",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CompanyCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SearchName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AccountType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "GlobalDimension1Code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "GlobalDimension2Code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AccountCategory",
+				"type": "nvarchar"
+			},
+			{
+				"name": "IncomeBalance",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DebitCredit",
+				"type": "nvarchar"
+			},
+			{
+				"name": "No2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Blocked",
+				"type": "bit"
+			},
+			{
+				"name": "DirectPosting",
+				"type": "bit"
+			},
+			{
+				"name": "ReconciliationAccount",
+				"type": "bit"
+			},
+			{
+				"name": "ConsolTranslationMethod",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ConsolDebitAcc",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ConsolCreditAcc",
+				"type": "nvarchar"
+			},
+			{
+				"name": "GenPostingType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "GenBusPostingGroup",
+				"type": "nvarchar"
+			},
+			{
+				"name": "GenProdPostingGroup",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TaxAreaCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TaxLiable",
+				"type": "bit"
+			},
+			{
+				"name": "TaxGroupCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "VATBusPostingGroup",
+				"type": "nvarchar"
+			},
+			{
+				"name": "VATProdPostingGroup",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ExchangeRateAdjustment",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DefaultICPartnerGLAccNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AccountSubcategoryEntryNo",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "CostTypeNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DefaultDeferralTemplateCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BudgetatDate",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 10
+			},
+			{
+				"name": "DebitAmount",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 10
+			},
+			{
+				"name": "CreditAmount",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 10
+			},
+			{
+				"name": "BudgetedDebitAmount",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 10
+			},
+			{
+				"name": "BudgetedCreditAmount",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 10
+			},
+			{
+				"name": "VATAmt",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 10
+			},
+			{
+				"name": "AdditionalCurrencyNetChange",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 10
+			},
+			{
+				"name": "AddCurrencyBalanceatDate",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 10
+			},
+			{
+				"name": "AdditionalCurrencyBalance",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 10
+			},
+			{
+				"name": "AddCurrencyDebitAmount",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 10
+			},
+			{
+				"name": "AddCurrencyCreditAmount",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 10
+			},
+			{
+				"name": "AccountSubcategoryDescript",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "GLAccount"
+		}
+	}
+}
